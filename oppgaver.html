@@ -62,19 +62,23 @@
         filterBtn.onclick = getFilterValue;
 
         function getFilterValue() {
-            const selectedType = document.querySelector("pokemon-filter-selection").value;
+            const selectedType = document.querySelector("#pokemon-filter-selection").value;
             filterPokemon(selectedType);
         }
 
-        function filterPokemon() {
+        function filterPokemon(selectedType) {
             const filteredPokemon = pokemonsId;
             let typeFilter;
 
             if (selectedType === "all") {
                 console.log("Viser alle pokemon", filteredPokemon);
                 showAllPokemon(filteredPokemon);
-        } 
+        } else {
+            typeFilter = filteredPokemon.filter((pokemon) => pokemon.types[0].type.name === selectedType);
+            console.log("filter", typeFilter);
 
+        }
+    }
 
         function showAllPokemon(pokemons) {
             pokemonContainer.innerHTML = "";
