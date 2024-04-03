@@ -12,6 +12,8 @@
     <script>
         const pokemonContainer = document.querySelector(".pokemon-container");
         
+
+        let pokemonsId = [];
         async function fetchPokemon(id) {
             const pokemonRequest = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
             let response = await pokemonRequest.json();
