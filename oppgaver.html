@@ -66,6 +66,15 @@
             filterPokemon(selectedType);
         }
 
+        function filterPokemon() {
+            const filteredPokemon = pokemonsId;
+            let typeFilter;
+
+            if (selectedType === "all") {
+                console.log("Viser alle pokemon", filteredPokemon);
+                showAllPokemon(filteredPokemon);
+        } 
+
 
         function showAllPokemon(pokemons) {
             pokemonContainer.innerHTML = "";
