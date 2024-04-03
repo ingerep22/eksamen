@@ -26,7 +26,7 @@
                     pokemonId.push(idOfPokemon);
                     console.log("pokemon", idOfPokemon);
                 }
-                
+                showAllPokemon(pokemonsId)
                 
             } catch (error) {
                 console.error("Her klarte vi dessverre ikke å laste inn pokemons", error)
@@ -41,6 +41,7 @@
                 pokemonContainer.style.display ="flex";
                 pokemonContainer.stule.flexWrap = "wrap"
 
+                pokemonCard.innerHtml = `${pokemon.type[0].type.name}`;
 
                 pokemonContainer.appendChild(pokemonCard);
                 
