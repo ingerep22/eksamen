@@ -27,10 +27,25 @@
                     console.log("pokemon", idOfPokemon);
                 }
                 
+                
             } catch (error) {
                 console.error("Her klarte vi dessverre ikke å laste inn pokemons", error)
             }
-        } fetchAndShowPokemonId()
+        } 
+        fetchAndShowPokemonId()
+
+        function showAllPokemon(pokemons) {
+            pokemonContainer.innerHTML = "";
+            pokemonsId.forEach((pokemon, index) => {
+                const pokemonCard = document.createElement("div");
+                pokemonContainer.style.display ="flex";
+                pokemonContainer.stule.flexWrap = "wrap"
+
+
+                pokemonContainer.appendChild(pokemonCard);
+                
+            });
+        }
 
     </script>
     
