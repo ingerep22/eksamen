@@ -60,7 +60,12 @@
         fetchAndShowPokemonId()
 
         filterBtn.onclick = getFilterValue;
-        
+
+        function getFilterValue() {
+            const selectedType = document.querySelector("pokemon-filter-selection").value;
+            filterPokemon(selectedType);
+        }
+
 
         function showAllPokemon(pokemons) {
             pokemonContainer.innerHTML = "";
