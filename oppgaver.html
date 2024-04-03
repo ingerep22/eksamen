@@ -20,10 +20,10 @@
 
         async function fetchAndShowPokemonId() {
             try {
-                pokemonId = [];
+                pokemonsId = [];
                 for (let i = 1; i <= 50; i++) {
                     idOfPokemon = await fetchPokemon(i);
-                    pokemonId.push(idOfPokemon);
+                    pokemonsId.push(idOfPokemon);
                     console.log("pokemon", idOfPokemon);
                 }
                 showAllPokemon(pokemonsId)
@@ -39,9 +39,9 @@
             pokemonsId.forEach((pokemon, index) => {
                 const pokemonCard = document.createElement("div");
                 pokemonContainer.style.display ="flex";
-                pokemonContainer.stule.flexWrap = "wrap"
+                pokemonContainer.style.flexWrap = "wrap"
 
-                pokemonCard.innerHtml = `${pokemon.type[0].type.name}`;
+                pokemonCard.innerHtml = `${pokemon.types[0].type.name}`;
 
                 pokemonContainer.appendChild(pokemonCard);
                 
