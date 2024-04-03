@@ -28,11 +28,13 @@
         <option value="steel">Steel</option>
         <option value="water">Water</option>
     </select>
+    <button class="filter-btn">Filtrer etter type</button><br><br>
     <div class="pokemon-container"></div>
 
     <script>
         const pokemonContainer = document.querySelector(".pokemon-container");
-        
+        const filterBtn = document.querySelector(".filter-btn");
+
 
         let pokemonsId = [];
         async function fetchPokemon(id) {
@@ -56,6 +58,9 @@
             }
         } 
         fetchAndShowPokemonId()
+
+        filterBtn.onclick = getFilterValue;
+        
 
         function showAllPokemon(pokemons) {
             pokemonContainer.innerHTML = "";
