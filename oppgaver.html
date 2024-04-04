@@ -45,7 +45,7 @@
         async function fetchAndShowPokemonId() {
             try {
                 pokemonsId = [];
-                for (let i = 1; i <= 50; i++) {
+                for (let i = 1; i < 100; i += 2) {
                     idOfPokemon = await fetchPokemon(i);
                     pokemonsId.push(idOfPokemon);
                     console.log("pokemon", idOfPokemon);
