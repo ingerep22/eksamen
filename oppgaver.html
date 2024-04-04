@@ -1,150 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokemon oppgaver</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Pokemon oppgaver</h1>
     <select id="pokemon-filter-selection">
-        <option value="all">Fjern filtrering/Vis alle</option>
-        <option value="bug">Bug</option>
-        <option value="dark">Dark</option>
-        <option value="dragon">Dragon</option>
-        <option value="electric">Electric</option>
-        <option value="fairy">Fairy</option>
-        <option value="fighting">Fighting</option>
-        <option value="fire">Fire</option>
-        <option value="flying">Flying</option>
-        <option value="ghost">Ghost</option>
-        <option value="grass">Grass</option>
-        <option value="ground">Ground</option>
-        <option value="normal">Normal</option>
-        <option value="ice">Ice</option>
-        <option value="poison">Poison</option>
-        <option value="psychic">Psychic</option>
-        <option value="rock">Rock</option>
-        <option value="steel">Steel</option>
-        <option value="water">Water</option>
+      <option value="all">Fjern filtrering/Vis alle</option>
+      <option value="bug">Bug</option>
+      <option value="dark">Dark</option>
+      <option value="dragon">Dragon</option>
+      <option value="electric">Electric</option>
+      <option value="fairy">Fairy</option>
+      <option value="fighting">Fighting</option>
+      <option value="fire">Fire</option>
+      <option value="flying">Flying</option>
+      <option value="ghost">Ghost</option>
+      <option value="grass">Grass</option>
+      <option value="ground">Ground</option>
+      <option value="normal">Normal</option>
+      <option value="ice">Ice</option>
+      <option value="poison">Poison</option>
+      <option value="psychic">Psychic</option>
+      <option value="rock">Rock</option>
+      <option value="steel">Steel</option>
+      <option value="water">Water</option>
     </select>
-    <button class="filter-btn">Filtrer etter type</button><br><br>
+    <button class="filter-btn">Filtrer etter type</button><br /><br />
     <div class="pokemon-container"></div>
 
     <script>
-        const pokemonContainer = document.querySelector(".pokemon-container");
-        const filterBtn = document.querySelector(".filter-btn");
+      const pokemonContainer = document.querySelector(".pokemon-container");
+      const filterBtn = document.querySelector(".filter-btn");
 
+      let pokemonsId = [];
+      async function fetchPokemon(id) {
+        const pokemonRequest = await fetch(
+          `https://pokeapi.co/api/v2/pokemon/${id}/`
+        );
+        let response = await pokemonRequest.json();
+        return response;
+      }
 
-        let pokemonsId = [];
-        async function fetchPokemon(id) {
-            const pokemonRequest = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
-            let response = await pokemonRequest.json();
-            return response;
+      async function fetchAndShowPokemonId() {
+        try {
+          pokemonsId = [];
+          for (let i = 1; i <= 50; i++) {
+            idOfPokemon = await fetchPokemon(i);
+            pokemonsId.push(idOfPokemon);
+            console.log("pokemon", idOfPokemon);
+          }
+          showAllPokemon(pokemonsId);
+        } catch (error) {
+          console.error(
+            "Her klarte vi dessverre ikke å laste inn pokemons",
+            error
+          );
         }
+      }
+      fetchAndShowPokemonId();
 
-        async function fetchAndShowPokemonId() {
-            try {
-                pokemonsId = [];
-                for (let i = 1; i <= 50; i++) {
-                    idOfPokemon = await fetchPokemon(i);
-                    pokemonsId.push(idOfPokemon);
-                    console.log("pokemon", idOfPokemon);
-                }
-                showAllPokemon(pokemonsId)
-                
-            } catch (error) {
-                console.error("Her klarte vi dessverre ikke å laste inn pokemons", error)
-            }
-        } 
-        fetchAndShowPokemonId()
+      filterBtn.onclick = getFilterValue;
 
-        filterBtn.onclick = getFilterValue;
+      function getFilterValue() {
+        const selectedType = document.querySelector(
+          "#pokemon-filter-selection"
+        ).value;
+        filterPokemon(selectedType);
+      }
 
-        function getFilterValue() {
-            const selectedType = document.querySelector("#pokemon-filter-selection").value;
-            filterPokemon(selectedType);
-        }
+      function filterPokemon(selectedType) {
+        const filteredPokemon = pokemonsId;
+        let typeFilter;
 
-        function filterPokemon(selectedType) {
-            const filteredPokemon = pokemonsId;
-            let typeFilter;
-
-            if (selectedType === "all") {
-                console.log("Viser alle pokemon", filteredPokemon);
-                showAllPokemon(filteredPokemon);
+        if (selectedType === "all") {
+          console.log("Viser alle pokemon", filteredPokemon);
+          showAllPokemon(filteredPokemon);
         } else {
-            typeFilter = filteredPokemon.filter((pokemon) => pokemon.types[0].type.name === selectedType);
-            console.log("filter", typeFilter);
-            
-         if (typeFilter.length === 0) {
+          typeFilter = filteredPokemon.filter(
+            (pokemon) => pokemon.types[0].type.name === selectedType
+          );
+          console.log("filter", typeFilter);
+
+          if (typeFilter.length === 0) {
             console.log("hey");
-            pokemonContainer.innerHTML = "" + "<h2>Ingen pokemons hadde denne type, sry</h2>";
+            pokemonContainer.innerHTML =
+              "" + "<h2>Ingen pokemons hadde denne type, sry</h2>";
             return;
-        } else {
+          } else {
             showAllPokemon(typeFilter);
+          }
         }
-    }}
+      }
 
-        function showAllPokemon(pokemons) {
-            pokemonContainer.innerHTML = "";
-            pokemonsId.forEach((pokemon, index) => {
-                const pokemonCard = document.createElement("div");
-                pokemonContainer.style.display ="flex";
-                pokemonContainer.style.flexWrap = "wrap"
-                pokemonContainer.style.gap = "10px";
-                pokemonCard.style.width ="200px";
-                pokemonCard.style.height ="280px";
-                pokemonCard.style.padding ="10px";
-                pokemonCard.style.backgroundColor = 
+      function showAllPokemon(pokemons) {
+        pokemonContainer.innerHTML = "";
+        pokemonsId.forEach((pokemon, index) => {
+          const pokemonCard = document.createElement("div");
+          pokemonContainer.style.display = "flex";
+          pokemonContainer.style.flexWrap = "wrap";
+          pokemonContainer.style.gap = "10px";
+          pokemonCard.style.width = "200px";
+          pokemonCard.style.height = "280px";
+          pokemonCard.style.padding = "10px";
+          pokemonCard.style.backgroundColor =
+            pokemon.types[0].type.name == "water"
+              ? "#1451E3"
+              : pokemon.types[0].type.name == "ice"
+              ? "#83D1F2"
+              : pokemon.types[0].type.name == "fighting"
+              ? "#983F24"
+              : pokemon.types[0].type.name == "fairy"
+              ? "#951843"
+              : pokemon.types[0].type.name == "ground"
+              ? "#A96D2C"
+              : pokemon.types[0].type.name == "steel"
+              ? "#60736C"
+              : pokemon.types[0].type.name == "rock"
+              ? "#47170C"
+              : pokemon.types[0].type.name == "grass"
+              ? "#12793C"
+              : pokemon.types[0].type.name == "electric"
+              ? "#E2E22A"
+              : pokemon.types[0].type.name == "dragon"
+              ? "#418B94"
+              : pokemon.types[0].type.name == "ghost"
+              ? "#A22967"
+              : pokemon.types[0].type.name == "psychic"
+              ? "#A22967"
+              : pokemon.types[0].type.name == "poison"
+              ? "#5A2D85"
+              : pokemon.types[0].type.name == "flying"
+              ? "#49667C"
+              : pokemon.types[0].type.name == "bug"
+              ? "#183D21"
+              : pokemon.types[0].type.name == "fire"
+              ? "#AA1E21"
+              : pokemon.types[0].type.name == "normal"
+              ? "#73525B"
+              : pokemon.types[0].type.name == "dark"
+              ? "#040603"
+              : "white";
 
-                pokemon.types[0].type.name == "water" 
-                ? "#1451E3"
-                : pokemon.types[0].type.name == "ice"
-                ? "#83D1F2"
-                : pokemon.types[0].type.name == "fighting"
-                ? "#983F24"
-                : pokemon.types[0].type.name == "fairy"
-                ? "#951843"
-                : pokemon.types[0].type.name == "ground"
-                ? "#A96D2C"
-                : pokemon.types[0].type.name == "steel"
-                ? "#60736C"
-                : pokemon.types[0].type.name == "rock"
-                ? "#47170C"
-                : pokemon.types[0].type.name == "grass"
-                ? "#12793C"
-                : pokemon.types[0].type.name == "electric"
-                ? "#E2E22A"
-                : pokemon.types[0].type.name == "dragon"
-                ? "#418B94"
-                : pokemon.types[0].type.name == "ghost"
-                ? "#A22967"
-                : pokemon.types[0].type.name == "psychic"
-                ? "#A22967"
-                : pokemon.types[0].type.name == "poison"
-                ? "#5A2D85"
-                : pokemon.types[0].type.name == "flying"
-                ? "#49667C"
-                : pokemon.types[0].type.name == "bug"
-                ? "#183D21"
-                : pokemon.types[0].type.name == "fire"
-                ? "#AA1E21"
-                : pokemon.types[0].type.name == "normal"
-                ? "#73525B"
-                : pokemon.types[0].type.name == "dark"
-                ? "#040603"
-                
-                :"white";
+          pokemonCard.innerHTML = `<img src="${
+            pokemon.sprites.other[`official-artwork`].front_default
+          }" style ="width: 200px" /> <h3>Navn: ${pokemon.name} <br> Type: ${
+            pokemon.types[0].type.name
+          }</h3>`;
 
-                pokemonCard.innerHTML = `<img src="${pokemon.sprites.other[`official-artwork`].front_default}" style ="width: 200px" /> <h3>Navn: ${pokemon.name} <br> Type: ${pokemon.types[0].type.name}</h3>`;
-
-                pokemonContainer.appendChild(pokemonCard);
-                
-            });
-        }
-
+          pokemonContainer.appendChild(pokemonCard);
+        });
+      }
     </script>
-    
-</body>
+  </body>
 </html>
