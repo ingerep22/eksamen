@@ -110,7 +110,7 @@
 
                 //delete
                 const deleteBtn = document.createElement("button");
-                deleteBtn.innerHTML = "Slett ansatt";
+                deleteBtn.innerHTML = "Slett pokemon";
                 deleteBtn.style.backgroundColor = "red";
                 deleteBtn.addEventListener("click", function() {
                     deletePokemonCard(index);
@@ -179,6 +179,15 @@
                 pokemonContainer.appendChild(pokemonCard);
                 
             });
+        }
+        function deletePokemonCard(index) {
+           pokemonImageNameTypeOnly.splice(index, 1);
+           mySavedCards.splice(index, 1);
+           localStorage.setItem("savedPokemonCards", JSON.stringify(mySavedCards));
+           showAllPokemon(mySavedCards);
+           showAllPokemon(pokemonImageNameTypeOnly);
+           console.log("lagret kort", mySavedCards);
+           console.log("alle", pokemonImageNameTypeOnly);
         }
 
         showSavedBtn.addEventListener("click", showMySavedCards);
