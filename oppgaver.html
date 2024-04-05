@@ -173,7 +173,7 @@
 
         function savePokemonCard(pokemon) {
             mySavedCards.push(pokemon);
-            localStorage.setItem("favoriteCards", JSON.stringify(mySavedCards));
+            localStorage.setItem("savedPokemonCards", JSON.stringify(mySavedCards));
             console.log(mySavedCards);
             showMySavedCards();
         }
