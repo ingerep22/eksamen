@@ -119,7 +119,7 @@
           showAllPokemon(filteredPokemon);
         } else {
           typeFilter = filteredPokemon.filter(
-            (pokemon) => pokemon.types[0].type.name === selectedType
+            (pokemon) => pokemon.type === selectedType
           );
           console.log("filter", typeFilter);
 
@@ -211,17 +211,19 @@
         });
       }
       function deletePokemonCard(index, pokemon) {
+       /* if(selectedType !== "all" && selectedType !== undefined){
+            alert("Gå tilbake til filtrering/vis alle (hovedutlistningen) for å slette:)");
+        return;  
+        }*/
         pokemonImageNameTypeOnly = pokemonImageNameTypeOnly.filter(
-          (p) => p.name !== pokemon.name
+          p => p.name !== pokemon.name
         );
 
         mySavedCards.splice(index, 1);
         localStorage.setItem("savedPokemonCards", JSON.stringify(mySavedCards));
+        
         showAllPokemon(pokemonImageNameTypeOnly);
-        showAllPokemon(mySavedCards);
-
-        console.log("lagret kort", mySavedCards);
-        console.log("alle", pokemonImageNameTypeOnly);
+        
       }
 
       showSavedBtn.addEventListener("click", showMySavedCards);
