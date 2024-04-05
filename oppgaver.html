@@ -60,7 +60,11 @@
                     idOfPokemon = await fetchPokemon(i);
                     pokemonsId.push(idOfPokemon);
                 }
-                showAllPokemon(pokemonsId)
+                pokemonImageNameTypeOnly = pokemonsId.map((pokemon) => ({
+                    name:pokemon.name,
+                    image: pokemon.sprites.other["official-artwork"].front_default,
+                    type: pokemon.types[0].type.name,
+                }));
                 
             } catch (error) {
                 console.error("Her klarte vi dessverre ikke å laste inn pokemons", error)
