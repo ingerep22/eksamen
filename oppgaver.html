@@ -173,6 +173,11 @@
             pokemonNameTypeOnly.unshift(diyPokemonCard);
             console.log("Ny pokemon", diyPokemonCard);
             console.log("hele array", pokemonNameTypeOnly);
+            showAllPokemon(pokemonNameTypeOnly);
+
+            addPokemonCardSaved.push(diyPokemonCard);
+            localStorage.setItem("Mine lagde kort", JSON.stringify(addPokemonCardSaved));
+            
 
         }
 
