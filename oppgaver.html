@@ -238,6 +238,10 @@
           (p) => p.name !== pokemon.name
         );
 
+        addPokemonCardSaved = addPokemonCardSaved.filter(
+        (p) => p.name !== pokemon.name
+    );
+
         mySavedCards.splice(index, 1);
         localStorage.setItem("mySavedCards", JSON.stringify(mySavedCards));
         localStorage.setItem("addPokemonCardSaved",JSON.stringify(addPokemonCardSaved) );
