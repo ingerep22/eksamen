@@ -113,7 +113,7 @@
                 saveBtn.innerHTML = "Lagre pokemon";
                 saveBtn.style.backgroundColor = "green";
                 saveBtn.addEventListener("click", function () {
-                    
+                    savePokemonCard(pokemon);
                 });
                 const pokemonCard = document.createElement("div");
                 pokemonContainer.style.display ="flex";
@@ -175,6 +175,7 @@
             mySavedCards.push(pokemon);
             localStorage.setItem("favoriteCards", JSON.stringify(mySavedCards));
             console.log(mySavedCards);
+            showMySavedCards();
         }
 
         function showMySavedCards() {
