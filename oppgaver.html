@@ -160,6 +160,23 @@
               savePokemonCard(pokemon);
             }
           });
+
+          //edit
+          const changeNameInout = document.createElement("input");
+          changeNameInout.type = "text";
+          changeNameInout.placeholder ="Navn";
+          changeNameInout.id = `changeNameInput-${index}`;
+
+          const changeTypeInput = document.createElement("input");
+          changeTypeInput = "text";
+          changeTypeInput.placeholder ="Type";
+          changeTypeInput.id = `changeTypeInput-${index}`;
+
+          const editTxtBtn = document.createElement("button");
+          editTxtBtn.innerHTML = "Rediger";
+          editTxtBtn.addEventListener("click", function() {
+            editTxtCard(index);
+          })
           const pokemonCard = document.createElement("div");
           pokemonContainer.style.display = "flex";
           pokemonContainer.style.flexWrap = "wrap";
