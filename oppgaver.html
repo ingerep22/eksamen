@@ -32,7 +32,7 @@
         <option value="steel">Steel</option>
         <option value="water">Water</option>
     </select>
-    <button class="filter-btn">Filtrer etter type</button><br><br>
+    <button class="filter-btn">Filtrer etter type</button>
    <button class="show-saved-btn">Se Lagrete kort</button> <br><br>
     <div class="pokemon-container"></div>
 
@@ -113,7 +113,12 @@
                 saveBtn.innerHTML = "Lagre pokemon";
                 saveBtn.style.backgroundColor = "green";
                 saveBtn.addEventListener("click", function () {
+                    if(mySavedCards.length >= 5) {
+                        alert("Maksgrensen er nådd og du må slette en lagret Pokemon for å lagre nye");
+                        return;
+                    } else {
                     savePokemonCard(pokemon);
+                }
                 });
                 const pokemonCard = document.createElement("div");
                 pokemonContainer.style.display ="flex";
