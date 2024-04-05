@@ -45,6 +45,7 @@
         const showSavedBtn = document.querySelector(".show-saved-btn")
         let pokemonsId = [];
         let pokemonImageNameTypeOnly = [];
+        let selectedType;
 
         let addPokemonCardSaved = JSON.parse(localStorage.getItem("addPokemonCardSaved")) || [];
 
@@ -79,7 +80,7 @@
         filterBtn.onclick = getFilterValue;
 
         function getFilterValue() {
-            const selectedType = document.querySelector("#pokemon-filter-selection").value;
+            selectedType = document.querySelector("#pokemon-filter-selection").value;
             filterPokemon(selectedType);
         }
 
@@ -181,14 +182,19 @@
             });
         }
         function deletePokemonCard(index) {
-           pokemonImageNameTypeOnly.splice(index, 1);
-           mySavedCards.splice(index, 1);
+            if(selectedType == "all" && selectedType === undefined) {
+                pokemonImageNameTypeOnly.splice(index, 1);
+                console.log("alle", pokemonImageNameTypeOnly);
+                showAllPokemon(pokemonImageNameTypeOnly);
+           return;
+            } else {
+                mySavedCards.splice(index, 1);
            localStorage.setItem("savedPokemonCards", JSON.stringify(mySavedCards));
            showAllPokemon(mySavedCards);
-           showAllPokemon(pokemonImageNameTypeOnly);
+           
            console.log("lagret kort", mySavedCards);
            console.log("alle", pokemonImageNameTypeOnly);
-        }
+        } }
 
         showSavedBtn.addEventListener("click", showMySavedCards);
         
