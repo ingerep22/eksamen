@@ -258,7 +258,14 @@
       }
 
       function editTxtCard(index) {
-        
+        const changeName = document.querySelector(`#changeNameInput-${index}`).value;
+        const changeType = document.querySelector(`#changeTypeInput-${index}`).value.toLowerCase();
+
+        if (!correctType.includes(changeName)) {
+            alert("Skrivefeil? Du må skrive en type som finnes");
+            `changeTypeInput-${index}`.value = "";
+            return;
+        }
       }
 
       function addPokemonCard() {
