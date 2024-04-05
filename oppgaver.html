@@ -33,7 +33,7 @@
         <option value="water">Water</option>
     </select>
     <button class="filter-btn">Filtrer etter type</button><br><br>
-   <button class="save-btn">Se Lagrete kort</button> <br><br>
+   <button class="show-saved-btn">Se Lagrete kort</button> <br><br>
     <div class="pokemon-container"></div>
 
     <script>
@@ -42,7 +42,7 @@
         const cardTypeTxt = document.querySelector("#card-type-txt");
         const cardAddBtn = document.querySelector("#card-add-btn")
         const filterBtn = document.querySelector(".filter-btn");
-        saveBtn = document.querySelector(".save-btn")
+        const showSavedBtn = document.querySelector(".show-saved-btn")
         let pokemonsId = [];
         let pokemonImageNameTypeOnly = [];
 
@@ -106,6 +106,14 @@
         function showAllPokemon(pokemons) {
             pokemonContainer.innerHTML = "";
             pokemons.forEach((pokemon, index) => {
+
+                //save
+                const saveBtn = document.createElement("button");
+                saveBtn.innerHTML = "Lagre pokemon";
+                saveBtn.style.backgroundColor = "green";
+                saveBtn.addEventListener("click", function () {
+                    
+                });
                 const pokemonCard = document.createElement("div");
                 pokemonContainer.style.display ="flex";
                 pokemonContainer.style.flexWrap = "wrap"
@@ -160,8 +168,8 @@
             });
         }
 
-        saveBtn.addEventListener("click", savedCards);
-        
+        showSavedBtn.addEventListener("click", savedCards);
+
         function addPokemonCard() {
             if (cardNameTxt.value === "" || cardTypeTxt.value === "") {
                 alert("Du må fylle ut begge feltene");
