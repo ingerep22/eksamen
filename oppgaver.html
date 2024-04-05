@@ -6,6 +6,7 @@
     <title>Pokemon oppgaver</title>
 </head>
 <body>
+   
     <h1>Pokemon oppgaver</h1>
     <input type="text" placeholder="name" id="card-name-txt" />
     <input type="text" placeholder="name" id="card-type-txt" />
@@ -38,7 +39,7 @@
         const pokemonContainer = document.querySelector(".pokemon-container");
         const cardNameTxt = document.querySelector("#card-name-txt");
         const cardTypeTxt = document.querySelector("#card-type-txt");
-        const cardAddBtn = document.querySelector("card-add-btn")
+        const cardAddBtn = document.querySelector("#card-add-btn")
         const filterBtn = document.querySelector(".filter-btn");
         let pokemonsId = [];
         let pokemonImageNameTypeOnly = [];
@@ -62,7 +63,7 @@
                 }
                 pokemonImageNameTypeOnly = pokemonsId.map((pokemon) => ({
                     name:pokemon.name,
-                    image: pokemon.sprites.other["official-artwork"].front_default,
+                    image:  pokemon.sprites.other[`official-artwork`].front_default,
                     type: pokemon.types[0].type.name,
                 }));
                 console.log("hvor mange", pokemonImageNameTypeOnly);
@@ -151,7 +152,7 @@
                 
                 :"white";
 
-                pokemonCard.innerHTML = `<img src="${pokemon.sprites.other[`official-artwork`].front_default}" style ="width: 200px" /> <h3>Navn: ${pokemon.name} <br> Type: ${pokemon.types[0].type.name}</h3>`;
+                pokemonCard.innerHTML = `<img src="${pokemon.image}" style ="width: 200px" /> <h3>Navn: ${pokemon.name} <br> Type: ${pokemon.type}</h3>`;
 
                 pokemonContainer.appendChild(pokemonCard);
                 
