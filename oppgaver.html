@@ -7,6 +7,9 @@
 </head>
 <body>
     <h1>Pokemon oppgaver</h1>
+    <input type="text" placeholder="name" id="card-name-txt" />
+    <input type="text" placeholder="name" id="card-type-txt" />
+    <input type="button" value="Lag pokemonkort" id="card-add-btn" />
     <select id="pokemon-filter-selection">
         <option value="all">Fjern filtrering/Vis alle</option>
         <option value="bug">Bug</option>
@@ -33,6 +36,9 @@
 
     <script>
         const pokemonContainer = document.querySelector(".pokemon-container");
+        const cardNameTxt = document.querySelector("#card-name-txt");
+        const cardTypeTxt = document.querySelector("#card-type-txt");
+        const cardAddBtn = document.querySelector("card-add-btn")
         const filterBtn = document.querySelector(".filter-btn");
         let pokemonsId = [];
 
@@ -142,6 +148,8 @@
                 
             });
         }
+
+        
 
         
 
