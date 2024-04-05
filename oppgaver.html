@@ -166,9 +166,17 @@
                 cardTypeTxt.value = "";
                 return;
             }
+            const diyPokemonCard = {
+                name: cardNameTxt.value,
+                type: newTypeTxt.value.toLowerCase(),
+            };
+            pokemonNameTypeOnly.unshift(diyPokemonCard);
+            console.log("Ny pokemon", diyPokemonCard);
+            console.log("hele array", pokemonNameTypeOnly);
+
         }
 
-        
+        cardAddBtn.addEventListener("click", addPokemonCard);
 
         
 
