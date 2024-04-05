@@ -33,7 +33,7 @@
         <option value="water">Water</option>
     </select>
     <button class="filter-btn">Filtrer etter type</button>
-   <button class="show-saved-btn">Se Lagrete kort</button> <br><br>
+   <button class="show-saved-btn">Se alle lagrete kort</button> <br><br>
     <div class="pokemon-container"></div>
 
     <script>
@@ -175,6 +175,7 @@
         }
 
         showSavedBtn.addEventListener("click", showMySavedCards);
+        
 
         function savePokemonCard(pokemon) {
             mySavedCards.push(pokemon);
