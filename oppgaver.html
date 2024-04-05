@@ -48,6 +48,7 @@
 
         let addPokemonCardSaved = JSON.parse(localStorage.getItem("addPokemonCardSaved")) || [];
 
+        let mySavedCards = JSON.parse(localStorage.getItem("mySavedCards")) || [];
         const correctType = ["bug", "dragon", "dark", "fairy", "electric", "fighting", "fire", "flying", "ghost", "grass", "ground", "normal", "ice", "poison", "psychic", "rock", "steel", "water"];
 
         async function fetchPokemon(id) {
@@ -168,7 +169,13 @@
             });
         }
 
-        showSavedBtn.addEventListener("click", savedCards);
+        showSavedBtn.addEventListener("click", showSavedCards);
+
+        function savePokemonCard(pokemon) {
+            mySavedCards.push(pokemon);
+            localStorage.setItem("favoriteCards", JSON.stringify(mySavedCards));
+            console.log(mySavedCards);
+        }
 
         function addPokemonCard() {
             if (cardNameTxt.value === "" || cardTypeTxt.value === "") {
