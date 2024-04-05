@@ -276,9 +276,7 @@
             `changeTypeInput-${index}`.value = "";
             return;
           }
-          const pokemonIndex = pokemonImageNameTypeOnly.findIndex(pokemon =>
-      mySavedCards[index].name === pokemon.name && mySavedCards[index].type === pokemon.type
-    );
+         
         pokemonImageNameTypeOnly[index].name = changeName;
         pokemonImageNameTypeOnly[index].type = changeType;
 
