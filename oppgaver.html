@@ -161,7 +161,10 @@
 
             const userWrittenType = cardTypeTxt.value.toLowerCase();
             if(!correctType.includes(userWrittenType)) {
-
+                alert("Skrivefeil? Her må du skrive en gyldig type")
+                cardNameTxt.value = "";
+                cardTypeTxt.value = "";
+                return;
             }
         }
 
