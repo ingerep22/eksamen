@@ -151,7 +151,6 @@
                 ? "#040603"
                 
                 :"white";
-
                 pokemonCard.innerHTML = `<img src="${pokemon.image}" style ="width: 200px" /> <h3>Navn: ${pokemon.name} <br> Type: ${pokemon.type}</h3>`;
 
                 pokemonContainer.appendChild(pokemonCard);
@@ -174,10 +173,11 @@
                 cardTypeTxt.value = "";
                 return;
             }
+             
             const diyPokemonCard = {
                 name: cardNameTxt.value,
                 type: cardTypeTxt.value.toLowerCase(),
-                image: "",
+                image: `./assets/${pokemonBall}.jpg`,
             };
             pokemonImageNameTypeOnly.unshift(diyPokemonCard);
             console.log("Ny pokemon", diyPokemonCard);
