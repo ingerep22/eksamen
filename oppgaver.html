@@ -177,6 +177,14 @@
             console.log(mySavedCards);
         }
 
+        function showMySavedCards() {
+            if(mySavedCards.length > 0) {
+                showAllPokemon(showMySavedCards)
+            } else {
+                alert("Her er det ingen lagrete kort enda")
+            }
+        }
+
         function addPokemonCard() {
             if (cardNameTxt.value === "" || cardTypeTxt.value === "") {
                 alert("Du må fylle ut begge feltene");
