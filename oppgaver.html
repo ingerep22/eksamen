@@ -41,7 +41,7 @@
         const cardAddBtn = document.querySelector("card-add-btn")
         const filterBtn = document.querySelector(".filter-btn");
         let pokemonsId = [];
-        let pokemonNameTypeOnly = [];
+        let pokemonImageNameTypeOnly = [];
 
         let addPokemonCardSaved = JSON.parse(localStorage.getItem("addPokemonCardSaved")) || [];
 
@@ -75,7 +75,7 @@
         }
 
         function filterPokemon(selectedType) {
-            const filteredPokemon = pokemonNameTypeOnly;
+            const filteredPokemon = pokemonImageNameTypeOnly;
             let typeFilter;
 
             if (selectedType === "all" ) {
@@ -172,10 +172,10 @@
                 name: cardNameTxt.value,
                 type: newTypeTxt.value.toLowerCase(),
             };
-            pokemonNameTypeOnly.unshift(diyPokemonCard);
+            pokemonImageNameTypeOnly.unshift(diyPokemonCard);
             console.log("Ny pokemon", diyPokemonCard);
-            console.log("hele array", pokemonNameTypeOnly);
-            showAllPokemon(pokemonNameTypeOnly);
+            console.log("hele array", pokemonImageNameTypeOnly);
+            showAllPokemon(pokemonImageNameTypeOnly);
 
             addPokemonCardSaved.push(diyPokemonCard);
             localStorage.setItem("Mine lagde kort", JSON.stringify(addPokemonCardSaved));
