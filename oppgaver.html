@@ -8,7 +8,7 @@
   <body>
     <h1>Pokemon oppgaver</h1>
     <input type="text" placeholder="name" id="card-name-txt" />
-    <input type="text" placeholder="name" id="card-type-txt" />
+    <input type="text" placeholder="type" id="card-type-txt" />
     <input type="button" value="Lag pokemonkort" id="card-add-btn" />
     <select id="pokemon-filter-selection">
       <option value="all">Fjern filtrering/Vis alle</option>
@@ -239,16 +239,17 @@
         );
 
         mySavedCards.splice(index, 1);
-        localStorage.setItem("savedPokemonCards", JSON.stringify(mySavedCards));
-
+        localStorage.setItem("mySavedCards", JSON.stringify(mySavedCards));
+        localStorage.setItem("addPokemonCardSaved",JSON.stringify(addPokemonCardSaved) );
         showAllPokemon(pokemonImageNameTypeOnly);
+        console.log(addPokemonCardSaved);
       }
 
       showSavedBtn.addEventListener("click", showMySavedCards);
 
       function savePokemonCard(pokemon) {
         mySavedCards.push(pokemon);
-        localStorage.setItem("savedPokemonCards", JSON.stringify(mySavedCards));
+        localStorage.setItem("mySavedCards", JSON.stringify(mySavedCards));
         console.log(mySavedCards);
         alert("Du har lagret en pokemon");
       }
@@ -281,10 +282,11 @@
         pokemonImageNameTypeOnly[index].type = changeType;
 
         localStorage.setItem("addPokemonCardSaved",JSON.stringify(addPokemonCardSaved) );
-        localStorage.setItem("savedPokemonCards", JSON.stringify(mySavedCards));
+        localStorage.setItem("mySavedCards", JSON.stringify(mySavedCards));
+        
+        showAllPokemon(pokemonImageNameTypeOnly); // || showAllPokemon(mySavedCards)
         console.log(addPokemonCardSaved);
         console.log(mySavedCards);
-        showAllPokemon(pokemonImageNameTypeOnly);
       }
 
       function addPokemonCard() {
@@ -315,7 +317,7 @@
 
         addPokemonCardSaved.push(diyPokemonCard);
         localStorage.setItem(
-          "Mine lagde kort",
+          "addPokemonCardSaved",
           JSON.stringify(addPokemonCardSaved)
         );
 
