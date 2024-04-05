@@ -65,7 +65,8 @@
                     image: pokemon.sprites.other["official-artwork"].front_default,
                     type: pokemon.types[0].type.name,
                 }));
-                
+                console.log("hvor mange", pokemonImageNameTypeOnly);
+                showAllPokemon(pokemonImageNameTypeOnly);
             } catch (error) {
                 console.error("Her klarte vi dessverre ikke å laste inn pokemons", error)
             }
@@ -111,41 +112,41 @@
                 pokemonCard.style.padding ="10px";
                 pokemonCard.style.backgroundColor = 
 
-                pokemon.types[0].type.name == "water" 
+                pokemon.type == "water" 
                 ? "#1451E3"
-                : pokemon.types[0].type.name == "ice"
+                : pokemon.type == "ice"
                 ? "#83D1F2"
-                : pokemon.types[0].type.name == "fighting"
+                : pokemon.type == "fighting"
                 ? "#983F24"
-                : pokemon.types[0].type.name == "fairy"
+                : pokemon.type == "fairy"
                 ? "#951843"
-                : pokemon.types[0].type.name == "ground"
+                : pokemon.type == "ground"
                 ? "#A96D2C"
-                : pokemon.types[0].type.name == "steel"
+                : pokemon.type == "steel"
                 ? "#60736C"
-                : pokemon.types[0].type.name == "rock"
+                : pokemon.type == "rock"
                 ? "#47170C"
-                : pokemon.types[0].type.name == "grass"
+                : pokemon.type == "grass"
                 ? "#12793C"
-                : pokemon.types[0].type.name == "electric"
+                : pokemon.type == "electric"
                 ? "#E2E22A"
-                : pokemon.types[0].type.name == "dragon"
+                : pokemon.type == "dragon"
                 ? "#418B94"
-                : pokemon.types[0].type.name == "ghost"
+                : pokemon.type == "ghost"
                 ? "#A22967"
-                : pokemon.types[0].type.name == "psychic"
+                : pokemon.type == "psychic"
                 ? "#A22967"
-                : pokemon.types[0].type.name == "poison"
+                : pokemon.type == "poison"
                 ? "#5A2D85"
-                : pokemon.types[0].type.name == "flying"
+                : pokemon.type == "flying"
                 ? "#49667C"
-                : pokemon.types[0].type.name == "bug"
+                : pokemon.type == "bug"
                 ? "#183D21"
-                : pokemon.types[0].type.name == "fire"
+                : pokemon.type == "fire"
                 ? "#AA1E21"
-                : pokemon.types[0].type.name == "normal"
+                : pokemon.type == "normal"
                 ? "#73525B"
-                : pokemon.types[0].type.name == "dark"
+                : pokemon.type == "dark"
                 ? "#040603"
                 
                 :"white";
