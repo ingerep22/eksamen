@@ -108,6 +108,13 @@
             pokemonContainer.innerHTML = "";
             pokemons.forEach((pokemon, index) => {
 
+                //delete
+                const deleBtn = document.createElement("button");
+                deleteBtn.innerHTML = "Slett ansatt";
+                deleteBtn.style.backgroundColor = "red";
+                deleteBtn.addEventListener("click", function() {
+                    deletePokemonCard(index);
+                })
                 //save
                 const saveBtn = document.createElement("button");
                 saveBtn.innerHTML = "Lagre pokemon";
