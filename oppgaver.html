@@ -258,14 +258,29 @@
       }
 
       function editTxtCard(index) {
-        const changeName = document.querySelector(`#changeNameInput-${index}`).value;
         const changeType = document.querySelector(`#changeTypeInput-${index}`).value.toLowerCase();
-
-        if (!correctType.includes(changeName)) {
+        const changeName = document.querySelector(`#changeNameInput-${index}`).value;
+        
+        if (changeName)
+        if (!correctType.includes(changeType)) {
             alert("Skrivefeil? Du må skrive en type som finnes");
             `changeTypeInput-${index}`.value = "";
             return;
         }
+
+        pokemonImageNameTypeOnly[index].name = changeName;
+        pokemonImageNameTypeOnly[index].type = changeType;
+
+        localStorage.setItem(
+          "Mine lagde kort",
+          JSON.stringify(addPokemonCardSaved)
+        );
+        localStorage.setItem("savedPokemonCards", JSON.stringify(mySavedCards));
+        console.log(addPokemonCardSaved);
+        console.log(mySavedCards);
+        showAllPokemon(pokemonImageNameTypeOnly);
+        
+
       }
 
       function addPokemonCard() {
