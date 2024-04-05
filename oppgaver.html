@@ -162,13 +162,13 @@
           });
 
           //edit
-          const changeNameInout = document.createElement("input");
-          changeNameInout.type = "text";
-          changeNameInout.placeholder ="Navn";
-          changeNameInout.id = `changeNameInput-${index}`;
+          const changeNameInput = document.createElement("input");
+          changeNameInput.type = "text";
+          changeNameInput.placeholder ="Navn";
+          changeNameInput.id = `changeNameInput-${index}`;
 
           const changeTypeInput = document.createElement("input");
-          changeTypeInput = "text";
+          changeTypeInput.type = "text";
           changeTypeInput.placeholder ="Type";
           changeTypeInput.id = `changeTypeInput-${index}`;
 
@@ -223,7 +223,7 @@
               ? "#040603"
               : "white";
           pokemonCard.innerHTML = `<img src="${pokemon.image}" style ="width: 200px" /> <h3>Navn: ${pokemon.name} <br> Type: ${pokemon.type}</h3>`;
-          pokemonCard.append(deleteBtn, saveBtn);
+          pokemonCard.append(deleteBtn, saveBtn, editTxtBtn, changeNameInput, changeTypeInput);
           pokemonContainer.appendChild(pokemonCard);
         });
       }
