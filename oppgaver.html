@@ -42,6 +42,8 @@
         const filterBtn = document.querySelector(".filter-btn");
         let pokemonsId = [];
 
+        const correctType = ["bug", "dragon", "dark", "fairy", "electric", "fighting", "fire", "flying", "ghost", "grass", "ground", "normal", "ice", "poison", "psychic", "rock", "steel", "water"];
+
         async function fetchPokemon(id) {
             const pokemonRequest = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
             let response = await pokemonRequest.json();
@@ -158,6 +160,7 @@
             }
 
             const userWrittenType = cardTypeTxt.value.toLowerCase();
+            
         }
 
         
