@@ -33,6 +33,7 @@
         <option value="water">Water</option>
     </select>
     <button class="filter-btn">Filtrer etter type</button><br><br>
+   <button class="save-btn">Se Lagrete kort</button> <br><br>
     <div class="pokemon-container"></div>
 
     <script>
@@ -41,6 +42,7 @@
         const cardTypeTxt = document.querySelector("#card-type-txt");
         const cardAddBtn = document.querySelector("#card-add-btn")
         const filterBtn = document.querySelector(".filter-btn");
+        saveBtn = document.querySelector(".save-btn")
         let pokemonsId = [];
         let pokemonImageNameTypeOnly = [];
 
@@ -158,6 +160,8 @@
             });
         }
 
+        saveBtn.addEventListener("click", savedCards);
+        
         function addPokemonCard() {
             if (cardNameTxt.value === "" || cardTypeTxt.value === "") {
                 alert("Du må fylle ut begge feltene");
