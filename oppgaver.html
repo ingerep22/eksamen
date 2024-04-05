@@ -182,12 +182,16 @@
             });
         }
         function deletePokemonCard(index) {
-            if(selectedType == "all" && selectedType === undefined) {
+            pokemonImageNameTypeOnly = pokemonNameTypeOnly.filter(p => p.name !== pokemon.name);
+
+        
+
+            pokemonImageNameTypeOnly = pokemonImageNameTypeOnly.filter
                 pokemonImageNameTypeOnly.splice(index, 1);
                 console.log("alle", pokemonImageNameTypeOnly);
                 showAllPokemon(pokemonImageNameTypeOnly);
-           return;
-            } else {
+          
+          
                 mySavedCards.splice(index, 1);
            localStorage.setItem("savedPokemonCards", JSON.stringify(mySavedCards));
            showAllPokemon(mySavedCards);
