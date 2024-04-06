@@ -182,6 +182,7 @@
           pokemonContainer.style.flexWrap = "wrap";
           pokemonContainer.style.gap = "10px";
           pokemonCard.style.width = "210px";
+          pokemonCard.style.color = "white";
           pokemonCard.style.height = "370px";
           pokemonCard.style.padding = "10px";
           pokemonCard.style.backgroundColor =
@@ -238,10 +239,6 @@
           (p) => p.name !== pokemon.name
         );
 
-        addPokemonCardSaved = addPokemonCardSaved.filter(
-        (p) => p.name !== pokemon.name
-    );
-
     mySavedCards = mySavedCards.filter(
         (p) => p.name !== pokemon.name
     );
@@ -279,7 +276,6 @@
           `#changeNameInput-${index}`
         ).value;
 
-        if (changeName)
           if (!correctType.includes(changeType)) {
             alert("Skrivefeil? Du må skrive en type som finnes");
             `changeTypeInput-${index}`.value = "";
@@ -288,11 +284,15 @@
          
         pokemonImageNameTypeOnly[index].name = changeName;
         pokemonImageNameTypeOnly[index].type = changeType;
+        
+        mySavedCards[index].name = changeName;
+        mySavedCards[index].type = changeType;
 
         localStorage.setItem("addPokemonCardSaved",JSON.stringify(addPokemonCardSaved) );
         localStorage.setItem("mySavedCards", JSON.stringify(mySavedCards));
         
-        showAllPokemon(pokemonImageNameTypeOnly); // || showAllPokemon(mySavedCards)
+        showAllPokemon(pokemonImageNameTypeOnly)
+       // showAllPokemon(mySavedCards);
         console.log(addPokemonCardSaved);
         console.log(mySavedCards);
       }
