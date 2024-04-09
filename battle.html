@@ -8,7 +8,7 @@
 <body>
     <script>
 
-        pokemonGood = [];
+       let pokemonGood = [];
           async function fetchBattlePokemon(name) {
         const pokemonRequest = await fetch(
           `https://pokeapi.co/api/v2/pokemon/${name}/`
@@ -19,8 +19,10 @@
 
       async function fetchAndShowPokemon(name){
         try {
+            let pokemonsId = [];
             const idOfPokemon = await fetchBattlePokemon(name);
-            pokemonGood = idOfPokemon.map((pokemon) => ({
+            pokemonsId.push(idOfPokemon);
+            pokemonGood = pokemonsId.map((pokemon) => ({
             name: pokemon.name,
             image: pokemon.sprites.other[`official-artwork`].front_default,
             type: pokemon.types[0].type.name,
