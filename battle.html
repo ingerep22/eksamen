@@ -1,45 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pokemon battle</title>
-  </head>
-  <body>
-    <img
-      src="/assets/pokemonBall.jpg"
-      id="squirtle"
-      alt="pokemonBall"
-      width="120px"
-    />
-    <img
-      src="/assets/pokemonBall.jpg"
-      id="vulpix"
-      alt="pokemonBall"
-      width="120px"
-    />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="/assets/pokemonBall.jpg" id="squirtle" alt="pokemonBall" width="120px" height=""/>
+    <img src="/assets/pokemonBall.jpg" id="vulpix" alt="pokemonBall" width="120px" height=""/>
     <div class="pokemon-container"></div>
+    <div class="bad-guy-container"></div>
     <script>
-      const pokemonContainer = document.querySelector(".pokemon-container");
-      const squirtle = document.querySelector("#squirtle");
-      const vulpix = document.querySelector("#vulpix");
-      let pokemonGood = [];
+         const squirtle = document.querySelector("#squirtle");
+        const vulpix = document.querySelector("#vulpix");
+        const pokemonContainer = document.querySelector(".pokemon-container");
+        let pokemonGood= [];
 
-      async function fetchBattlePokemon(name) {
+        async function fetchBattlePokemon(name) {
         const pokemonRequest = await fetch(
           `https://pokeapi.co/api/v2/pokemon/${name}/`
         );
         let response = await pokemonRequest.json();
         return response;
+        
       }
 
       async function fetchAndShowPokemon(name) {
         try {
           pokemonsId = [];
 
-          idOfPokemon = await fetchBattlePokemon(name);
-          pokemonsId.push(idOfPokemon);
-          console.log(pokemonsId);
+            idOfPokemon = await fetchBattlePokemon(name);
+            pokemonsId.push(idOfPokemon);
+          console.log("hvor mange", pokemonsId);
           pokemonGood = pokemonsId.map((pokemon) => ({
             name: pokemon.name,
             image: pokemon.sprites.other["official-artwork"].front_default,
@@ -54,42 +46,44 @@
           console.log("hvor mange", pokemonGood);
           showPokemon(pokemonGood);
         } catch (error) {
-          console.error("her klarte vi ikke å hente pokemon", error);
+          console.error("Her klarte vi ikke å lase inn pokemons", error);
         }
       }
       function showPokemon(pokemons) {
-        console.log("Showing Pokemon:", pokemons);
-        pokemonContainer.innerHTML = "";
-        pokemons.forEach((pokemon, index) => {
+            console.log("Showing Pokemon:", pokemons);
+            pokemonContainer.innerHTML = "";
+            pokemons.forEach((pokemon, index) => {
           const pokemonCard = document.createElement("div");
           pokemonContainer.style.display = "flex";
           pokemonContainer.style.flexWrap = "wrap";
           pokemonContainer.style.gap = "10px";
-          pokemonCard.style.width = "210px";
-          pokemonCard.style.color = "white";
-          pokemonCard.style.height = "370px";
-          pokemonCard.style.padding = "10px";
-          pokemonCard.style.backgroundColor =
+          pokemonCard.style.background = 
             pokemon.type == "water"
               ? "#1451E3"
-              : pokemon.type == "grass"
-              ? "#12793C"
-              : pokemon.type == "electric"
-              ? "#E2E22A"
               : pokemon.type == "fire"
-              ? "#AA1E21"
-              :
-          pokemonCard.innerHTML = `<img src="${pokemon.image}" style ="width: 200px" /> <h3>Navn: ${pokemon.name} <br> Type: ${pokemon.type}</h3>`;
-          pokemonContainer.appendChild(pokemonCard);
+              ? "#AA1E21":
+          pokemonCard.style.width = "200px";
+          pokemonCard.style.height = "430px";
+          pokemonCard.style.padding = "10px";
+          pokemonCard.innerHTML = `<img src="${pokemon.image}" style="width: 200px" />
+      <h3>Navn: ${pokemon.name} <br>Type: ${pokemon.type}</h3> <h4>STATS<br>HP: ${pokemon.hp}<br>Attack: ${pokemon.attack}<br>Defense: ${pokemon.defense}<br>Special attack: ${pokemon.specialAttack}<br> Special defense: ${pokemon.specialDefense}<br> Speed: ${pokemon.speed}</h4>`;
+          
+       pokemonContainer.appendChild(pokemonCard);
         });
       }
+        
 
-      squirtle.addEventListener("click", () => {
-        fetchAndShowPokemon("squirtle");
-      });
-      vulpix.addEventListener("click", () => {
-        fetchAndShowPokemon("vulpix");
-      });
+
+        squirtle.addEventListener("click", () => {
+           // squirtle.src = "/oppgave2.html/asssets/open.jpg";
+            fetchAndShowPokemon("squirtle")
+        });
+        vulpix.addEventListener("click", () => {
+           // vulpix.src = "/oppgave2.html/asssets/open.jpg";
+            fetchAndShowPokemon("vulpix")
+        });
+
+
     </script>
-  </body>
+</body>
 </html>
