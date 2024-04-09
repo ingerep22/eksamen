@@ -1,54 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokemon battle</title>
-</head>
-<body>
-    <img src="/assets/pokemonBall.jpg" id="squirtle" alt="pokemonBall" width="120px"/>
-    <img src="/assets/pokemonBall.jpg" id="vulpix" alt="pokemonBall" width="120px"/>
+  </head>
+  <body>
+    <img
+      src="/assets/pokemonBall.jpg"
+      id="squirtle"
+      alt="pokemonBall"
+      width="120px"
+    />
+    <img
+      src="/assets/pokemonBall.jpg"
+      id="vulpix"
+      alt="pokemonBall"
+      width="120px"
+    />
     <div class="pokemon-container"></div>
     <script>
-        const pokemonContainer = document.querySelector(".pokemon-container")
-       const squirtle = document.querySelector("#squirtle");
-       const vulpix = document.querySelector("#vulpix");
-        let pokemonGood = [];
+      const pokemonContainer = document.querySelector(".pokemon-container");
+      const squirtle = document.querySelector("#squirtle");
+      const vulpix = document.querySelector("#vulpix");
+      let pokemonGood = [];
 
-        async function fetchBattlePokemon(name) {
-            const pokemonRequest = await fetch(
-                `https://pokeapi.co/api/v2/pokemon/${name}/`);
-            let response = await pokemonRequest.json();
-            return response;
-        }
+      async function fetchBattlePokemon(name) {
+        const pokemonRequest = await fetch(
+          `https://pokeapi.co/api/v2/pokemon/${name}/`
+        );
+        let response = await pokemonRequest.json();
+        return response;
+      }
 
-        async function fetchAndShowPokemon(name) {
-            try {
-                pokemonsId = [];
+      async function fetchAndShowPokemon(name) {
+        try {
+          pokemonsId = [];
 
-                idOfPokemon = await fetchBattlePokemon(name);
-                pokemonsId.push(idOfPokemon);
-                console.log(pokemonsId)
-                pokemonGood = pokemonsId.map((pokemon) => ({
-                    name:pokemon.name,
-                    image: pokemon.sprites.other["official-artwork"].front_default,
+          idOfPokemon = await fetchBattlePokemon(name);
+          pokemonsId.push(idOfPokemon);
+          console.log(pokemonsId);
+          pokemonGood = pokemonsId.map((pokemon) => ({
+            name: pokemon.name,
+            image: pokemon.sprites.other["official-artwork"].front_default,
             type: pokemon.types[0].type.name,
-                }));
-                console.log("hvor mange", pokemonGood)
-            } catch (error) {
-                console.error("her klarte vi ikke å hente pokemon", error);
-            }
+            hp: pokemon.stats[0].base_stat,
+            attack: pokemon.stats[1].base_stat,
+            defense: pokemon.stats[2].base_stat,
+            specialAttack:pokemon.stats[3].base_stat,
+            specialDefense: pokemon.stats[4].base_stat,
+            speed: pokemon.stats[5].base_stat,
+          }));
+          console.log("hvor mange", pokemonGood);
+        } catch (error) {
+          console.error("her klarte vi ikke å hente pokemon", error);
         }
-       
-     squirtle.addEventListener("click", () => {
+      }
+
+      squirtle.addEventListener("click", () => {
         fetchAndShowPokemon("squirtle");
-     })
-     vulpix.addEventListener("click", () => {
+      });
+      vulpix.addEventListener("click", () => {
         fetchAndShowPokemon("vulpix");
-     })
-   
-  
-   
-   </script>
-</body>
+      });
+    </script>
+  </body>
 </html>
