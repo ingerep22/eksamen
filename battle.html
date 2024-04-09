@@ -9,20 +9,20 @@
     <div class="info-container">
         <div class="txt-container">
             <p>Squirtle</p>
-            <p id="squirtle-hp-txt"></p>
-            <p id="squirtle-level-txt"></p>
-            <p id="squirtle-money-txt"></p>
+            <p id="squirtle-hp-txt">44 / 44 HP</p>
+            <p id="squirtle-level-txt"> 0 / 36 Level</p>
+            <p id="squirtle-money-txt">0 penger</p>
         </div>
         <div class="txt-container">
             <p>Vulpix</p>
-            <p id="vulpix-hp-txt"></p>
-        <p id="vulpix-level-txt"></p>
-        <p id="vulpix-money-txt"></p>
+            <p id="vulpix-hp-txt">38 / 38 HP</p>
+        <p id="vulpix-level-txt">0 / 20 Level</p>
+        <p id="vulpix-money-txt">0 Penger</p>
         </div>
         
         <div class="txt-container">
             <p>Pikachu</p>
-            <p id="pikachu-hp-txt"></p>
+            <p id="pikachu-hp-txt">35 / 35 Level</p>
         </div>
     </div>
     <img src="/assets/pokemonBall.jpg" id="squirtle" alt="pokemonBall" width="120px" height=""/>
@@ -30,7 +30,10 @@
     <div class="pokemon-container"></div>
     <div class="bad-guy-container"></div>
     <script>
-         const squirtle = document.querySelector("#squirtle");
+        let squirtleHpTxt = document.querySelector("#squirtle-hp-txt");
+        let vulpixHpTxt = document.querySelector("#vulpix-hp-txt");
+        let pikachuHpTxt = document.querySelector("#pikachu-hp-txt");
+        const squirtle = document.querySelector("#squirtle");
         const vulpix = document.querySelector("#vulpix");
         const pokemonContainer = document.querySelector(".pokemon-container");
         let pokemonGood= [];
