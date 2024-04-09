@@ -7,6 +7,8 @@
 </head>
 <body>
     <script>
+
+        pokemonGood = [];
           async function fetchBattlePokemon(name) {
         const pokemonRequest = await fetch(
           `https://pokeapi.co/api/v2/pokemon/${name}/`
@@ -14,6 +16,26 @@
         let response = await pokemonRequest.json();
         return response;
       }
+
+      async function fetchAndShowPokemon(name){
+        try {
+            const idOfPokemon = await fetchBattlePokemon(name);
+            pokemonGood = idOfPokemon.map((pokemon) => ({
+            name: pokemon.name,
+            image: pokemon.sprites.other[`official-artwork`].front_default,
+            type: pokemon.types[0].type.name,
+            hp: pokemon.stats[0].base_stat,
+            attack: pokemon.stats[1].base_stat,
+            defense: pokemon.stats[2].base_stat,
+            specialAttack: pokemon.stats[3].base_stat,
+            specialDefense: pokemon.stats[4].base_stat,
+          }));
+          
+        } catch (error) {
+            console.error("her klart vi ikke å hente pokemons", error);
+        }
+      }
+      console.log("funker det", fetchAndShowPokemon("pikachu"));
     </script>
 </body>
 </html>
