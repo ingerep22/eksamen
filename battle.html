@@ -15,9 +15,37 @@
        const vulpix = document.querySelector("#vulpix");
         let pokemonGood = [];
 
-        
+        async function fetchBattlePokemon(name) {
+            const pokemonRequest = await fetch(
+                `https://pokeapi.co/api/v2/pokemon/${name}/`);
+            let response = await pokemonRequest.json();
+            return response;
+        }
+
+        async function fetchAndShowPokemon(name) {
+            try {
+                pokemonsId = [];
+
+                idOfPokemon = await fetchBattlePokemon(name);
+                pokemonsId.push(idOfPokemon);
+                console.log(pokemonsId)
+                pokemonGood = pokemonsId.map((pokemon) => ({
+                    name:pokemon.name,
+                    image: pokemon.sprites.other["official-artwork"].front_default,
+            type: pokemon.types[0].type.name,
+                }));
+                console.log("hvor mange", pokemonGood)
+            } catch (error) {
+                console.error("her klarte vi ikke å hente pokemon", error);
+            }
+        }
        
-     
+     squirtle.addEventListener("click", () => {
+        fetchAndShowPokemon("squirtle");
+     })
+     vulpix.addEventListener("click", () => {
+        fetchAndShowPokemon("vulpix");
+     })
    
   
    
