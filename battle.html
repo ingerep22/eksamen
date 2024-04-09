@@ -43,11 +43,11 @@
           pokemonGood = pokemonsId.map((pokemon) => ({
             name: pokemon.name,
             image: pokemon.sprites.other["official-artwork"].front_default,
-            type: pokemon.types[0].type.name,
+            type: pokemon.types[0].type.name, 
             hp: pokemon.stats[0].base_stat,
             attack: pokemon.stats[1].base_stat,
             defense: pokemon.stats[2].base_stat,
-            specialAttack:pokemon.stats[3].base_stat,
+            specialAttack: pokemon.stats[3].base_stat,
             specialDefense: pokemon.stats[4].base_stat,
             speed: pokemon.stats[5].base_stat,
           }));
@@ -58,6 +58,7 @@
         }
       }
       function showPokemon(pokemons) {
+        console.log("Showing Pokemon:", pokemons);
         pokemonContainer.innerHTML = "";
         pokemons.forEach((pokemon, index) => {
           const pokemonCard = document.createElement("div");
