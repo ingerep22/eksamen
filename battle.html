@@ -1,70 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokemon Battle</title>
     <style>
-        .info-container {
-            display:flex;
-            align-items: baseline;
-            gap: 50px;
-        }
+      .info-container {
+        display: flex;
+        align-items: baseline;
+        gap: 50px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="info-container">
-        <div class="txt-container">
-            <p>Squirtle</p>
-            <p id="squirtle-hp-txt">44 / 44 HP</p>
-            <p id="squirtle-level-txt"> 0 / 36 Level</p>
-            <p id="squirtle-money-txt">0 penger</p>
-        </div>
-        <div class="txt-container">
-            <p>Vulpix</p>
-            <p id="vulpix-hp-txt">38 / 38 HP</p>
+      <div class="txt-container">
+        <p>Squirtle</p>
+        <p id="squirtle-hp-txt">44 / 44 HP</p>
+        <p id="squirtle-level-txt">0 / 36 Level</p>
+        <p id="squirtle-money-txt">0 penger</p>
+      </div>
+      <div class="txt-container">
+        <p>Vulpix</p>
+        <p id="vulpix-hp-txt">38 / 38 HP</p>
         <p id="vulpix-level-txt">0 / 20 Level</p>
         <p id="vulpix-money-txt">0 Penger</p>
-        </div>
-        
-        <div class="txt-container">
-            <p>Pikachu</p>
-            <p id="pikachu-hp-txt">35 / 35 Level</p>
-        </div>
+      </div>
+
+      <div class="txt-container">
+        <p>Pikachu</p>
+        <p id="pikachu-hp-txt">35 / 35 Level</p>
+      </div>
     </div>
-    <img src="/assets/pokemonBall.jpg" id="squirtle" alt="pokemonBall" width="120px" height=""/>
-    <img src="/assets/pokemonBall.jpg" id="vulpix" alt="pokemonBall" width="120px" height=""/>
+    <img
+      src="/assets/pokemonBall.jpg"
+      id="squirtle"
+      alt="pokemonBall"
+      width="120px"
+      height=""
+    />
+    <img
+      src="/assets/pokemonBall.jpg"
+      id="vulpix"
+      alt="pokemonBall"
+      width="120px"
+      height=""
+    />
     <div class="pokemon-container"></div>
     <div class="bad-guy-container"></div>
     <script>
-        let squirtleHpTxt = document.querySelector("#squirtle-hp-txt");
-        let vulpixHpTxt = document.querySelector("#vulpix-hp-txt");
-        let pikachuHpTxt = document.querySelector("#pikachu-hp-txt");
-        const squirtle = document.querySelector("#squirtle");
-        const vulpix = document.querySelector("#vulpix");
-        const pokemonContainer = document.querySelector(".pokemon-container");
-        let pokemonGood= [];
+      let squirtleHpTxt = document.querySelector("#squirtle-hp-txt");
+      let vulpixHpTxt = document.querySelector("#vulpix-hp-txt");
+      let pikachuHpTxt = document.querySelector("#pikachu-hp-txt");
+      const squirtle = document.querySelector("#squirtle");
+      const vulpix = document.querySelector("#vulpix");
+      const pokemonContainer = document.querySelector(".pokemon-container");
+      let pokemonGood = [];
 
-        async function fetchBattlePokemon(name) {
+      async function fetchBattlePokemon(name) {
         const pokemonRequest = await fetch(
           `https://pokeapi.co/api/v2/pokemon/${name}/`
         );
         let response = await pokemonRequest.json();
         return response;
-        
       }
 
       async function fetchAndShowPokemon(name) {
         try {
           pokemonsId = [];
 
-            idOfPokemon = await fetchBattlePokemon(name);
-            pokemonsId.push(idOfPokemon);
+          idOfPokemon = await fetchBattlePokemon(name);
+          pokemonsId.push(idOfPokemon);
           console.log("hvor mange", pokemonsId);
           pokemonGood = pokemonsId.map((pokemon) => ({
             name: pokemon.name,
             image: pokemon.sprites.other["official-artwork"].front_default,
-            type: pokemon.types[0].type.name, 
+            type: pokemon.types[0].type.name,
             hp: pokemon.stats[0].base_stat,
             attack: pokemon.stats[1].base_stat,
             defense: pokemon.stats[2].base_stat,
@@ -79,40 +90,36 @@
         }
       }
       function showPokemon(pokemons) {
-            console.log("Showing Pokemon:", pokemons);
-            pokemonContainer.innerHTML = "";
-            pokemons.forEach((pokemon, index) => {
+        console.log("Showing Pokemon:", pokemons);
+        pokemonContainer.innerHTML = "";
+        pokemons.forEach((pokemon, index) => {
           const pokemonCard = document.createElement("div");
           pokemonContainer.style.display = "flex";
           pokemonContainer.style.flexWrap = "wrap";
           pokemonContainer.style.gap = "10px";
-          pokemonCard.style.background = 
+          pokemonCard.style.background =
             pokemon.type == "water"
               ? "#1451E3"
               : pokemon.type == "fire"
-              ? "#AA1E21":
-          pokemonCard.style.width = "200px";
+              ? "#AA1E21"
+              : (pokemonCard.style.width = "200px");
           pokemonCard.style.height = "430px";
           pokemonCard.style.padding = "10px";
           pokemonCard.innerHTML = `<img src="${pokemon.image}" style="width: 200px" />
       <h3>Navn: ${pokemon.name} <br>Type: ${pokemon.type}</h3> <h4>STATS<br>HP: ${pokemon.hp}<br>Attack: ${pokemon.attack}<br>Defense: ${pokemon.defense}<br>Special attack: ${pokemon.specialAttack}<br> Special defense: ${pokemon.specialDefense}<br> Speed: ${pokemon.speed}</h4>`;
-          
-       pokemonContainer.appendChild(pokemonCard);
+
+          pokemonContainer.appendChild(pokemonCard);
         });
       }
-        
 
-
-        squirtle.addEventListener("click", () => {
-           squirtle.src = "/assets/open.jpg";
-            fetchAndShowPokemon("squirtle")
-        });
-        vulpix.addEventListener("click", () => {
-           vulpix.src = "/assets/open.jpg";
-            fetchAndShowPokemon("vulpix")
-        });
-
-
+      squirtle.addEventListener("click", () => {
+        squirtle.src = "/assets/open.jpg";
+        fetchAndShowPokemon("squirtle");
+      });
+      vulpix.addEventListener("click", () => {
+        vulpix.src = "/assets/open.jpg";
+        fetchAndShowPokemon("vulpix");
+      });
     </script>
-</body>
+  </body>
 </html>
