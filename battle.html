@@ -52,9 +52,35 @@
             speed: pokemon.stats[5].base_stat,
           }));
           console.log("hvor mange", pokemonGood);
+          showPokemon(pokemonGood);
         } catch (error) {
           console.error("her klarte vi ikke å hente pokemon", error);
         }
+      }
+      function showPokemon(pokemons) {
+        pokemonContainer.innerHTML = "";
+        pokemons.forEach((pokemon, index) => {
+          const pokemonCard = document.createElement("div");
+          pokemonContainer.style.display = "flex";
+          pokemonContainer.style.flexWrap = "wrap";
+          pokemonContainer.style.gap = "10px";
+          pokemonCard.style.width = "210px";
+          pokemonCard.style.color = "white";
+          pokemonCard.style.height = "370px";
+          pokemonCard.style.padding = "10px";
+          pokemonCard.style.backgroundColor =
+            pokemon.type == "water"
+              ? "#1451E3"
+              : pokemon.type == "grass"
+              ? "#12793C"
+              : pokemon.type == "electric"
+              ? "#E2E22A"
+              : pokemon.type == "fire"
+              ? "#AA1E21"
+              :
+          pokemonCard.innerHTML = `<img src="${pokemon.image}" style ="width: 200px" /> <h3>Navn: ${pokemon.name} <br> Type: ${pokemon.type}</h3>`;
+          pokemonContainer.appendChild(pokemonCard);
+        });
       }
 
       squirtle.addEventListener("click", () => {
