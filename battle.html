@@ -102,6 +102,7 @@
             name: pokemon.name,
             image: pokemon.sprites.other["official-artwork"].front_default,
             type: pokemon.types[0].type.name,
+            originalHp: pokemon.stats[0].base_stat,
             hp: pokemon.stats[0].base_stat,
             attack: pokemon.stats[1].base_stat,
             defense: pokemon.stats[2].base_stat,
@@ -111,6 +112,7 @@
             level: 0,
             money: 0,
           }));
+         
           showBadPokemon(pokemonBad);
         } catch (error) {
           console.error("Her klarte vi ikke å lase inn pokemons", error);
@@ -128,6 +130,7 @@
             name: pokemon.name,
             image: pokemon.sprites.other["official-artwork"].front_default,
             type: pokemon.types[0].type.name,
+            originalHp: pokemon.stats[0].base_stat,
             hp: pokemon.stats[0].base_stat,
             attack: pokemon.stats[1].base_stat,
             defense: pokemon.stats[2].base_stat,
@@ -137,6 +140,7 @@
             level: 0,
             money: 0,
           }));
+         
           console.log("hvor mange", pokemonGood);
           showGoodPokemon(pokemonGood);
         } catch (error) {
@@ -300,8 +304,13 @@ winnerPokemon(pokemon);
             }
           }
           updateInnerHtml(pokemon); // sjekker igjen om det funker
+          /*pokemon.hp = pokemon.originalHp;
+          pokemonBad[0].hp = pokemon.originalHp;*/
+         
           localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
           localStorage.setItem("pokemonBad", JSON.stringify(pokemonBad));
+          updateInnerHtml(pokemon); // sjekker igjen om det funker
+          
         }
       }
     </script>
