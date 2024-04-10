@@ -226,6 +226,13 @@ console.log("jeg ble trykket på", pokemon)
         console.log("start game", pokemon)
         startAttack(pokemon);
       }
+
+      function attack(pokemon) {
+        if (pokemonBad.hp > 0) {
+
+          alert(`${pokemon.name} har skadet ${pokemonBad.name}`)
+        }
+      }
     </script>
   </body>
 </html>
