@@ -246,6 +246,11 @@ console.log("jeg ble trykket på", pokemon)
          return {amountOfDamageGoodRound, amountOfDamageBadRound};
 
       }
+      function updateInnerHtml(pokemon) {
+        if (pokemon.name == "squirtle") {
+          squirtleHpTxt.innerHtml = `${pokemon.hp} / 44 HP`;
+        }
+      }
 
       function badGuyAttack(pokemon) {
         if (pokemon.hp > 0 && pokemonBad[0].hp > 0) {
