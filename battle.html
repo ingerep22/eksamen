@@ -229,12 +229,13 @@ console.log("jeg ble trykket på", pokemon)
 
       function attack(pokemon) {
         if (pokemonBad.hp > 0) {
+          let {amountOfDamageGoodRound} = calculateDamage(pokemon, pokemonBad); // setning tatt fra chat
 
           alert(`${pokemon.name} har skadet ${pokemonBad.name}`)
         }
       }
 
-      function calculateDamageFromAttack(pokemon) {
+      function calculateDamageFromAttack(pokemon, pokemonBad) {
         let amoundOfDamageGood = (15 * pokemon.attack) / pokemonBad.defense;
         let amoundOfDamageBad = (2 * pokemonbad.attack) / pokemon.defense;
 
