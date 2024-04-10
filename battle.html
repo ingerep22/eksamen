@@ -138,10 +138,10 @@
         console.log("Showing Pokemon:", pokemons);
         pokemonContainer.innerHTML = "";
         pokemons.forEach((pokemon, index) => {
-          const pickBtn = document.createElement("button");
-          pickBtn.innerHTML = "Velg meg";
-          pickBtn.style.backgroundColor = "white";
-          pickBtn.addEventListener("click", function() {
+          const pickMeBtn = document.createElement("button");
+          pickMeBtn.innerHTML = "Velg meg";
+          pickMeBtn.style.backgroundColor = "white";
+          pickMeBtn.addEventListener("click", function() {
             startGame(pokemon);
           })
           
@@ -159,7 +159,7 @@
           pokemonCard.style.padding = "10px";
           pokemonCard.innerHTML = `<img src="${pokemon.image}" style="width: 200px" />
       <h3>Navn: ${pokemon.name} <br>Type: ${pokemon.type}</h3> <h4>STATS<br>HP: ${pokemon.hp}<br>Attack: ${pokemon.attack}<br>Defense: ${pokemon.defense}<br>Special attack: ${pokemon.specialAttack}<br> Special defense: ${pokemon.specialDefense}<br> Speed: ${pokemon.speed}</h4>`;
-
+          pokemonCard.appendchild(pickMeBtn);
           pokemonContainer.appendChild(pokemonCard);
         });
       }
