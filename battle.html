@@ -77,8 +77,8 @@
       const pokemonContainer = document.querySelector(".pokemon-container");
       const badGuyContainer = document.querySelector(".bad-guy-container");
       const pokemonAllContainer = document.querySelector(".pokemon-all-container");
-      let pokemonGood = [];
-      let pokemonBad = [];
+      let pokemonGood = JSON.parse(localStorage.getItem("pokemonGood")) || [];
+      let pokemonBad = JSON.parse(localStorage.getItem("pokemonBad")) || [];
 
       
 
@@ -300,6 +300,8 @@ winnerPokemon(pokemon);
             }
           }
           updateInnerHtml(pokemon); // sjekker igjen om det funker
+          localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
+          localStorage.setItem("pokemonBad", JSON.stringify(pokemonBad));
         }
       }
     </script>
