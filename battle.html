@@ -235,6 +235,7 @@ console.log("jeg ble trykket på", pokemon)
           alert(`${pokemon.name} har skadet ${pokemonBad[0].name} med ${amountOfDamageGoodRound} poeng`);
           updateInnerHtml(pokemon);
           badGuyAttack(pokemon);
+          winnerPokemon(pokemon);
           
         }
       }
@@ -267,12 +268,25 @@ console.log("jeg ble trykket på", pokemon)
           pokemon.hp -= amountOfDamageBadRound;
           alert(`${pokemonBad[0].name} har skadet ${pokemon.name} med ${amountOfDamageBadRound} poeng`);
           updateInnerHtml(pokemon);
-
+winnerPokemon(pokemon);
         }
       }
 
       function winnerPokemon(pokemon) {
-        if (pokemon.hp <= 0 && pokemonBad[0].hp > 0)
+        if (pokemon.hp <= 0 && pokemonBad[0].hp > 0) {
+          alert(`De gode tapte denne gangen, og den onde ${pokemonBad[0].name} vant! Bedre lykke neste gang:)`);
+//må legge til litt her
+        } else if (pokemonBad[0].hp <= 0 && pokemon.hp > 0) {
+          alert(`Bra jobba! Den gode ${pokemon.name} vant`);
+          let userAnswer = prompt("100 kr eller 5 ekstra level? Det bestemmer du! skriv penger eller level").toLowerCase(); //kan jeg sette den der?
+          if (userAnswer === "penger") {
+            pokemon.money += 100;
+            alert(`${pokemon.name} har valgt penger!`);
+          } else if (userAnswer === "level") {
+            pokemon.level += 5;
+            alert(`${pokemon.name} har valgt level!`);
+          } 
+        }
       }
     </script>
   </body>
