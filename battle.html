@@ -266,9 +266,13 @@ console.log("jeg ble trykket på", pokemon)
           let {amountOfDamageBadRound} = calculateDamageFromAttack(pokemon, pokemonBad);
           pokemon.hp -= amountOfDamageBadRound;
           alert(`${pokemonBad[0].name} har skadet ${pokemon.name} med ${amountOfDamageBadRound} poeng`);
-updateInnerHtml(pokemon);
+          updateInnerHtml(pokemon);
 
         }
+      }
+
+      function winnerPokemon(pokemon) {
+        if (pokemon.hp <= 0 && pokemonBad[0].hp > 0)
       }
     </script>
   </body>
