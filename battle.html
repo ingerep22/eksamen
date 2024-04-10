@@ -214,16 +214,17 @@
 console.log("jeg ble trykket på", pokemon)
         });
       }*/
-      function attackNow(pokemon){
+      function startAttack(pokemon){
       document.addEventListener("keydown", function (event) {
         if (event.key == "a") {
           console.log("jeg ble trykket på", pokemon)
+          attack(pokemon);
         }
       })};
       function startGame(pokemon) {
         /// en knapp, kanskje?
         console.log("start game", pokemon)
-        attackNow(pokemon);
+        startAttack(pokemon);
       }
     </script>
   </body>
