@@ -75,7 +75,7 @@
         let response = await pokemonRequest.json();
         return response;
       }
-
+fetchAndShowPokemon("pikachu");
       async function fetchAndShowPokemon(name) {
         try {
           pokemonsId = [];
@@ -106,7 +106,11 @@
         console.log("Showing Pokemon:", pokemons);
         pokemonContainer.innerHTML = "";
         pokemons.forEach((pokemon, index) => {
+          
           const pokemonCard = document.createElement("div");
+          if (pokemon.name === "pikachu") {
+            pokemonCard.style.marginLeft = "auto";
+          }
           pokemonContainer.style.display = "flex";
           pokemonContainer.style.flexWrap = "wrap";
           pokemonContainer.style.gap = "10px";
