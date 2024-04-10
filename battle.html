@@ -310,7 +310,7 @@ winnerPokemon(pokemon);
           localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
           localStorage.setItem("pokemonBad", JSON.stringify(pokemonBad));
           updateInnerHtml(pokemon); // sjekker igjen om det funker
-          
+          window.location.reload();
         }
       }
     </script>
