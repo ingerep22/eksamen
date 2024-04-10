@@ -149,12 +149,14 @@
           pokemonContainer.style.display = "flex";
           pokemonContainer.style.flexWrap = "wrap";
           pokemonContainer.style.gap = "10px";
+          
           pokemonCard.style.background =
             pokemon.type == "water"
               ? "#1451E3"
               : pokemon.type == "fire"
               ? "#AA1E21"
-              : (pokemonCard.style.width = "200px");
+              : 
+          pokemonCard.style.width = "200px";
           pokemonCard.style.height = "430px";
           pokemonCard.style.padding = "10px";
           pokemonCard.innerHTML = `<img src="${pokemon.image}" style="width: 200px" />
@@ -171,7 +173,7 @@
           badGuyContainer.style.display = "flex";
           badGuyContainer.style.flexWrap = "wrap";
           badGuyContainer.style.gap = "10px";
-          pokemonContainer.style.position = "fixed";
+         // pokemonBadCard.style.position = "fixed";
           pokemonBadCard.style.background =
             pokemon.type == "water"
               ? "#1451E3"
@@ -179,6 +181,7 @@
               ? "#AA1E21"
               : 
          pokemonBadCard.style.width = "200px";
+         
           pokemonBadCard.style.height = "430px";
           pokemonBadCard.style.padding = "10px";
           pokemonBadCard.innerHTML = `<img src="${pokemon.image}" style="width: 200px" />
