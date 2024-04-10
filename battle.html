@@ -207,12 +207,17 @@
         fetchAndShowPokemon("vulpix");
       });
 
-      function attackBtn(pokemon) {
+     /* function attackBtn(pokemon) {
         const attackBtn = document.querySelector("#attack-btn") 
         attackBtn.addEventListener("click", function() {
 //function som starter attack
 console.log("jeg ble trykket på", pokemon)
         });
+      }*/
+      document.addEventListener("keydown"), function(event) {
+        if (event.key == "a") {
+          console.log("jeg ble trykket på", pokemon)
+        }
       }
       function startGame(pokemon) {
         /// en knapp, kanskje?
