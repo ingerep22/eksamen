@@ -147,7 +147,9 @@
           console.error("Her klarte vi ikke å lase inn pokemons", error);
         }
       }
-     
+
+    
+
       function showGoodPokemon(pokemons) {
         console.log("Showing Pokemon:", pokemons);
         pokemonContainer.innerHTML = "";
@@ -310,7 +312,7 @@ winnerPokemon(pokemon);
           localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
           localStorage.setItem("pokemonBad", JSON.stringify(pokemonBad));
           updateInnerHtml(pokemon); // sjekker igjen om det funker
-          window.location.reload();
+         // window.location.reload();
         }
       }
     </script>
