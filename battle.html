@@ -79,8 +79,8 @@ fetchAndShowPokemon("pikachu");
       async function fetchAndShowPokemon(name) {
         try {
           pokemonsId = [];
-
-          idOfPokemon = await fetchBattlePokemon(name);
+          
+         idOfPokemon = await fetchBattlePokemon(name);
           pokemonsId.push(idOfPokemon);
           console.log("hvor mange", pokemonsId);
           pokemonGood = pokemonsId.map((pokemon) => ({
@@ -108,9 +108,6 @@ fetchAndShowPokemon("pikachu");
         pokemons.forEach((pokemon, index) => {
           
           const pokemonCard = document.createElement("div");
-          if (pokemon.name === "pikachu") {
-            pokemonCard.style.marginLeft = "auto";
-          }
           pokemonContainer.style.display = "flex";
           pokemonContainer.style.flexWrap = "wrap";
           pokemonContainer.style.gap = "10px";
