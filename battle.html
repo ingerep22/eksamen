@@ -231,20 +231,29 @@ console.log("jeg ble trykket på", pokemon)
         if (pokemonBad[0].hp > 0) {
           let {amountOfDamageGoodRound} = calculateDamageFromAttack(pokemon, pokemonBad[0]); // setning tatt fra chat
           pokemonBad[0].hp -= amountOfDamageGoodRound;
-          console.log("funker det", amountOfDamageGoodRound);
           alert(`${pokemon.name} har skadet ${pokemonBad[0].name} med ${amountOfDamageGoodRound} poeng`)
+        badGuyAttack(pokemon);
         }
       }
 
       function calculateDamageFromAttack(pokemon) {
         let amoundOfDamageGood = 15 * pokemon.attack / pokemonBad[0].defense;
-        
+        let amoundOfDamageBad = 2 * pokemonBad[0].attack / pokemon.defense;
 
         let amountOfDamageGoodRound = Math.round(amoundOfDamageGood);
-        
+        let amountOfDamageBadRound = Math.round(amoundOfDamageBad);
       
-         return {amountOfDamageGoodRound};
+         return {amountOfDamageGoodRound, amountOfDamageBadRound};
 
+      }
+
+      function badGuyAttack(pokemon) {
+        if (pokemon.hp > 0 && pokemonBad[0].hp > 0) {
+          let {amountOfDamageBadRound} = calculateDamageFromAttack(pokemon, pokemonBad);
+          pokemon.hp -= amountOfDamageBadRound;
+          alert(`${pokemonBad[0].name} har skadet ${pokemon.name} med ${amountOfDamageBadRound} poeng`);
+
+        }
       }
     </script>
   </body>
