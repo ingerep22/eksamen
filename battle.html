@@ -252,13 +252,17 @@ console.log("jeg ble trykket på", pokemon)
       }
       function updateInnerHtml(pokemon) {
         if (pokemon.name === "squirtle") {
-          squirtleHpTxt.innerHtml = `${pokemon.hp} / 44 HP`;
-          squirtleLevelTxt.innerHtml = `${pokemon.level} / 36 Level`;
-          squirtleMoneyTxt.innerHtml = `${pokemon.money} / 0 Penger`;
+          squirtleHpTxt.innerHTML = `${pokemon.hp} / 44 HP`;
+          squirtleLevelTxt.innerHTML = `${pokemon.level} / 36 Level`;
+          squirtleMoneyTxt.innerHTML = `${pokemon.money} / 0 Penger`;
         } else if (pokemon.name === "vulpix"){
-          vulpixHpTxt.innerHtml = `${pokemon.hp} / 38 HP`;
-          vulpixLevelTxt.innerHtml = `${pokemon.level} / 20 Level`;
-          vulpixMoneyTxt.innerHtml = `${pokemon.money} / 0 Penger`;
+          vulpixHpTxt.innerHTML = `${pokemon.hp} / 38 HP`;
+          vulpixLevelTxt.innerHTML = `${pokemon.level} / 20 Level`;
+          vulpixMoneyTxt.innerHTML = `${pokemon.money} / 0 Penger`;
+        } if (pokemonBad[0].name === "pikachu") {
+          pikachuHpTxt.innerHTML = `${pokemonBad[0].hp} / 38 HP`;
+          pikachuLevelTxt.innerHTML = `${pokemonBad[0].level} / 20 Level`;
+          pikachuMoneyTxt.innerHTML = `${pokemonBad[0].money} / 0 Penger`;
         }
       }
 
@@ -267,6 +271,8 @@ console.log("jeg ble trykket på", pokemon)
           let {amountOfDamageBadRound} = calculateDamageFromAttack(pokemon, pokemonBad);
           pokemon.hp -= amountOfDamageBadRound;
           alert(`${pokemonBad[0].name} har skadet ${pokemon.name} med ${amountOfDamageBadRound} poeng`);
+          console.log(pokemon)
+          console.log(pokemonBad)
           updateInnerHtml(pokemon);
 winnerPokemon(pokemon);
         }
@@ -293,6 +299,7 @@ winnerPokemon(pokemon);
               alert(`${pokemon.name} får kun 1 ekstra level, fordi du ikke ville skrive/velge`);
             }
           }
+          updateInnerHtml(pokemon); // sjekker igjen om det funker
         }
       }
     </script>
