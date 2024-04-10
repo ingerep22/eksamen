@@ -152,6 +152,7 @@
           pickMeBtn.innerHTML = "Velg meg";
           pickMeBtn.style.backgroundColor = "white";
           pickMeBtn.addEventListener("click", function() {
+            pickMeBtn.remove();
             startGame(pokemon);
           })
           
