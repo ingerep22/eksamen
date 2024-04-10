@@ -233,6 +233,16 @@ console.log("jeg ble trykket på", pokemon)
           alert(`${pokemon.name} har skadet ${pokemonBad.name}`)
         }
       }
+
+      function calculateDamageFromAttack(pokemon) {
+        let amoundOfDamageGood = (15 * pokemon.attack) / pokemonBad.defense;
+        let amoundOfDamageBad = (2 * pokemonbad.attack) / pokemon.defense;
+
+        let amountOfDamageGoodRound = Math.round(amountOfDamageGood);
+        let amoundOfDamageBadRound = Math.round(amountOfDamageBad);
+
+        
+      }
     </script>
   </body>
 </html>
