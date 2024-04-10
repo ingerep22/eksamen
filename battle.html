@@ -70,6 +70,8 @@
       let pokemonGood = [];
       let pokemonBad = [];
 
+      
+
       async function fetchBattlePokemon(name) {
         const pokemonRequest = await fetch(
           `https://pokeapi.co/api/v2/pokemon/${name}/`
@@ -77,7 +79,7 @@
         let response = await pokemonRequest.json();
         return response;
       }
-    fetchAndShowBadPokemon("pikachu");
+      fetchAndShowBadPokemon("pikachu");
 
       async function fetchAndShowBadPokemon(pikachu) {
         try {
@@ -131,27 +133,7 @@
           console.error("Her klarte vi ikke å lase inn pokemons", error);
         }
       }
-      function showBadPokemon(pokemon) {
-      console.log("vis pika", pokemon);
-          const pokemonCard = document.createElement("div");
-          pokemonCard.style.marginLeft = "auto";
-          pokemonContainer.style.display = "flex";
-          pokemonContainer.style.flexWrap = "wrap";
-          pokemonContainer.style.gap = "10px";
-          pokemonCard.style.background =
-            pokemon.type == "water"
-              ? "#1451E3"
-              : pokemon.type == "fire"
-              ? "#AA1E21"
-              : (pokemonCard.style.width = "200px");
-          pokemonCard.style.height = "430px";
-          pokemonCard.style.padding = "10px";
-          pokemonCard.innerHTML = `<img src="${pokemon.image}" style="width: 200px" />
-      <h3>Navn: ${pokemon.name} <br>Type: ${pokemon.type}</h3> <h4>STATS<br>HP: ${pokemon.hp}<br>Attack: ${pokemon.attack}<br>Defense: ${pokemon.defense}<br>Special attack: ${pokemon.specialAttack}<br> Special defense: ${pokemon.specialDefense}<br> Speed: ${pokemon.speed}</h4>`;
-
-          pokemonContainer.appendChild(pokemonCard);
-        };
-      
+     
       function showGoodPokemon(pokemons) {
         console.log("Showing Pokemon:", pokemons);
         pokemonContainer.innerHTML = "";
@@ -175,6 +157,28 @@
           pokemonContainer.appendChild(pokemonCard);
         });
       }
+      function showBadPokemon(pokemon) {
+      console.log("vis pika", pokemon);
+          const pokemonBadCard = document.createElement("div");
+          pokemonBadCard.style.marginLeft = "auto";
+          badGuyContainer.style.display = "flex";
+          badGuyContainer.style.flexWrap = "wrap";
+          badGuyContainer.style.gap = "10px";
+          pokemonBadCard.style.background =
+            pokemon.type == "water"
+              ? "#1451E3"
+              : pokemon.type == "fire"
+              ? "#AA1E21"
+              : 
+         pokemonBadCard.style.width = "200px";
+          pokemonBadCard.style.height = "430px";
+          pokemonBadCard.style.padding = "10px";
+          pokemonBadCard.innerHTML = `<img src="${pokemon.image}" style="width: 200px" />
+      <h3>Navn: ${pokemon.name} <br>Type: ${pokemon.type}</h3> <h4>STATS<br>HP: ${pokemon.hp}<br>Attack: ${pokemon.attack}<br>Defense: ${pokemon.defense}<br>Special attack: ${pokemon.specialAttack}<br> Special defense: ${pokemon.specialDefense}<br> Speed: ${pokemon.speed}</h4>`;
+
+          badGuyContainer.appendChild(pokemonBadCard);
+        };
+      
 
       squirtle.addEventListener("click", () => {
         squirtle.src = "/assets/open.jpg";
