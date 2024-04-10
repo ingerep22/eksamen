@@ -10,6 +10,11 @@
         align-items: baseline;
         gap: 50px;
       }
+      .pokemon-all-container {
+        display: flex;
+        align-items: baseline;
+        gap: 400px;
+      }
     </style>
   </head>
   <body>
@@ -48,8 +53,10 @@
       width="120px"
       height=""
     />
+    <div class="pokemon-all-container">
     <div class="pokemon-container"></div>
     <div class="bad-guy-container"></div>
+  </div>
     <script>
       let squirtleHpTxt = document.querySelector("#squirtle-hp-txt");
       let vulpixHpTxt = document.querySelector("#vulpix-hp-txt");
@@ -67,6 +74,7 @@
       const vulpix = document.querySelector("#vulpix");
       const pokemonContainer = document.querySelector(".pokemon-container");
       const badGuyContainer = document.querySelector(".bad-guy-container");
+      const pokemonAllContainer = document.querySelector(".pokemon-all-container");
       let pokemonGood = [];
       let pokemonBad = [];
 
@@ -169,7 +177,7 @@
       console.log("vis pika", pokemonInfo);
       const pokemon = pokemonInfo[0]; //chat
           const pokemonBadCard = document.createElement("div");
-          pokemonBadCard.style.marginLeft = "auto";
+         // pokemonBadCard.style.marginLeft = "auto";
           badGuyContainer.style.display = "flex";
           badGuyContainer.style.flexWrap = "wrap";
           badGuyContainer.style.gap = "10px";
