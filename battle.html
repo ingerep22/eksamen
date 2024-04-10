@@ -66,6 +66,7 @@
       const squirtle = document.querySelector("#squirtle");
       const vulpix = document.querySelector("#vulpix");
       const pokemonContainer = document.querySelector(".pokemon-container");
+      const badGuyContainer = document.querySelector(".bad-guy-container");
       let pokemonGood = [];
       let pokemonBad = [];
 
@@ -76,13 +77,13 @@
         let response = await pokemonRequest.json();
         return response;
       }
-fetchAndShowBadPokemon("pikachu");
+    fetchAndShowBadPokemon("pikachu");
 
-      async function fetchAndShowBadPokemon(bad) {
+      async function fetchAndShowBadPokemon(pikachu) {
         try {
           pokemonsId = [];
           
-         idOfPokemon = await fetchBattlePokemon(bad);
+         idOfPokemon = await fetchBattlePokemon(pikachu);
           pokemonsId.push(idOfPokemon);
           console.log("hvor mange", pokemonsId);
           pokemonBad = pokemonsId.map((pokemon) => ({
@@ -98,7 +99,6 @@ fetchAndShowBadPokemon("pikachu");
             level: 0,
             money: 0,
           }));
-          console.log("hvor mange", pokemonGood);
           showBadPokemon(pokemonBad);
         } catch (error) {
           console.error("Her klarte vi ikke å lase inn pokemons", error);
@@ -132,7 +132,7 @@ fetchAndShowBadPokemon("pikachu");
         }
       }
       function showBadPokemon(pokemon) {
-      
+      console.log("vis pika", pokemon);
           const pokemonCard = document.createElement("div");
           pokemonCard.style.marginLeft = "auto";
           pokemonContainer.style.display = "flex";
