@@ -285,7 +285,14 @@ winnerPokemon(pokemon);
           } else if (userAnswer === "level") {
             pokemon.level += 5;
             alert(`${pokemon.name} har valgt level!`);
-          } 
+          }  else {
+            alert("siste sjanse!");
+            let userAnswer = prompt("100 kr eller 5 ekstra level? Det bestemmer du! skriv penger eller level").toLowerCase(); //kan jeg sette den der?
+            if (userAnswer !== "penger" && userAnswer !== "level") {
+              pokemon.level += 1;
+              alert(`${pokemon.name} får kun 1 ekstra level, fordi du ikke ville skrive/velge`);
+            }
+          }
         }
       }
     </script>
