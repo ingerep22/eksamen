@@ -231,8 +231,10 @@ console.log("jeg ble trykket på", pokemon)
         if (pokemonBad[0].hp > 0) {
           let {amountOfDamageGoodRound} = calculateDamageFromAttack(pokemon, pokemonBad[0]); // setning tatt fra chat
           pokemonBad[0].hp -= amountOfDamageGoodRound;
-          alert(`${pokemon.name} har skadet ${pokemonBad[0].name} med ${amountOfDamageGoodRound} poeng`)
-        badGuyAttack(pokemon);
+          alert(`${pokemon.name} har skadet ${pokemonBad[0].name} med ${amountOfDamageGoodRound} poeng`);
+          updateInnerHtml(pokemon);
+          badGuyAttack(pokemon);
+          
         }
       }
 
@@ -247,8 +249,14 @@ console.log("jeg ble trykket på", pokemon)
 
       }
       function updateInnerHtml(pokemon) {
-        if (pokemon.name == "squirtle") {
+        if (pokemon.name === "squirtle") {
           squirtleHpTxt.innerHtml = `${pokemon.hp} / 44 HP`;
+          squirtleLevelTxt.innerHtml = `${pokemon.level} / 36 Level`;
+          squirtleMoneyTxt.innerHtml = `${pokemon.money} / 0 Penger`;
+        } else if (pokemon.name === "vulpix"){
+          vulpixHpTxt.innerHtml = `${pokemon.hp} / 38 HP`;
+          vulpixLevelTxt.innerHtml = `${pokemon.level} / 20 Level`;
+          vulpixMoneyTxt.innerHtml = `${pokemon.money} / 0 Penger`;
         }
       }
 
@@ -257,6 +265,7 @@ console.log("jeg ble trykket på", pokemon)
           let {amountOfDamageBadRound} = calculateDamageFromAttack(pokemon, pokemonBad);
           pokemon.hp -= amountOfDamageBadRound;
           alert(`${pokemonBad[0].name} har skadet ${pokemon.name} med ${amountOfDamageBadRound} poeng`);
+updateInnerHtml(pokemon);
 
         }
       }
