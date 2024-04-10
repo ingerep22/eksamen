@@ -157,8 +157,9 @@
           pokemonContainer.appendChild(pokemonCard);
         });
       }
-      function showBadPokemon(pokemon) {
-      console.log("vis pika", pokemon);
+      function showBadPokemon(pokemonInfo) {
+      console.log("vis pika", pokemonInfo);
+      const pokemon = pokemonInfo[0]; //chat
           const pokemonBadCard = document.createElement("div");
           pokemonBadCard.style.marginLeft = "auto";
           badGuyContainer.style.display = "flex";
