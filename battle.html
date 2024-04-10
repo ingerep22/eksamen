@@ -53,6 +53,7 @@
       width="120px"
       height=""
     />
+    <input type="button" value="Angrip" id="attack-btn"/>
   </div>
     <div class="pokemon-all-container">
     <div class="pokemon-container"></div>
@@ -206,8 +207,16 @@
         fetchAndShowPokemon("vulpix");
       });
 
+      function attackBtn(pokemon) {
+        const attackBtn = document.querySelector("#attack-btn") 
+        attackBtn.addEventListener("click", function() {
+//function som starter attack
+console.log("jeg ble trykket på", pokemon)
+        });
+      }
       function startGame(pokemon) {
         /// en knapp, kanskje?
+        attackBtn(pokemon);
       }
     </script>
   </body>
