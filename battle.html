@@ -138,6 +138,12 @@
         console.log("Showing Pokemon:", pokemons);
         pokemonContainer.innerHTML = "";
         pokemons.forEach((pokemon, index) => {
+          const pickBtn = document.createElement("button");
+          pickBtn.innerHTML = "Velg meg";
+          pickBtn.style.backgroundColor = "white";
+          pickBtn.addEventListener("click", function() {
+            startGame(pokemon);
+          })
           
           const pokemonCard = document.createElement("div");
           pokemonContainer.style.display = "flex";
