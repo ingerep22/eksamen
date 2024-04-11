@@ -93,6 +93,7 @@
 
       async function fetchAndShowBadPokemon(pikachu) {
         try {
+          const savedPikachu = pokemonGood.find(pokemon => pokemon.name === "pikachu");
           pokemonsId = [];
           
          idOfPokemon = await fetchBattlePokemon(pikachu);
