@@ -146,7 +146,7 @@
     
 
       function showGoodPokemon(pokemons) {
-        console.log("Showing Pokemon:", pokemons);
+        console.log("vis pokemon:", pokemons);
         pokemonContainer.innerHTML = "";
         pokemons.forEach((pokemon, index) => {
           updateInnerHtml(pokemon);
@@ -209,7 +209,7 @@
         } else {
           fetchAndShowPokemon("squirtle");
         }
-        fetchAndShowPokemon("squirtle");
+       
       });
       vulpix.addEventListener("click", () => {
         vulpix.src = "/assets/open.jpg";
@@ -219,7 +219,7 @@
         } else {
           fetchAndShowPokemon("vulpix");
         }
-        fetchAndShowPokemon("vulpix");
+       
       });
      /* function attackBtn(pokemon) {
         const attackBtn = document.querySelector("#attack-btn") 
