@@ -122,8 +122,7 @@
       async function fetchAndShowPokemon(name) {
         try {
           let idOfPokemon = await fetchBattlePokemon(name);
-          pokemonsId.push(idOfPokemon);
-          pokemonGood = pokemonsId.map((pokemon) => ({
+          let pokemon = {
             name: pokemon.name,
             image: pokemon.sprites.other["official-artwork"].front_default,
             type: pokemon.types[0].type.name,
@@ -136,9 +135,8 @@
             speed: pokemon.stats[5].base_stat,
             level: 0,
             money: 0,
-          }));
-         
-          console.log("hvor mange", pokemonGood);
+          };
+          pokemonGood.push(pokemon);
           showGoodPokemon(pokemonGood);
         } catch (error) {
           console.error("Her klarte vi ikke å lase inn pokemons", error);
