@@ -213,7 +213,7 @@
       vulpix.addEventListener("click", () => {
         vulpix.src = "/assets/open.jpg";
         let savedVulpix = pokemonGood.find(pokemon => pokemon.name === "vulpix");
-        if (saveVulpix) {
+        if (savedVulpix) {
            showGoodPokemon([savedVulpix]);
         } else {
           fetchAndShowPokemon("vulpix");
@@ -246,6 +246,7 @@ console.log("jeg ble trykket på", pokemon)
           pokemonBad[0].hp -= amountOfDamageGoodRound;
           alert(`${pokemon.name} har skadet ${pokemonBad[0].name} med ${amountOfDamageGoodRound} poeng`);
           updateInnerHtml(pokemon);
+          updateInnerHtml(pokemonBad[0]);
           badGuyAttack(pokemon);
           winnerPokemon(pokemon);
           
@@ -286,6 +287,7 @@ console.log("jeg ble trykket på", pokemon)
           console.log(pokemon)
           console.log(pokemonBad)
           updateInnerHtml(pokemon);
+          updateInnerHtml(pokemonBad[0]);
 winnerPokemon(pokemon);
         }
       }
