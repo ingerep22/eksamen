@@ -94,8 +94,8 @@
       async function fetchAndShowBadPokemon(pikachu) {
         try {
           const savedPikachu = pokemonGood.find(pokemon => pokemon.name === "pikachu");
-          pokemonsId = [];
-          
+         if (!savedPikachu) {
+          pokemonsId = []; 
          idOfPokemon = await fetchBattlePokemon(pikachu);
           pokemonsId.push(idOfPokemon);
           console.log("hvor mange", pokemonsId);
@@ -113,6 +113,7 @@
             level: 0,
             money: 0,
           }));
+        }
          
           showBadPokemon(pokemonBad);
         } catch (error) {
@@ -255,8 +256,8 @@ console.log("jeg ble trykket på", pokemon)
       }
 
       function calculateDamageFromAttack(pokemon) {
-        let amoundOfDamageGood = 15 * pokemon.attack / pokemonBad[0].defense;
-        let amoundOfDamageBad = 2 * pokemonBad[0].attack / pokemon.defense;
+        let amoundOfDamageGood = 2 * pokemon.attack / pokemonBad[0].defense;
+        let amoundOfDamageBad = 15 * pokemonBad[0].attack / pokemon.defense;
 
         let amountOfDamageGoodRound = Math.round(amoundOfDamageGood);
         let amountOfDamageBadRound = Math.round(amoundOfDamageBad);
