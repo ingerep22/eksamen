@@ -121,11 +121,8 @@
 
       async function fetchAndShowPokemon(name) {
         try {
-          pokemonsId = [];
-          
-         idOfPokemon = await fetchBattlePokemon(name);
+          let idOfPokemon = await fetchBattlePokemon(name);
           pokemonsId.push(idOfPokemon);
-          console.log("hvor mange", pokemonsId);
           pokemonGood = pokemonsId.map((pokemon) => ({
             name: pokemon.name,
             image: pokemon.sprites.other["official-artwork"].front_default,
