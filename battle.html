@@ -91,28 +91,25 @@
       }
       fetchAndShowBadPokemon("pikachu");
 
-      async function fetchAndShowBadPokemon(pikachu) {
+      async function fetchAndShowBadPokemon(name) {
         try {
-          const savedPikachu = pokemonGood.find(pokemon => pokemon.name === "pikachu");
+          const savedPikachu = pokemonBad.find(pokemon => pokemon.name === "pikachu");
          if (!savedPikachu) {
-          pokemonsId = []; 
-         idOfPokemon = await fetchBattlePokemon(pikachu);
-          pokemonsId.push(idOfPokemon);
-          console.log("hvor mange", pokemonsId);
-          pokemonBad = pokemonsId.map((pokemon) => ({
-            name: pokemon.name,
-            image: pokemon.sprites.other["official-artwork"].front_default,
-            type: pokemon.types[0].type.name,
-            originalHp: pokemon.stats[0].base_stat,
-            hp: pokemon.stats[0].base_stat,
-            attack: pokemon.stats[1].base_stat,
-            defense: pokemon.stats[2].base_stat,
-            specialAttack: pokemon.stats[3].base_stat,
-            specialDefense: pokemon.stats[4].base_stat,
-            speed: pokemon.stats[5].base_stat,
+         let idOfPokemon = await fetchBattlePokemon(name);
+          pokemonBad.push ({
+            name: idOfPokemon.name,
+            image: idOfPokemon.sprites.other["official-artwork"].front_default,
+            type: idOfPokemon.types[0].type.name,
+            originalHp: idOfPokemon.stats[0].base_stat,
+            hp: idOfPokemon.stats[0].base_stat,
+            attack: idOfPokemon.stats[1].base_stat,
+            defense: idOfPokemon.stats[2].base_stat,
+            specialAttack: idOfPokemon.stats[3].base_stat,
+            specialDefense: idOfPokemon.stats[4].base_stat,
+            speed: idOfPokemon.stats[5].base_stat,
             level: 0,
             money: 0,
-          }));
+          });
         }
          
           showBadPokemon(pokemonBad);
@@ -180,9 +177,9 @@
           pokemonContainer.appendChild(pokemonCard);
         });
       }
-      function showBadPokemon(pokemonInfo) {
-      console.log("vis pika", pokemonInfo);
-      const pokemon = pokemonInfo[0]; //chat
+      function showBadPokemon(pokemons) {
+      console.log("vis pika", pokemons);
+      pokemons.forEach((pokemon, index) => {
           const pokemonBadCard = document.createElement("div");
          // pokemonBadCard.style.marginLeft = "auto";
           badGuyContainer.style.display = "flex";
@@ -200,8 +197,8 @@
       <h3>Navn: ${pokemon.name} <br>Type: ${pokemon.type}</h3> <h4>STATS<br>HP: ${pokemon.hp}<br>Attack: ${pokemon.attack}<br>Defense: ${pokemon.defense}<br>Special attack: ${pokemon.specialAttack}<br> Special defense: ${pokemon.specialDefense}<br> Speed: ${pokemon.speed}</h4>`;
 
           badGuyContainer.appendChild(pokemonBadCard);
-        };
-      
+        });
+      }
 
       squirtle.addEventListener("click", () => {
         squirtle.src = "/assets/open.jpg";
@@ -274,7 +271,7 @@ console.log("jeg ble trykket på", pokemon)
           vulpixHpTxt.innerHTML = `${pokemon.hp} / 38 HP`;
           vulpixLevelTxt.innerHTML = `${pokemon.level} / 20 Level`;
           vulpixMoneyTxt.innerHTML = `${pokemon.money} / 0 Penger`;
-        } if (pokemonBad[0].name === "pikachu") {
+        } if (pokemonBad.length > 0 && pokemonBad[0].name === "pikachu") {
           pikachuHpTxt.innerHTML = `${pokemonBad[0].hp} / 35 HP`;
           pikachuLevelTxt.innerHTML = `${pokemonBad[0].level} / 20 Level`;
           pikachuMoneyTxt.innerHTML = `${pokemonBad[0].money} / 0 Penger`;
@@ -298,10 +295,14 @@ winnerPokemon(pokemon);
           updateInnerHtml(pokemonBad[0]);
         if (pokemon.hp <= 0 && pokemonBad[0].hp > 0) {
           alert(`De gode tapte denne gangen, og den onde ${pokemonBad[0].name} vant! Bedre lykke neste gang:)`);
-          pokemonBad[0] += 5;
+          pokemonBad[0].level += 5;
+          saveToLocal(pokemon)
+          saveToLocal(pokemonBad)
 //må legge til litt her
         } else if (pokemonBad[0].hp <= 0 && pokemon.hp > 0) {
           alert(`Bra jobba! Den gode ${pokemon.name} vant`);
+          saveToLocal(pokemon)
+          saveToLocal(pokemonBad)
           let userAnswer = prompt("100 kr eller 5 ekstra level? Det bestemmer du! skriv penger eller level").toLowerCase(); //kan jeg sette den der?
           if (userAnswer === "penger") {
             pokemon.money += 100;
@@ -326,7 +327,7 @@ winnerPokemon(pokemon);
 
       function saveToLocal(pokemon) {
         pokemon.hp = pokemon.originalHp; 
-        if(pokemonBad[0].name === "pikachu") {
+        if (pokemonBad[0].name === "pikachu") {
           pokemonBad[0].hp = pokemonBad[0].originalHp;
         }
         localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
