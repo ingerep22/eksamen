@@ -305,14 +305,10 @@ winnerPokemon(pokemon);
               alert(`${pokemon.name} får kun 1 ekstra level, fordi du ikke ville skrive/velge`);
             }
           }
-          updateInnerHtml(pokemon); // sjekker igjen om det funker
-          /*pokemon.hp = pokemon.originalHp;
-          pokemonBad[0].hp = pokemon.originalHp;*/
-         
-          localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
-          localStorage.setItem("pokemonBad", JSON.stringify(pokemonBad));
+          
           updateInnerHtml(pokemon); // sjekker igjen om det funker
          // window.location.reload();
+         saveToLocal(pokemon)
         }
       }
 
