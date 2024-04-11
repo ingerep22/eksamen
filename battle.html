@@ -154,6 +154,7 @@
         console.log("Showing Pokemon:", pokemons);
         pokemonContainer.innerHTML = "";
         pokemons.forEach((pokemon, index) => {
+          updateInnerHtml(pokemon);
           const pickMeBtn = document.createElement("button");
           pickMeBtn.innerHTML = "Velg meg";
           pickMeBtn.style.backgroundColor = "white";
@@ -207,13 +208,24 @@
 
       squirtle.addEventListener("click", () => {
         squirtle.src = "/assets/open.jpg";
+        let savedSquirtle = pokemonGood.find(pokemon => pokemon.name === "squirtle");
+        if (savedSquirtle) {
+           showGoodPokemon([savedSquirtle]);
+        } else {
+          fetchAndShowPokemon("squirtle");
+        }
         fetchAndShowPokemon("squirtle");
       });
       vulpix.addEventListener("click", () => {
         vulpix.src = "/assets/open.jpg";
+        let savedVulpix = pokemonGood.find(pokemon => pokemon.name === "vulpix");
+        if (saveVulpix) {
+           showGoodPokemon([savedVulpix]);
+        } else {
+          fetchAndShowPokemon("vulpix");
+        }
         fetchAndShowPokemon("vulpix");
       });
-
      /* function attackBtn(pokemon) {
         const attackBtn = document.querySelector("#attack-btn") 
         attackBtn.addEventListener("click", function() {
@@ -285,8 +297,11 @@ winnerPokemon(pokemon);
       }
 
       function winnerPokemon(pokemon) {
+        updateInnerHtml(pokemon);
+          updateInnerHtml(pokemonBad[0]);
         if (pokemon.hp <= 0 && pokemonBad[0].hp > 0) {
           alert(`De gode tapte denne gangen, og den onde ${pokemonBad[0].name} vant! Bedre lykke neste gang:)`);
+          pokemonBad[0] += 5;
 //må legge til litt her
         } else if (pokemonBad[0].hp <= 0 && pokemon.hp > 0) {
           alert(`Bra jobba! Den gode ${pokemon.name} vant`);
@@ -306,7 +321,7 @@ winnerPokemon(pokemon);
             }
           }
           
-          updateInnerHtml(pokemon); // sjekker igjen om det funker
+          //updateInnerHtml(pokemon); // sjekker igjen om det funker
          // window.location.reload();
          saveToLocal(pokemon)
         }
