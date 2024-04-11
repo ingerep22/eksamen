@@ -123,16 +123,16 @@
         try {
           let idOfPokemon = await fetchBattlePokemon(name);
           let pokemon = {
-            name: pokemon.name,
-            image: pokemon.sprites.other["official-artwork"].front_default,
-            type: pokemon.types[0].type.name,
-            originalHp: pokemon.stats[0].base_stat,
-            hp: pokemon.stats[0].base_stat,
-            attack: pokemon.stats[1].base_stat,
-            defense: pokemon.stats[2].base_stat,
-            specialAttack: pokemon.stats[3].base_stat,
-            specialDefense: pokemon.stats[4].base_stat,
-            speed: pokemon.stats[5].base_stat,
+            name: idOfPokemon.name,
+            image: idOfPokemon.sprites.other["official-artwork"].front_default,
+            type: idOfPokemon.types[0].type.name,
+            originalHp: idOfPokemon.stats[0].base_stat,
+            hp: idOfPokemon.stats[0].base_stat,
+            attack: idOfPokemon.stats[1].base_stat,
+            defense: idOfPokemon.stats[2].base_stat,
+            specialAttack: idOfPokemon.stats[3].base_stat,
+            specialDefense: idOfPokemon.stats[4].base_stat,
+            speed: idOfPokemon.stats[5].base_stat,
             level: 0,
             money: 0,
           };
