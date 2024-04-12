@@ -215,7 +215,13 @@
 
       squirtle.addEventListener("click", () => {
         squirtle.src = "/assets/open.jpg";
-        let savedSquirtle = pokemonGood.find(
+        let savedWartortle = pokemonGood.find(
+          (pokemon) => pokemon.name === "wartortle"
+        );
+        if (savedWartortle) {
+          showGoodPokemon([savedWartortle]);
+        } else {
+          let savedSquirtle = pokemonGood.find(
           (pokemon) => pokemon.name === "squirtle"
         );
         if (savedSquirtle) {
@@ -223,22 +229,26 @@
         } else {
           fetchAndShowPokemon("squirtle");
         }
-        let savedWartortle = pokemonGood.find(
-          (pokemon) => pokemon.name === "wartortle"
-        );
-        if (savedWartortle) {
-          showGoodPokemon([savedWartortle]);
-        }
+       
+      } 
       });
       vulpix.addEventListener("click", () => {
         vulpix.src = "/assets/open.jpg";
-        let savedVulpix = pokemonGood.find(
+
+        let savedNintales = pokemonGood.find(
+          (pokemon) => pokemon.name === "ninetales"
+        );
+        if (savedNinetales) {
+          showGoodPokemon([savedNinetales]);
+        } else {
+          let savedVulpix = pokemonGood.find(
           (pokemon) => pokemon.name === "vulpix"
         );
         if (savedVulpix) {
           showGoodPokemon([savedVulpix]);
-        } else {
+        }else {
           fetchAndShowPokemon("vulpix");
+        }
         }
       });
 
@@ -353,13 +363,9 @@
           alert("Du har oppnådd en ny pokemon med navn wartortle");
           fetchAndShowPokemon("blastoise");
         }
-        if (
-          pokemon.name === "vulpix" &&
-          pokemon.level === 20 &&
-          pokemon.money === 300
+        if (pokemon.name === "vulpix" && pokemon.money === 300
         ) {
           updateInnerHtml(pokemon);
-          pokemon.level -= 20;
           pokemon.money -= 300;
           pokemonGood.splice(0, 1);
           localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
