@@ -342,7 +342,6 @@ attackBtn.remove();
           //else if med penger??
           //alert med pokemon.name?
           pokemonGood.splice(0, 1);
-          //pokemonBad.push("raichu")
           localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
           alert("Du har oppnådd en ny pokemon med navn wartortle");
           fetchAndShowPokemon("wartortle");
@@ -360,6 +359,8 @@ attackBtn.remove();
           updateInnerHtml(pokemon);
           pokemon.level -= 20;
           pokemon.money -= 300;
+          pokemonGood.splice(0, 1);
+          localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
           alert("Du har funnet fire stone og har nå tilgan til ninetales");
           fetchAndShowPokemon("ninetales");
         }
