@@ -127,7 +127,7 @@ getPikaTest();
               money: 0,
             });
           }
-
+          localStorage.setItem("pokemonBad", JSON.stringify(pokemonBad));
           showBadPokemon(pokemonBad);
         } catch (error) {
           console.error("Her klarte vi ikke å lase inn pokemons", error);
@@ -191,6 +191,7 @@ getPikaTest();
         });
       }
       function showBadPokemon(pokemons) {
+        badGuyContainer.innerHTML = "";
         console.log("vis pika", pokemons);
         pokemons.forEach((pokemon, index) => {
           const pokemonBadCard = document.createElement("div");
@@ -332,7 +333,7 @@ attackBtn.remove();
           getPokemon("raichu");
           localStorage.setItem("pokemonBad", JSON.stringify(pokemonBad));
           console.log("hva er her", pokemonBad);
-          saveToLocal();
+          saveToLocal(pokemonBad[0]);
         }
         if (pokemon.name === "squirtle" && pokemon.level === 15) {
           updateInnerHtml(pokemon);
