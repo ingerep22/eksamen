@@ -223,6 +223,12 @@
         } else {
           fetchAndShowPokemon("squirtle");
         }
+        let savedWartortle = pokemonGood.find(
+          (pokemon) => pokemon.name === "wartortle"
+        );
+        if (savedWartortle) {
+          showGoodPokemon([savedWartortle]);
+        }
       });
       vulpix.addEventListener("click", () => {
         vulpix.src = "/assets/open.jpg";
