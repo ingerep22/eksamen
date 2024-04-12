@@ -89,8 +89,8 @@
         let response = await pokemonRequest.json();
         return response;
       }
-    fetchAndShowBadPokemon("pikachu");
-
+   // fetchAndShowBadPokemon("pikachu");
+getPikaTest();
       function getPokemon(name) {
         if (name === "raichu") {
           fetchAndShowBadPokemon("raichu");
@@ -230,13 +230,15 @@
           fetchAndShowPokemon("vulpix");
         }
       });
-      /* function attackBtn(pokemon) {
+
+
+      function getPikaTest() {
         const attackBtn = document.querySelector("#attack-btn") 
         attackBtn.addEventListener("click", function() {
-//function som starter attack
-console.log("jeg ble trykket på", pokemon)
+getPokemon("pikachu");
+
         });
-      }*/
+      }
       function startAttack(pokemon) {
         document.addEventListener("keydown", function (event) {
           if (event.key == "a") {
