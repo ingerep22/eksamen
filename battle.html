@@ -254,8 +254,8 @@ console.log("jeg ble trykket på", pokemon)
       }
 
       function calculateDamageFromAttack(pokemon) {
-        let amoundOfDamageGood = 2 * pokemon.attack / pokemonBad[0].defense;
-        let amoundOfDamageBad = 15 * pokemonBad[0].attack / pokemon.defense;
+        let amoundOfDamageGood = 15 * pokemon.attack / pokemonBad[0].defense;
+        let amoundOfDamageBad = 2 * pokemonBad[0].attack / pokemon.defense;
 
         let amountOfDamageGoodRound = Math.round(amoundOfDamageGood);
         let amountOfDamageBadRound = Math.round(amoundOfDamageBad);
@@ -291,6 +291,15 @@ console.log("jeg ble trykket på", pokemon)
 winnerPokemon(pokemon);
         }
       }
+      
+      function evolvePokemon(pokemon) {
+        if (pokemon.name === "squirtle" && pokemon.level === 15) {
+          fetchAndShowPokemon("wartotle")
+          console.log("evolve", pokemon);
+          console.log("evolve", pokemonGood)
+       
+      }
+    }
 
       function winnerPokemon(pokemon) {
         updateInnerHtml(pokemon);
@@ -320,7 +329,8 @@ winnerPokemon(pokemon);
               alert(`${pokemon.name} får kun 1 ekstra level, fordi du ikke ville skrive/velge`);
             }
           }
-          
+          evolvePokemon(pokemon);
+          alert("Du kan fortsette neste kamp, ved å trykke på a")
           
           //updateInnerHtml(pokemon); // sjekker igjen om det funker
          // window.location.reload();
