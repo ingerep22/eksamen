@@ -296,13 +296,23 @@ winnerPokemon(pokemon);
         if (pokemon.name === "squirtle" && pokemon.level === 15) {
           updateInnerHtml(pokemon);
           pokemon.level -= 15;
+          //else if med penger?? 
+          //alert med pokemon.name?
           alert("Du har oppnådd en ny pokemon med navn wartortle")
           fetchAndShowPokemon("wartortle")
           console.log("evolve", pokemon);
           console.log("evolve", pokemonGood)
       } else if (pokemon.name === "wartortle" && pokemon.level === 20) {
+        alert("Du har oppnådd en ny pokemon med navn wartortle")
         fetchAndShowPokemon("blastoise");
       }  
+      if (pokemon.name === "vulpix" && pokemon.level === 20 && pokemon.money === 300) {
+        updateInnerHtml(pokemon);
+          pokemon.level -= 20;
+          pokemon.money -= 300;
+          alert("Du har funnet fire stone og har nå tilgan til ninetales")
+          fetchAndShowPokemon("ninetales");
+      }
      }
 
       function winnerPokemon(pokemon) {
