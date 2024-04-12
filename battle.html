@@ -152,6 +152,7 @@ getPikaTest();
             money: 0,
           };
           pokemonGood.push(pokemon);
+          localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
           showGoodPokemon(pokemonGood);
         } catch (error) {
           console.error("Her klarte vi ikke å lase inn pokemons", error);
@@ -277,8 +278,8 @@ attackBtn.remove();
       }
 
       function calculateDamageFromAttack(pokemon) {
-        let amoundOfDamageGood = (2 * pokemon.attack) / pokemonBad[0].defense;
-        let amoundOfDamageBad = (15 * pokemonBad[0].attack) / pokemon.defense;
+        let amoundOfDamageGood = (15 * pokemon.attack) / pokemonBad[0].defense;
+        let amoundOfDamageBad = (2 * pokemonBad[0].attack) / pokemon.defense;
 
         let amountOfDamageGoodRound = Math.round(amoundOfDamageGood);
         let amountOfDamageBadRound = Math.round(amoundOfDamageBad);
@@ -340,6 +341,9 @@ attackBtn.remove();
           pokemon.level -= 15;
           //else if med penger??
           //alert med pokemon.name?
+          pokemonGood.splice(0, 1);
+          //pokemonBad.push("raichu")
+          localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
           alert("Du har oppnådd en ny pokemon med navn wartortle");
           fetchAndShowPokemon("wartortle");
           console.log("evolve", pokemon);
