@@ -294,12 +294,16 @@ winnerPokemon(pokemon);
       
       function evolvePokemon(pokemon) {
         if (pokemon.name === "squirtle" && pokemon.level === 15) {
+          updateInnerHtml(pokemon);
+          pokemon.level -= 15;
+          alert("Du har oppnådd en ny pokemon med navn wartortle")
           fetchAndShowPokemon("wartortle")
           console.log("evolve", pokemon);
           console.log("evolve", pokemonGood)
-       
-      }
-    }
+      } else if (pokemon.name === "wartortle" && pokemon.level === 20) {
+        fetchAndShowPokemon("blastoise");
+      }  
+     }
 
       function winnerPokemon(pokemon) {
         updateInnerHtml(pokemon);
