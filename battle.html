@@ -93,6 +93,9 @@
 getPikaTest();
       function getPokemon(name) {
         if (name === "raichu") {
+          pokemonBad.splice(0, 1);
+          //pokemonBad.push("raichu")
+          localStorage.setItem("pokemonBad", JSON.stringify(pokemonBad));
           fetchAndShowBadPokemon("raichu");
         } else if  (name === "pikachu") {
           fetchAndShowBadPokemon("pikachu");
@@ -236,6 +239,7 @@ getPikaTest();
         const attackBtn = document.querySelector("#attack-btn") 
         attackBtn.addEventListener("click", function() {
 getPokemon("pikachu");
+attackBtn.remove();
 
         });
       }
@@ -322,8 +326,11 @@ getPokemon("pikachu");
           alert(
             "Du har funnet thunder stone, men er utenfor Alola, og har tilgang til raichu"
           );
-          pokemonBad[0].splice();
+         
+         
           getPokemon("raichu");
+          localStorage.setItem("pokemonBad", JSON.stringify(pokemonBad));
+          console.log("hva er her", pokemonBad);
           saveToLocal();
         }
         if (pokemon.name === "squirtle" && pokemon.level === 15) {
