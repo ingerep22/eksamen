@@ -53,7 +53,8 @@
         width="120px"
         height=""
       />
-      <input type="button" value="Angrip" id="attack-btn" />
+      <input type="button" value="Pikachu" id="attack-btn" />
+      <input type="button" value="Pikachu evolved til Raichu" id="attack-btn" />
     </div>
     <div class="pokemon-all-container">
       <div class="pokemon-container"></div>
@@ -407,6 +408,8 @@ attackBtn.remove();
       function saveToLocal(pokemon) {
         pokemon.hp = pokemon.originalHp;
         if (pokemonBad[0].name === "pikachu") {
+          pokemonBad[0].hp = pokemonBad[0].originalHp;
+        } else if (pokemonBad[0].name === "raichu") {
           pokemonBad[0].hp = pokemonBad[0].originalHp;
         }
         localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
