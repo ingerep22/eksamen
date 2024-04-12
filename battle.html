@@ -38,27 +38,27 @@
         <p id="pikachu-level-txt">Level</p>
         <p id="pikachu-money-txt">Penger</p>
       </div>
-    
-    <img
-      src="/assets/pokemonBall.jpg"
-      id="squirtle"
-      alt="pokemonBall"
-      width="120px"
-      height=""
-    />
-    <img
-      src="/assets/pokemonBall.jpg"
-      id="vulpix"
-      alt="pokemonBall"
-      width="120px"
-      height=""
-    />
-    <input type="button" value="Angrip" id="attack-btn"/>
-  </div>
+
+      <img
+        src="/assets/pokemonBall.jpg"
+        id="squirtle"
+        alt="pokemonBall"
+        width="120px"
+        height=""
+      />
+      <img
+        src="/assets/pokemonBall.jpg"
+        id="vulpix"
+        alt="pokemonBall"
+        width="120px"
+        height=""
+      />
+      <input type="button" value="Angrip" id="attack-btn" />
+    </div>
     <div class="pokemon-all-container">
-    <div class="pokemon-container"></div>
-    <div class="bad-guy-container"></div>
-  </div>
+      <div class="pokemon-container"></div>
+      <div class="bad-guy-container"></div>
+    </div>
     <script>
       let squirtleHpTxt = document.querySelector("#squirtle-hp-txt");
       let vulpixHpTxt = document.querySelector("#vulpix-hp-txt");
@@ -76,11 +76,11 @@
       const vulpix = document.querySelector("#vulpix");
       const pokemonContainer = document.querySelector(".pokemon-container");
       const badGuyContainer = document.querySelector(".bad-guy-container");
-      const pokemonAllContainer = document.querySelector(".pokemon-all-container");
+      const pokemonAllContainer = document.querySelector(
+        ".pokemon-all-container"
+      );
       let pokemonGood = JSON.parse(localStorage.getItem("pokemonGood")) || [];
       let pokemonBad = JSON.parse(localStorage.getItem("pokemonBad")) || [];
-
-      
 
       async function fetchBattlePokemon(name) {
         const pokemonRequest = await fetch(
@@ -93,25 +93,28 @@
 
       async function fetchAndShowBadPokemon(name) {
         try {
-          const savedPikachu = pokemonBad.find(pokemon => pokemon.name === "pikachu");
-         if (!savedPikachu) {
-         let idOfPokemon = await fetchBattlePokemon(name);
-          pokemonBad.push ({
-            name: idOfPokemon.name,
-            image: idOfPokemon.sprites.other["official-artwork"].front_default,
-            type: idOfPokemon.types[0].type.name,
-            originalHp: idOfPokemon.stats[0].base_stat,
-            hp: idOfPokemon.stats[0].base_stat,
-            attack: idOfPokemon.stats[1].base_stat,
-            defense: idOfPokemon.stats[2].base_stat,
-            specialAttack: idOfPokemon.stats[3].base_stat,
-            specialDefense: idOfPokemon.stats[4].base_stat,
-            speed: idOfPokemon.stats[5].base_stat,
-            level: 0,
-            money: 0,
-          });
-        }
-         
+          const savedPikachu = pokemonBad.find(
+            (pokemon) => pokemon.name === "pikachu"
+          );
+          if (!savedPikachu) {
+            let idOfPokemon = await fetchBattlePokemon(name);
+            pokemonBad.push({
+              name: idOfPokemon.name,
+              image:
+                idOfPokemon.sprites.other["official-artwork"].front_default,
+              type: idOfPokemon.types[0].type.name,
+              originalHp: idOfPokemon.stats[0].base_stat,
+              hp: idOfPokemon.stats[0].base_stat,
+              attack: idOfPokemon.stats[1].base_stat,
+              defense: idOfPokemon.stats[2].base_stat,
+              specialAttack: idOfPokemon.stats[3].base_stat,
+              specialDefense: idOfPokemon.stats[4].base_stat,
+              speed: idOfPokemon.stats[5].base_stat,
+              level: 0,
+              money: 0,
+            });
+          }
+
           showBadPokemon(pokemonBad);
         } catch (error) {
           console.error("Her klarte vi ikke å lase inn pokemons", error);
@@ -142,8 +145,6 @@
         }
       }
 
-    
-
       function showGoodPokemon(pokemons) {
         console.log("vis pokemon:", pokemons);
         pokemonContainer.innerHTML = "";
@@ -152,23 +153,22 @@
           const pickMeBtn = document.createElement("button");
           pickMeBtn.innerHTML = "Velg meg";
           pickMeBtn.style.backgroundColor = "white";
-          pickMeBtn.addEventListener("click", function() {
+          pickMeBtn.addEventListener("click", function () {
             pickMeBtn.remove();
             startGame(pokemon);
-          })
-          
+          });
+
           const pokemonCard = document.createElement("div");
           pokemonContainer.style.display = "flex";
           pokemonContainer.style.flexWrap = "wrap";
           pokemonContainer.style.gap = "10px";
-          
+
           pokemonCard.style.background =
             pokemon.type == "water"
               ? "#1451E3"
               : pokemon.type == "fire"
               ? "#AA1E21"
-              : 
-          pokemonCard.style.width = "200px";
+              : (pokemonCard.style.width = "200px");
           pokemonCard.style.height = "460px";
           pokemonCard.style.padding = "10px";
           pokemonCard.innerHTML = `<img src="${pokemon.image}" style="width: 200px" />
@@ -178,19 +178,18 @@
         });
       }
       function showBadPokemon(pokemons) {
-      console.log("vis pika", pokemons);
-      pokemons.forEach((pokemon, index) => {
+        console.log("vis pika", pokemons);
+        pokemons.forEach((pokemon, index) => {
           const pokemonBadCard = document.createElement("div");
-         // pokemonBadCard.style.marginLeft = "auto";
+          // pokemonBadCard.style.marginLeft = "auto";
           badGuyContainer.style.display = "flex";
           badGuyContainer.style.flexWrap = "wrap";
           badGuyContainer.style.gap = "10px";
-         // pokemonBadCard.style.position = "fixed";
+          // pokemonBadCard.style.position = "fixed";
           pokemonBadCard.style.background =
             pokemon.type == "electric"
               ? "#E2E22A"
-              : 
-         pokemonBadCard.style.width = "200px";
+              : (pokemonBadCard.style.width = "200px");
           pokemonBadCard.style.height = "460px";
           pokemonBadCard.style.padding = "10px";
           pokemonBadCard.innerHTML = `<img src="${pokemon.image}" style="width: 200px" />
@@ -202,77 +201,84 @@
 
       squirtle.addEventListener("click", () => {
         squirtle.src = "/assets/open.jpg";
-        let savedSquirtle = pokemonGood.find(pokemon => pokemon.name === "squirtle");
+        let savedSquirtle = pokemonGood.find(
+          (pokemon) => pokemon.name === "squirtle"
+        );
         if (savedSquirtle) {
-           showGoodPokemon([savedSquirtle]);
+          showGoodPokemon([savedSquirtle]);
         } else {
           fetchAndShowPokemon("squirtle");
         }
-       
       });
       vulpix.addEventListener("click", () => {
         vulpix.src = "/assets/open.jpg";
-        let savedVulpix = pokemonGood.find(pokemon => pokemon.name === "vulpix");
+        let savedVulpix = pokemonGood.find(
+          (pokemon) => pokemon.name === "vulpix"
+        );
         if (savedVulpix) {
-           showGoodPokemon([savedVulpix]);
+          showGoodPokemon([savedVulpix]);
         } else {
           fetchAndShowPokemon("vulpix");
         }
-       
       });
-     /* function attackBtn(pokemon) {
+      /* function attackBtn(pokemon) {
         const attackBtn = document.querySelector("#attack-btn") 
         attackBtn.addEventListener("click", function() {
 //function som starter attack
 console.log("jeg ble trykket på", pokemon)
         });
       }*/
-      function startAttack(pokemon){
-      document.addEventListener("keydown", function (event) {
-        if (event.key == "a") {
-          console.log("jeg ble trykket på", pokemon)
-          attack(pokemon);
-        }
-      })};
+      function startAttack(pokemon) {
+        document.addEventListener("keydown", function (event) {
+          if (event.key == "a") {
+            console.log("jeg ble trykket på", pokemon);
+            attack(pokemon);
+          }
+        });
+      }
       function startGame(pokemon) {
         /// en knapp, kanskje?
-        console.log("start game", pokemon)
+        console.log("start game", pokemon);
         startAttack(pokemon);
       }
 
       function attack(pokemon) {
         if (pokemonBad[0].hp > 0) {
-          let {amountOfDamageGoodRound} = calculateDamageFromAttack(pokemon, pokemonBad[0]); // setning tatt fra chat
+          let { amountOfDamageGoodRound } = calculateDamageFromAttack(
+            pokemon,
+            pokemonBad[0]
+          ); // setning tatt fra chat
           pokemonBad[0].hp -= amountOfDamageGoodRound;
-          alert(`${pokemon.name} har skadet ${pokemonBad[0].name} med ${amountOfDamageGoodRound} poeng`);
+          alert(
+            `${pokemon.name} har skadet ${pokemonBad[0].name} med ${amountOfDamageGoodRound} poeng`
+          );
           updateInnerHtml(pokemon);
           updateInnerHtml(pokemonBad[0]);
           badGuyAttack(pokemon);
           winnerPokemon(pokemon);
-          
         }
       }
 
       function calculateDamageFromAttack(pokemon) {
-        let amoundOfDamageGood = 15 * pokemon.attack / pokemonBad[0].defense;
-        let amoundOfDamageBad = 2 * pokemonBad[0].attack / pokemon.defense;
+        let amoundOfDamageGood = (2 * pokemon.attack) / pokemonBad[0].defense;
+        let amoundOfDamageBad = (15 * pokemonBad[0].attack) / pokemon.defense;
 
         let amountOfDamageGoodRound = Math.round(amoundOfDamageGood);
         let amountOfDamageBadRound = Math.round(amoundOfDamageBad);
-      
-         return {amountOfDamageGoodRound, amountOfDamageBadRound};
 
+        return { amountOfDamageGoodRound, amountOfDamageBadRound };
       }
       function updateInnerHtml(pokemon) {
         if (pokemon.name === "squirtle") {
           squirtleHpTxt.innerHTML = `${pokemon.hp} / 44 HP`;
           squirtleLevelTxt.innerHTML = `${pokemon.level} / 36 Level`;
           squirtleMoneyTxt.innerHTML = `${pokemon.money} / 0 Penger`;
-        } else if (pokemon.name === "vulpix"){
+        } else if (pokemon.name === "vulpix") {
           vulpixHpTxt.innerHTML = `${pokemon.hp} / 38 HP`;
           vulpixLevelTxt.innerHTML = `${pokemon.level} / 20 Level`;
           vulpixMoneyTxt.innerHTML = `${pokemon.money} / 0 Penger`;
-        } if (pokemonBad.length > 0 && pokemonBad[0].name === "pikachu") {
+        }
+        if (pokemonBad.length > 0 && pokemonBad[0].name === "pikachu") {
           pikachuHpTxt.innerHTML = `${pokemonBad[0].hp} / 35 HP`;
           pikachuLevelTxt.innerHTML = `${pokemonBad[0].level} / 20 Level`;
           pikachuMoneyTxt.innerHTML = `${pokemonBad[0].money} / 0 Penger`;
@@ -281,79 +287,105 @@ console.log("jeg ble trykket på", pokemon)
 
       function badGuyAttack(pokemon) {
         if (pokemon.hp > 0 && pokemonBad[0].hp > 0) {
-          let {amountOfDamageBadRound} = calculateDamageFromAttack(pokemon, pokemonBad);
+          let { amountOfDamageBadRound } = calculateDamageFromAttack(
+            pokemon,
+            pokemonBad
+          );
           pokemon.hp -= amountOfDamageBadRound;
-          alert(`${pokemonBad[0].name} har skadet ${pokemon.name} med ${amountOfDamageBadRound} poeng`);
-          console.log(pokemon)
-          console.log(pokemonBad)
+          alert(
+            `${pokemonBad[0].name} har skadet ${pokemon.name} med ${amountOfDamageBadRound} poeng`
+          );
+          console.log(pokemon);
+          console.log(pokemonBad);
           updateInnerHtml(pokemon);
           updateInnerHtml(pokemonBad[0]);
-winnerPokemon(pokemon);
+          winnerPokemon(pokemon);
         }
       }
-      
+
       function evolvePokemon(pokemon) {
+        if (pokemonBad[0].name === "pikachu" && pokemonBad[0].level === 5) {
+          updateInnerHtml(pokemon);
+          pokemonBad[0].level -= 5;
+
+          alert(
+            "Du har funnet thunder stone, men er utenfor Alola, og har tilgang til raichu"
+          );
+          fetchAndShowBadPokemon("raichu");
+        }
         if (pokemon.name === "squirtle" && pokemon.level === 15) {
           updateInnerHtml(pokemon);
           pokemon.level -= 15;
-          //else if med penger?? 
+          //else if med penger??
           //alert med pokemon.name?
-          alert("Du har oppnådd en ny pokemon med navn wartortle")
-          fetchAndShowPokemon("wartortle")
+          alert("Du har oppnådd en ny pokemon med navn wartortle");
+          fetchAndShowPokemon("wartortle");
           console.log("evolve", pokemon);
-          console.log("evolve", pokemonGood)
-      } else if (pokemon.name === "wartortle" && pokemon.level === 20) {
-        alert("Du har oppnådd en ny pokemon med navn wartortle")
-        fetchAndShowPokemon("blastoise");
-      }  
-      if (pokemon.name === "vulpix" && pokemon.level === 20 && pokemon.money === 300) {
-        updateInnerHtml(pokemon);
+          console.log("evolve", pokemonGood);
+        } else if (pokemon.name === "wartortle" && pokemon.level === 20) {
+          alert("Du har oppnådd en ny pokemon med navn wartortle");
+          fetchAndShowPokemon("blastoise");
+        }
+        if (
+          pokemon.name === "vulpix" &&
+          pokemon.level === 20 &&
+          pokemon.money === 300
+        ) {
+          updateInnerHtml(pokemon);
           pokemon.level -= 20;
           pokemon.money -= 300;
-          alert("Du har funnet fire stone og har nå tilgan til ninetales")
+          alert("Du har funnet fire stone og har nå tilgan til ninetales");
           fetchAndShowPokemon("ninetales");
+        }
       }
-     }
-
       function winnerPokemon(pokemon) {
         updateInnerHtml(pokemon);
-          updateInnerHtml(pokemonBad[0]);
+        updateInnerHtml(pokemonBad[0]);
         if (pokemon.hp <= 0 && pokemonBad[0].hp > 0) {
-          alert(`De gode tapte denne gangen, og den onde ${pokemonBad[0].name} vant! Bedre lykke neste gang:)`);
+          alert(
+            `De gode tapte denne gangen, og den onde ${pokemonBad[0].name} vant! Bedre lykke neste gang:)`
+          );
           pokemonBad[0].level += 5;
-          saveToLocal(pokemon)
-          saveToLocal(pokemonBad)
-//må legge til litt her
+          saveToLocal(pokemon);
+          saveToLocal(pokemonBad);
+          //må legge til litt her
         } else if (pokemonBad[0].hp <= 0 && pokemon.hp > 0) {
           alert(`Bra jobba! Den gode ${pokemon.name} vant`);
-          saveToLocal(pokemon)
-          saveToLocal(pokemonBad)
-          let userAnswer = prompt("100 kr eller 5 ekstra level? Det bestemmer du! skriv penger eller level").toLowerCase(); //kan jeg sette den der?
+          saveToLocal(pokemon);
+          saveToLocal(pokemonBad);
+          let userAnswer = prompt(
+            "100 kr eller 5 ekstra level? Det bestemmer du! skriv penger eller level"
+          ).toLowerCase(); //kan jeg sette den der?
           if (userAnswer === "penger") {
             pokemon.money += 100;
             alert(`${pokemon.name} har valgt penger!`);
           } else if (userAnswer === "level") {
             pokemon.level += 5;
             alert(`${pokemon.name} har valgt level!`);
-          }  else {
+          } else {
             alert("siste sjanse!");
-            let userAnswer = prompt("100 kr eller 5 ekstra level? Det bestemmer du! skriv penger eller level").toLowerCase(); //kan jeg sette den der?
+            let userAnswer = prompt(
+              "100 kr eller 5 ekstra level? Det bestemmer du! skriv penger eller level"
+            ).toLowerCase(); //kan jeg sette den der?
             if (userAnswer !== "penger" && userAnswer !== "level") {
               pokemon.level += 1;
-              alert(`${pokemon.name} får kun 1 ekstra level, fordi du ikke ville skrive/velge`);
+              alert(
+                `${pokemon.name} får kun 1 ekstra level, fordi du ikke ville skrive/velge`
+              );
             }
           }
-          evolvePokemon(pokemon);
-          alert("Du kan fortsette neste kamp, ved å trykke på a")
-          
+
+          alert("Du kan fortsette neste kamp, ved å trykke på a");
+
           //updateInnerHtml(pokemon); // sjekker igjen om det funker
-         // window.location.reload();
-         saveToLocal(pokemon)
+          // window.location.reload();
+          saveToLocal(pokemon);
         }
+        evolvePokemon(pokemon);
       }
 
       function saveToLocal(pokemon) {
-        pokemon.hp = pokemon.originalHp; 
+        pokemon.hp = pokemon.originalHp;
         if (pokemonBad[0].name === "pikachu") {
           pokemonBad[0].hp = pokemonBad[0].originalHp;
         }
@@ -362,8 +394,6 @@ winnerPokemon(pokemon);
         updateInnerHtml(pokemon);
         updateInnerHtml(pokemonBad[0]);
       }
-
-      
     </script>
   </body>
 </html>
