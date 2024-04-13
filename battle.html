@@ -299,12 +299,16 @@
         let amoundOfDamageGood = (2 * pokemon.attack) / pokemonBad[0].defense;
         let amoundOfDamageBad = (2 * pokemonBad[0].attack) / pokemon.defense;
 
-        let amountOfSpecialDammageGood = (2 * pokemon.specialAttack) / pokemonBad[0].specialDefense;
+        let amountOfSpecialDamageGood = (2 * pokemon.specialAttack) / pokemonBad[0].specialDefense;
         let amountOfSpecialDamageBad = (2 * pokemonBad[0].specialAttack) / pokemon.specialDefense;
+
+
         let amountOfDamageGoodRound = Math.round(amoundOfDamageGood);
         let amountOfDamageBadRound = Math.round(amoundOfDamageBad);
+        let amountOfSpecialDamageGoodRound = Math.round(amountOfSpecialDamageGood);
+        let amountOfSpecialDamageBadRound = Math.round(amountOfSpecialDamageBad);
 
-        return { amountOfDamageGoodRound, amountOfDamageBadRound };
+        return { amountOfDamageGoodRound, amountOfDamageBadRound, amountOfSpecialDamageGoodRound, amountOfSpecialDamageBadRound };
       }
       function updateInnerHtml(pokemon, pokemonBad) {
         if (pokemon) {
@@ -339,7 +343,7 @@
           winnerPokemon(pokemon);
         }
       }
-
+/*
       function badPokemonDefense() {
 
       }
@@ -347,7 +351,7 @@
       function goodPokemonDefense() {
 
       }
-
+*/
       function evolvePokemon(pokemon) {
         if (pokemonBad[0].name === "pikachu" && pokemonBad[0].level === 5) {
          
