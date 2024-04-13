@@ -286,12 +286,21 @@
             pokemonBad[0]
           );
         if (pokemon.name === "vulpix" && pokemon.hp <= 25) {
-          const helpDamage = amountOfDamageGoodRound + 2;
+          let userHelp = prompt(
+            "Du ligger etter og vil tape hvis du bruker vanlig angrep, vil du angripe med flash fire? skriv ja eller ingenting"
+          ).toLowerCase(); //kan jeg sette den der?
+          if (userHelp === "ja") {
+          const helpDamage = (amountOfDamageGoodRound * 2);
           pokemonBad[0].hp -= helpDamage;
           alert(
             `${pokemon.name} bruker ${pokemon.ability} og har skadet ${pokemonBad[0].name} med ${helpDamage} HP`
           );
-        } else {
+       }else {
+        pokemonBad[0].hp -= amountOfDamageGoodRound;
+          alert(
+            `${pokemon.name} har skadet ${pokemonBad[0].name} med ${amountOfDamageGoodRound} HP`
+          );
+       } } else {
           pokemonBad[0].hp -= amountOfDamageGoodRound;
           alert(
             `${pokemon.name} har skadet ${pokemonBad[0].name} med ${amountOfDamageGoodRound} HP`
@@ -391,9 +400,10 @@
       }
 
       function evolvePokemon(pokemon) {
-        if (pokemonBad[0].name === "pikachu" && pokemonBad[0].level === 5) {
+        if (pokemonBad[0].name === "pikachu" && pokemonBad[0].level === 15 && pokemonbad[0].money === 300) {
          
-          pokemonBad[0].level -= 5;
+          pokemonBad[0].level -= 15;
+          pokemonbad[0].money -= 300
           updateInnerHtml(pokemon, pokemonBad[0]);
 
           
@@ -472,6 +482,7 @@
           alert(
             `De gode tapte denne gangen, og den onde ${pokemonBad[0].name} vant! Bedre lykke neste gang:)`
           );
+          pokemonBad[0].money += 100;
           pokemonBad[0].level += 5;
           saveToLocal(pokemon);
           saveToLocal(pokemonBad);
