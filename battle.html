@@ -288,30 +288,25 @@
             pokemon,
             pokemonBad[0]
           ); // gjentar setning, endrer på navn
-          const typeOfDamage = pokemon.speed / 120;
+        
 
-          if (Math.random() < typeOfDamage) {
-             damage = amountOfSpecialDamageGoodRound;
-          } else {
-            damage = amountOfDamageGoodRound;
-          }
-          pokemonBad[0].hp -= damage;
+          pokemonBad[0].hp -= amountOfDamageGoodRound;
           alert(
-            `${pokemon.name} har skadet ${pokemonBad[0].name} med ${damage} poeng`
+            `${pokemon.name} har skadet ${pokemonBad[0].name} med ${amountOfDamageGoodRound} poeng`
           );
           updateInnerHtml(pokemon, pokemonBad[0]);
          // updateInnerHtml(pokemonBad[0]);
-          badGuyAttack(pokemon);
-          winnerPokemon(pokemon);
+          badPokemonDefense(pokemon);
+         
         }
       }
 
       function calculateDamageFromAttack(pokemon) {
-        let amoundOfDamageGood = (2 * pokemon.attack) / pokemonBad[0].defense;
-        let amoundOfDamageBad = (2 * pokemonBad[0].attack) / pokemon.defense;
+        let amoundOfDamageGood = (5 * pokemon.attack) / pokemonBad[0].defense;
+        let amoundOfDamageBad = (5 * pokemonBad[0].attack) / pokemon.defense;
 
-        let amountOfSpecialDamageGood = (2 * pokemon.specialAttack) / pokemonBad[0].specialDefense;
-        let amountOfSpecialDamageBad = (2 * pokemonBad[0].specialAttack) / pokemon.specialDefense;
+        let amountOfSpecialDamageGood = (5 * pokemon.specialAttack) / (pokemonBad[0].specialDefense + pokemonBad[0].speed);
+        let amountOfSpecialDamageBad = (5 * pokemonBad[0].specialAttack) / (pokemon.specialDefense + pokemon.speed);
 
 
         let amountOfDamageGoodRound = Math.round(amoundOfDamageGood);
@@ -351,18 +346,44 @@
           console.log(pokemonBad);
           updateInnerHtml(pokemon, pokemonBad[0]);
          // updateInnerHtml(pokemonBad[0]);
-          winnerPokemon(pokemon);
+        goodPokemonDefense(pokemon);
         }
       }
-/*
-      function badPokemonDefense() {
 
+      function badPokemonDefense(pokemon) {
+        let { amountOfSpecialDamageBadRound } = calculateDamageFromAttack(
+            pokemon,
+            pokemonBad[0]
+          ); // gjentar setning, endrer på navn
+          pokemonBad[0].hp += amountOfSpecialDamageBadRound;
+          alert(
+            `${pokemonBad[0].name} har defended seg mot ${pokemon.name} og klarer å få ${amountOfSpecialDamageBadRound} poeng`
+          );
+          console.log(pokemon);
+          console.log(pokemonBad);
+          updateInnerHtml(pokemon, pokemonBad[0]);
+          badGuyAttack(pokemon)
+          winnerPokemon(pokemon);
       }
 
-      function goodPokemonDefense() {
+      function goodPokemonDefense(pokemon) {
+        let { amountOfSpecialDamageGoodRound } = calculateDamageFromAttack(
+            pokemon,
+            pokemonBad[0]
+          ); // gjentar setning, endrer på navn
+        
 
+          pokemonGood.hp += amountOfSpecialDamageGoodRound;
+          alert(
+            `${pokemon.name} har defended seg mot ${pokemonBad[0].name} og klarer å få ${amountOfSpecialDamageGoodRound} poeng`
+          );
+          console.log(pokemon);
+          console.log(pokemonBad);
+          updateInnerHtml(pokemon, pokemonBad[0]);
+         // updateInnerHtml(pokemonBad[0]);
+        winnerPokemon(pokemon);
       }
-*/
+
       function evolvePokemon(pokemon) {
         if (pokemonBad[0].name === "pikachu" && pokemonBad[0].level === 5) {
          
