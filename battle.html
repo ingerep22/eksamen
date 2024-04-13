@@ -368,12 +368,6 @@
          //localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
          
         } else if (pokemon.name === "wartortle" && pokemon.level === 20) {
-
-          pokemon.level -= 20;
-          const index = pokemonGood.findIndex(pokemon => pokemon.name === "wartortle");
-          if (index !== -1) {
-            pokemonGood.splice(index, 1);
-            localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
           alert("Du har oppnådd en ny pokemon med navn blastoise");
           fetchAndShowPokemon("blastoise");
     
