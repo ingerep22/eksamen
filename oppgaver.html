@@ -369,13 +369,13 @@
           `#changeSavedNameInput-${index}`
         ).value;
 
-          if (!correctType.includes(changeType)) {
+          if (!changeName && !correctType.includes(changeType) ) {
             alert("Skrivefeil? Du må skrive en type som finnes");
             `changeSavedTypeInput-${index}`.value = "";
             return;
-          }
-          mySavedCards[index].name = changeName;
-        mySavedCards[index].type = changeType;
+          } 
+          mySavedCards[index].name = changeName ||  mySavedCards[index].name;
+        mySavedCards[index].type = changeType || mySavedCards[index].type;
         localStorage.setItem("mySavedCards", JSON.stringify(mySavedCards));
         showAllSavedCards(mySavedCards);
         console.log(mySavedCards);
