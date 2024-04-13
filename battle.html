@@ -299,7 +299,7 @@
       }
       function updateInnerHtml(pokemon) {
         if (pokemon.name === "squirtle") {
-          squirtleHpTxt.innerHTML = `${pokemon.hp} / 44 HP`;
+          squirtleHpTxt.innerHTML = `${pokemon.hp} / ${pokemon.originalHp} HP`;
           squirtleLevelTxt.innerHTML = `${pokemon.level} / 36 Level`;
           squirtleMoneyTxt.innerHTML = `${pokemon.money} / 0 Penger`;
         } else if (pokemon.name === "vulpix") {
