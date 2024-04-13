@@ -405,6 +405,7 @@
         showAllPokemon(pokemonImageNameTypeOnly)
        // showAllPokemon(mySavedCards);
         console.log(addPokemonCardSaved);
+        console.log(pokemonImageNameTypeOnly);
        
       }
 
@@ -419,7 +420,8 @@
         const userWrittenType = cardTypeTxt.value.toLowerCase();
         if (!correctType.includes(userWrittenType)) {
           alert("Skrivefeil? Her må du skrive en gyldig type");
-          cardNameTxt.value = "";
+          //fjernet den under da det er kjipt hvis bruker brukt lang tid på å skrive navn, også blir den cleared
+          //cardNameTxt.value = "";
           cardTypeTxt.value = "";
           return;
         }
