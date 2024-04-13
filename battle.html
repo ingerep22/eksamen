@@ -335,14 +335,23 @@
          
           pokemonBad[0].level -= 5;
           updateInnerHtml(pokemon, pokemonBad[0]);
-          alert(
+
+          const index = pokemonBad.findIndex(
+            (pokemon) => pokemon.name === "pikachu"
+          );
+          if (index !== -1) {
+            pokemonBad.splice(index, 1);
+            localStorage.setItem("pokemonBad", JSON.stringify(pokemonBad));
+            alert(
             "Du har funnet thunder stone, men er utenfor Alola, og evolves til raichu"
           );
-
           getPokemon("raichu");
-          localStorage.setItem("pokemonBad", JSON.stringify(pokemonBad));
+          updateInnerHtml(pokemon, pokemonBad[0]);
           console.log("hva er her", pokemonBad);
           saveToLocal(pokemonBad[0]);
+          }
+
+         
         }
         if (pokemon.name === "squirtle" && pokemon.level === 15) {
           pokemon.level -= 15;
@@ -364,8 +373,9 @@
           }
           //pokemonGood.splice(0, 1);
           //localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
-        } else if (pokemon.name === "wartortle" && pokemon.level === 20) {
+        } else if (pokemon.name === "wartortle" && pokemon.level === 20 && pokemon.money === 200) {
           pokemon.level -= 20;
+          pokemon.money -= 200;
           updateInnerHtml(pokemon, pokemonBad[0]);
           const index = pokemonGood.findIndex(
             (pokemon) => pokemon.name === "wartortle"
@@ -441,11 +451,9 @@
 
       function saveToLocal(pokemon) {
         pokemon.hp = pokemon.originalHp;
-        if (pokemonBad[0].name === "pikachu") {
+        if (pokemonBad[0].name) {
           pokemonBad[0].hp = pokemonBad[0].originalHp;
-        } else if (pokemonBad[0].name === "raichu") {
-          pokemonBad[0].hp = pokemonBad[0].originalHp;
-        }
+        } 
         localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
         localStorage.setItem("pokemonBad", JSON.stringify(pokemonBad));
         updateInnerHtml(pokemon, pokemonBad[0]);
