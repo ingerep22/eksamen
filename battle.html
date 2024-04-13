@@ -28,9 +28,9 @@
       
       <div class="txt-container">
         <p id="name-of-bad-pokemon">Pikachu</p>
-        <p id="pikachu-hp-txt">HP</p>
-        <p id="pikachu-level-txt">Level</p>
-        <p id="pikachu-money-txt">Penger</p>
+        <p id="bad-pokemon-hp-txt">HP</p>
+        <p id="bad-pokemon-level-txt">Level</p>
+        <p id="bad-pokemon-money-txt">Penger</p>
       </div>
 
       <img
@@ -59,9 +59,9 @@
       let pokemonHpTxt = document.querySelector("#pokemon-hp-txt");
       let pokemonLevelTxt = document.querySelector("#pokemon-level-txt");
       let pokemonMoneyTxt = document.querySelector("#pokemon-money-txt");
-      let pikachuHpTxt = document.querySelector("#pikachu-hp-txt");
-      let pikachuLevelTxt = document.querySelector("#pikachu-level-txt");
-      let pikachuMoneyTxt = document.querySelector("#pikachu-money-txt");
+      let badPokemonHpTxt = document.querySelector("#bad-pokemon-hp-txt");
+      let badPokemonLevelTxt = document.querySelector("#bad-pokemon-level-txt");
+      let badPokemonMoneyTxt = document.querySelector("#bad-pokemon-money-txt");
 
       const squirtle = document.querySelector("#squirtle");
       const vulpix = document.querySelector("#vulpix");
@@ -184,6 +184,7 @@
         badGuyContainer.innerHTML = "";
         console.log("vis pika", pokemons);
         pokemons.forEach((pokemon, index) => {
+          
           const pokemonBadCard = document.createElement("div");
           // pokemonBadCard.style.marginLeft = "auto";
           badGuyContainer.style.display = "flex";
@@ -304,9 +305,9 @@
         } 
         if (pokemonBad && pokemonBad.name === "pikachu") {
           nameOfBadPokemon.innerHTML = `${pokemonBad.name}`;
-          pikachuHpTxt.innerHTML = `${pokemonBad.hp} / 35 HP`;
-          pikachuLevelTxt.innerHTML = `${pokemonBad.level} / 20 Level`;
-          pikachuMoneyTxt.innerHTML = `${pokemonBad.money} / 0 Penger`;
+          badPokemonHpTxt.innerHTML = `${pokemonBad.hp} / 35 HP`;
+          badPokemonLevelTxt.innerHTML = `${pokemonBad.level} / 20 Level`;
+          badPokemonMoneyTxt.innerHTML = `${pokemonBad.money} / 0 Penger`;
         }
       }
       
