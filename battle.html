@@ -221,15 +221,14 @@
           showGoodPokemon([savedWartortle]);
         } else {
           let savedSquirtle = pokemonGood.find(
-          (pokemon) => pokemon.name === "squirtle"
-        );
-        if (savedSquirtle) {
-          showGoodPokemon([savedSquirtle]);
-        } else {
-          fetchAndShowPokemon("squirtle");
+            (pokemon) => pokemon.name === "squirtle"
+          );
+          if (savedSquirtle) {
+            showGoodPokemon([savedSquirtle]);
+          } else {
+            fetchAndShowPokemon("squirtle");
+          }
         }
-       
-      } 
       });
       vulpix.addEventListener("click", () => {
         vulpix.src = "/assets/open.jpg";
@@ -241,13 +240,13 @@
           showGoodPokemon([savedNinetales]);
         } else {
           let savedVulpix = pokemonGood.find(
-          (pokemon) => pokemon.name === "vulpix"
-        );
-        if (savedVulpix) {
-          showGoodPokemon([savedVulpix]);
-        }else {
-          fetchAndShowPokemon("vulpix");
-        }
+            (pokemon) => pokemon.name === "vulpix"
+          );
+          if (savedVulpix) {
+            showGoodPokemon([savedVulpix]);
+          } else {
+            fetchAndShowPokemon("vulpix");
+          }
         }
       });
 
@@ -346,49 +345,53 @@
           localStorage.setItem("pokemonBad", JSON.stringify(pokemonBad));
           console.log("hva er her", pokemonBad);
           saveToLocal(pokemonBad[0]);
-         
         }
         if (pokemon.name === "squirtle" && pokemon.level === 15) {
           updateInnerHtml(pokemon);
           pokemon.level -= 15;
           //else if med penger??
           //alert med pokemon.name?
-          const index = pokemonGood.findIndex(pokemon => pokemon.name === "squirtle");
+          const index = pokemonGood.findIndex(
+            (pokemon) => pokemon.name === "squirtle"
+          );
           if (index !== -1) {
             pokemonGood.splice(index, 1);
             localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
             alert("Du har oppnådd en ny pokemon med navn wartortle");
-          fetchAndShowPokemon("wartortle");
-  
-      
-          console.log("evolve", pokemon);
-          console.log("evolve", pokemonGood);
+            fetchAndShowPokemon("wartortle");
+
+            console.log("evolve", pokemon);
+            console.log("evolve", pokemonGood);
           }
           //pokemonGood.splice(0, 1);
-         //localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
-         
+          //localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
         } else if (pokemon.name === "wartortle" && pokemon.level === 20) {
-          alert("Du har oppnådd en ny pokemon med navn blastoise");
-          fetchAndShowPokemon("blastoise");
-    
+          pokemon.level -= 20;
+
+          const index = pokemonGood.findIndex(
+            (pokemon) => pokemon.name === "wartortle"
+          );
+          if (index !== -1) {
+            pokemonGood.splice(index, 1);
+            localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
+            alert("Du har oppnådd en ny pokemon med navn blastoise");
+            fetchAndShowPokemon("blastoise");
+          }
         }
-        if (pokemon.name === "vulpix" && pokemon.money === 300
-        ) {
+        if (pokemon.name === "vulpix" && pokemon.money === 300) {
           updateInnerHtml(pokemon);
           pokemon.money -= 300;
-          const findVulpix = pokemonGood.find(pokemon => pokemon.name === "vulpix");
+          const findVulpix = pokemonGood.find(
+            (pokemon) => pokemon.name === "vulpix"
+          );
           if (findVulpix) {
             pokemonGood.splice([findVulpix], 1);
             localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
-          alert("Du har funnet fire stone og har nå tilgan til ninetales");
-          fetchAndShowPokemon("ninetales");
-        
+            alert("Du har funnet fire stone og har nå tilgan til ninetales");
+            fetchAndShowPokemon("ninetales");
           }
           //pokemonGood.splice(0, 1);
-      
         }
-       
-      
       }
       function winnerPokemon(pokemon) {
         updateInnerHtml(pokemon);
@@ -432,12 +435,9 @@
           //updateInnerHtml(pokemon); // sjekker igjen om det funker
           // window.location.reload();
           saveToLocal(pokemon);
-          
         }
         evolvePokemon(pokemon);
         //showGoodPokemon(pokemon);
-       
-        
       }
 
       function saveToLocal(pokemon) {
@@ -453,12 +453,6 @@
         updateInnerHtml(pokemonBad[0]);
         //const myTimeout = setTimeout(reload, 5000);
       }
-
-
-
-     
-     
-    
     </script>
   </body>
 </html>
