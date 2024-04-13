@@ -20,7 +20,7 @@
   <body>
     <div class="info-container">
       <div class="txt-container">
-        <p>Squirtle</p>
+        <p id="name-of-pokemon">Pokemon Navn</p>
         <p id="squirtle-hp-txt">HP</p>
         <p id="squirtle-level-txt">Level</p>
         <p id="squirtle-money-txt">Penger</p>
@@ -33,7 +33,7 @@
       </div>
 
       <div class="txt-container">
-        <p>Pikachu</p>
+        <p id="name-of-bad-pokemon">Pikachu</p>
         <p id="pikachu-hp-txt">HP</p>
         <p id="pikachu-level-txt">Level</p>
         <p id="pikachu-money-txt">Penger</p>
@@ -60,6 +60,8 @@
       <div class="bad-guy-container"></div>
     </div>
     <script>
+      let nameOfPokemon = document.querySelector("#name-of-pokemon");
+      let nameOfBadPokemon = document.querySelector("#name-of-bad-pokemon");
       let squirtleHpTxt = document.querySelector("#squirtle-hp-txt");
       let vulpixHpTxt = document.querySelector("#vulpix-hp-txt");
       let pikachuHpTxt = document.querySelector("#pikachu-hp-txt");
@@ -299,6 +301,7 @@
       }
       function updateInnerHtml(pokemon) {
         if (pokemon.name === "squirtle") {
+          nameOfPokemon.innerHTML = `${pokemon.name}`;
           squirtleHpTxt.innerHTML = `${pokemon.hp} / ${pokemon.originalHp} HP`;
           squirtleLevelTxt.innerHTML = `${pokemon.level} / 36 Level`;
           squirtleMoneyTxt.innerHTML = `${pokemon.money} / 0 Penger`;
