@@ -152,7 +152,7 @@
         console.log("vis pokemon:", pokemons);
         pokemonContainer.innerHTML = "";
         pokemons.forEach((pokemon, index) => {
-          updateInnerHtml(pokemon);
+          updateInnerHtml(pokemon, pokemonBad[0]);
           const pickMeBtn = document.createElement("button");
           pickMeBtn.innerHTML = "Velg meg";
           pickMeBtn.style.backgroundColor = "white";
@@ -279,8 +279,8 @@
           alert(
             `${pokemon.name} har skadet ${pokemonBad[0].name} med ${amountOfDamageGoodRound} poeng`
           );
-          updateInnerHtml(pokemon);
-          updateInnerHtml(pokemonBad[0]);
+          updateInnerHtml(pokemon, pokemonBad[0]);
+         // updateInnerHtml(pokemonBad[0]);
           badGuyAttack(pokemon);
           winnerPokemon(pokemon);
         }
@@ -295,17 +295,18 @@
 
         return { amountOfDamageGoodRound, amountOfDamageBadRound };
       }
-      function updateInnerHtml(pokemon) {
-        if (pokemon.name ==="squirtle" || pokemon.name === "wartortle" || pokemon.name === "vulpix") {
+      function updateInnerHtml(pokemon, pokemonBad) {
+        if (pokemon) {
           nameOfPokemon.innerHTML = `${pokemon.name}`;
           pokemonHpTxt.innerHTML = `${pokemon.hp} / ${pokemon.originalHp} HP`;
           pokemonLevelTxt.innerHTML = `${pokemon.level} Level`;
           pokemonMoneyTxt.innerHTML = `${pokemon.money} Penger`;
         } 
-        if (pokemonBad.length > 0 && pokemonBad[0].name === "pikachu") {
-          pikachuHpTxt.innerHTML = `${pokemonBad[0].hp} / 35 HP`;
-          pikachuLevelTxt.innerHTML = `${pokemonBad[0].level} / 20 Level`;
-          pikachuMoneyTxt.innerHTML = `${pokemonBad[0].money} / 0 Penger`;
+        if (pokemonBad && pokemonBad.name === "pikachu") {
+          nameOfBadPokemon.innerHTML = `${pokemonBad.name}`;
+          pikachuHpTxt.innerHTML = `${pokemonBad.hp} / 35 HP`;
+          pikachuLevelTxt.innerHTML = `${pokemonBad.level} / 20 Level`;
+          pikachuMoneyTxt.innerHTML = `${pokemonBad.money} / 0 Penger`;
         }
       }
       
@@ -322,8 +323,8 @@
           );
           console.log(pokemon);
           console.log(pokemonBad);
-          updateInnerHtml(pokemon);
-          updateInnerHtml(pokemonBad[0]);
+          updateInnerHtml(pokemon, pokemonBad[0]);
+         // updateInnerHtml(pokemonBad[0]);
           winnerPokemon(pokemon);
         }
       }
@@ -332,7 +333,7 @@
         if (pokemonBad[0].name === "pikachu" && pokemonBad[0].level === 5) {
          
           pokemonBad[0].level -= 5;
-          updateInnerHtml(pokemonBad);
+          updateInnerHtml(pokemon, pokemonBad[0]);
           alert(
             "Du har funnet thunder stone, men er utenfor Alola, og evolves til raichu"
           );
@@ -344,7 +345,7 @@
         }
         if (pokemon.name === "squirtle" && pokemon.level === 15) {
           pokemon.level -= 15;
-          updateInnerHtml(pokemon);
+          updateInnerHtml(pokemon, pokemonBad[0]);
           //else if med penger??
           //alert med pokemon.name?
           const index = pokemonGood.findIndex(
@@ -364,7 +365,7 @@
           //localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
         } else if (pokemon.name === "wartortle" && pokemon.level === 20) {
           pokemon.level -= 20;
-          updateInnerHtml(pokemon);
+          updateInnerHtml(pokemon, pokemonBad[0]);
           const index = pokemonGood.findIndex(
             (pokemon) => pokemon.name === "wartortle"
           );
@@ -377,7 +378,7 @@
         }
         if (pokemon.name === "vulpix" && pokemon.money === 300) {
           pokemon.money -= 300;
-          updateInnerHtml(pokemon);
+          updateInnerHtml(pokemon, pokemonBad[0]);
           const findVulpix = pokemonGood.find(
             (pokemon) => pokemon.name === "vulpix"
           );
@@ -391,8 +392,8 @@
         }
       }
       function winnerPokemon(pokemon) {
-        updateInnerHtml(pokemon);
-        updateInnerHtml(pokemonBad[0]);
+        updateInnerHtml(pokemon, pokemonBad[0]);
+        updateInnerHtml(pokemon, pokemonBad[0]);
         if (pokemon.hp <= 0 && pokemonBad[0].hp > 0) {
           alert(
             `De gode tapte denne gangen, og den onde ${pokemonBad[0].name} vant! Bedre lykke neste gang:)`
@@ -446,8 +447,8 @@
         }
         localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
         localStorage.setItem("pokemonBad", JSON.stringify(pokemonBad));
-        updateInnerHtml(pokemon);
-        updateInnerHtml(pokemonBad[0]);
+        updateInnerHtml(pokemon, pokemonBad[0]);
+        //updateInnerHtml(pokemonBad[0]);
       }
     </script>
   </body>
