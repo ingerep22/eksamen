@@ -352,11 +352,14 @@
           pokemon.level -= 15;
           //else if med penger??
           //alert med pokemon.name?
-          const findSquirtle = pokemonGood.find(pokemon => pokemon.name === "squirtle");
-          if (findSquirtle) {
-            pokemonGood.splice(findSquirtle, 1);
+          const index = pokemonGood.findIndex(pokemon => pokemon.name === "squirtle");
+          if (index !== -1) {
+            pokemonGood.splice(index, 1);
+            localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
             alert("Du har oppnådd en ny pokemon med navn wartortle");
           fetchAndShowPokemon("wartortle");
+          
+      
           console.log("evolve", pokemon);
           console.log("evolve", pokemonGood);
           }
@@ -374,7 +377,7 @@
 
           const findVulpix = pokemonGood.find(pokemon => pokemon.name === "vulpix");
           if (findVulpix) {
-            pokemonGood.splice(findVulpix, 1);
+            pokemonGood.splice([findVulpix], 1);
             localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
           alert("Du har funnet fire stone og har nå tilgan til ninetales");
           fetchAndShowPokemon("ninetales");
@@ -429,6 +432,7 @@
           saveToLocal(pokemon);
         }
         evolvePokemon(pokemon);
+        //showGoodPokemon(pokemon);
         
         
       }
