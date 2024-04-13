@@ -21,9 +21,9 @@
     <div class="info-container">
       <div class="txt-container">
         <p id="name-of-pokemon">Pokemon Navn</p>
-        <p id="squirtle-hp-txt">HP</p>
-        <p id="squirtle-level-txt">Level</p>
-        <p id="squirtle-money-txt">Penger</p>
+        <p id="pokemon-hp-txt">HP</p>
+        <p id="pokemon-level-txt">Level</p>
+        <p id="pokemon-money-txt">Penger</p>
       </div>
       <div class="txt-container">
         <p>Vulpix</p>
@@ -62,16 +62,16 @@
     <script>
       let nameOfPokemon = document.querySelector("#name-of-pokemon");
       let nameOfBadPokemon = document.querySelector("#name-of-bad-pokemon");
-      let squirtleHpTxt = document.querySelector("#squirtle-hp-txt");
-      let vulpixHpTxt = document.querySelector("#vulpix-hp-txt");
+      let pokemonHpTxt = document.querySelector("#pokemon-hp-txt");
+      
       let pikachuHpTxt = document.querySelector("#pikachu-hp-txt");
 
-      let squirtleLevelTxt = document.querySelector("#squirtle-level-txt");
-      let vulpixLevelTxt = document.querySelector("#vulpix-level-txt");
+      let pokemonLevelTxt = document.querySelector("#pokemon-level-txt");
+      
       let pikachuLevelTxt = document.querySelector("#pikachu-level-txt");
 
-      let squirtleMoneyTxt = document.querySelector("#squirtle-money-txt");
-      let vulpixMoneyTxt = document.querySelector("#vulpix-money-txt");
+      let pokemonMoneyTxt = document.querySelector("#pokemon-money-txt");
+      
       let pikachuMoneyTxt = document.querySelector("#pikachu-money-txt");
 
       const squirtle = document.querySelector("#squirtle");
@@ -302,9 +302,9 @@
       function updateInnerHtml(pokemon) {
         
           nameOfPokemon.innerHTML = `${pokemon.name}`;
-          squirtleHpTxt.innerHTML = `${pokemon.hp} / ${pokemon.originalHp} HP`;
-          squirtleLevelTxt.innerHTML = `${pokemon.level} Level`;
-          squirtleMoneyTxt.innerHTML = `${pokemon.money} Penger`;
+          pokemonHpTxt.innerHTML = `${pokemon.hp} / ${pokemon.originalHp} HP`;
+          pokemonLevelTxt.innerHTML = `${pokemon.level} Level`;
+          pokemonMoneyTxt.innerHTML = `${pokemon.money} Penger`;
          
         if (pokemonBad.length > 0 && pokemonBad[0].name === "pikachu") {
           pikachuHpTxt.innerHTML = `${pokemonBad[0].hp} / 35 HP`;
