@@ -326,7 +326,7 @@
       }
       function deleteSavedCard(index) {
         mySavedCards.splice(index, 1);
-        localStorage.setItem("addPokemonCardSaved",JSON.stringify(addPokemonCardSaved) );
+        localStorage.setItem("mySavedCards",JSON.stringify(mySavedCards) );
         showMySavedCards(mySavedCards);
 
       }
@@ -355,6 +355,7 @@
           showAllSavedCards(mySavedCards);
         } else {
           alert("Her er det ingen lagrete kort enda");
+         showAllPokemon(pokemonImageNameTypeOnly);
           return;
         }
       }
