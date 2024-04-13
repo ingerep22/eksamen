@@ -84,14 +84,22 @@
       getPikaTest();
       function getPokemon(name) {
         if (name === "raichu") {
-          pokemonBad.splice(0, 1);
-          //pokemonBad.push("raichu")
+          pokemonBad.splice(1, 1);
+         
           localStorage.setItem("pokemonBad", JSON.stringify(pokemonBad));
           fetchAndShowBadPokemon("raichu");
-        } else if (name === "pikachu") {
+        } 
+        let savedRaichu = pokemonBad.find(
+          (pokemon) => pokemon.name === "raichu"
+        ); 
+        if (savedRaichu) {
+          showGoodPokemon([savedRaichu]);
+        } else {
           fetchAndShowBadPokemon("pikachu");
         }
       }
+
+  
 
       async function fetchAndShowBadPokemon(name) {
         try {
@@ -346,9 +354,11 @@
             "Du har funnet thunder stone, men er utenfor Alola, og evolves til raichu"
           );
           getPokemon("raichu");
+          localStorage.setItem("pokemonBad", JSON.stringify(pokemonBad));
           updateInnerHtml(pokemon, pokemonBad[0]);
           console.log("hva er her", pokemonBad);
           saveToLocal(pokemonBad[0]);
+          
           }
 
          
