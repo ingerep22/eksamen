@@ -339,7 +339,7 @@
           pokemonBad[0].level -= 5;
 
           alert(
-            "Du har funnet thunder stone, men er utenfor Alola, og har tilgang til raichu"
+            "Du har funnet thunder stone, men er utenfor Alola, og evolves til raichu"
           );
 
           getPokemon("raichu");
@@ -352,8 +352,8 @@
           pokemon.level -= 15;
           //else if med penger??
           //alert med pokemon.name?
-          pokemonGood.splice(0, 1);
-          localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
+          //pokemonGood.splice(0, 1);
+         //localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
           alert("Du har oppnådd en ny pokemon med navn wartortle");
           fetchAndShowPokemon("wartortle");
           console.log("evolve", pokemon);
@@ -366,8 +366,8 @@
         ) {
           updateInnerHtml(pokemon);
           pokemon.money -= 300;
-          pokemonGood.splice(0, 1);
-          localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
+          //pokemonGood.splice(0, 1);
+          //localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
           alert("Du har funnet fire stone og har nå tilgan til ninetales");
           fetchAndShowPokemon("ninetales");
         }
