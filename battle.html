@@ -303,13 +303,9 @@
         
           nameOfPokemon.innerHTML = `${pokemon.name}`;
           squirtleHpTxt.innerHTML = `${pokemon.hp} / ${pokemon.originalHp} HP`;
-          squirtleLevelTxt.innerHTML = `${pokemon.level} / 36 Level`;
-          squirtleMoneyTxt.innerHTML = `${pokemon.money} / 0 Penger`;
-         if (pokemon.name === "vulpix") {
-          vulpixHpTxt.innerHTML = `${pokemon.hp} / 38 HP`;
-          vulpixLevelTxt.innerHTML = `${pokemon.level} / 20 Level`;
-          vulpixMoneyTxt.innerHTML = `${pokemon.money} / 0 Penger`;
-        }
+          squirtleLevelTxt.innerHTML = `${pokemon.level} Level`;
+          squirtleMoneyTxt.innerHTML = `${pokemon.money} Penger`;
+         
         if (pokemonBad.length > 0 && pokemonBad[0].name === "pikachu") {
           pikachuHpTxt.innerHTML = `${pokemonBad[0].hp} / 35 HP`;
           pikachuLevelTxt.innerHTML = `${pokemonBad[0].level} / 20 Level`;
