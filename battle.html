@@ -84,9 +84,6 @@
       getPikaTest();
       function getPokemon(name) {
         if (name === "raichu") {
-          pokemonBad.splice(1, 1);
-         
-          localStorage.setItem("pokemonBad", JSON.stringify(pokemonBad));
           fetchAndShowBadPokemon("raichu");
         } 
         let savedRaichu = pokemonBad.find(
