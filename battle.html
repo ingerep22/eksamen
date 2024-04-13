@@ -357,6 +357,7 @@
           if (index !== -1) {
             pokemonGood.splice(index, 1);
             localStorage.setItem("pokemonGood", JSON.stringify(pokemonGood));
+            showGoodPokemon(pokemonGood);
             alert("Du har oppnådd en ny pokemon med navn wartortle");
             fetchAndShowPokemon("wartortle");
 
@@ -390,7 +391,7 @@
             alert("Du har funnet fire stone og har nå tilgan til ninetales");
             fetchAndShowPokemon("ninetales");
           }
-          //pokemonGood.splice(0, 1);
+      
         }
       }
       function winnerPokemon(pokemon) {
@@ -451,7 +452,6 @@
         localStorage.setItem("pokemonBad", JSON.stringify(pokemonBad));
         updateInnerHtml(pokemon);
         updateInnerHtml(pokemonBad[0]);
-        //const myTimeout = setTimeout(reload, 5000);
       }
     </script>
   </body>
