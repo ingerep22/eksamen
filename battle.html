@@ -136,6 +136,7 @@
           let pokemon = {
             name: idOfPokemon.name,
             image: idOfPokemon.sprites.other["official-artwork"].front_default,
+            ability: idOfPokemon.abilities[0].ability.name,
             type: idOfPokemon.types[0].type.name,
             originalHp: idOfPokemon.stats[0].base_stat,
             hp: idOfPokemon.stats[0].base_stat,
@@ -283,17 +284,22 @@
           let { amountOfDamageGoodRound } = calculateDamageAndDefense(
             pokemon,
             pokemonBad[0]
-          ); // setning tatt fra chat
-          let { amountOfSpecialDamageGoodRound } = calculateDamageAndDefense(
-            pokemon,
-            pokemonBad[0]
-          ); // gjentar setning, endrer på navn
-        
-
+          );
+        if (pokemon.name === "vulpix" && pokemon.hp <= 25) {
+          const helpDamage = amountOfDamageGoodRound + 2;
+          pokemonBad[0].hp -= helpDamage;
+          alert(
+            `${pokemon.name} bruker ${pokemon.ability} og har skadet ${pokemonBad[0].name} med ${helpDamage} HP`
+          );
+        } else {
           pokemonBad[0].hp -= amountOfDamageGoodRound;
           alert(
             `${pokemon.name} har skadet ${pokemonBad[0].name} med ${amountOfDamageGoodRound} HP`
           );
+        
+        }
+         
+         
           updateInnerHtml(pokemon, pokemonBad[0]);
          // updateInnerHtml(pokemonBad[0]);
           badPokemonDefense(pokemon);
@@ -373,7 +379,7 @@
           ); // gjentar setning, endrer på navn
         
 
-          pokemonGood.hp += amountOfDefenseGoodRound;
+          pokemon.hp += amountOfDefenseGoodRound;
           alert(
             `${pokemon.name} har defended seg mot ${pokemonBad[0].name} og klarer å få ${amountOfDefenseGoodRound} HP`
           );
