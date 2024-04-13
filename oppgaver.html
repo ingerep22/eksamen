@@ -9,6 +9,7 @@
     <h1>Pokemon oppgaver</h1>
     <input type="text" placeholder="name" id="card-name-txt" />
     <input type="text" placeholder="type" id="card-type-txt" />
+   
     <input type="button" value="Lag pokemonkort" id="card-add-btn" />
     <select id="pokemon-filter-selection">
       <option value="all">Fjern filtrering/Vis alle</option>
@@ -247,24 +248,24 @@
           deleteBtn.addEventListener("click", function () {
             deleteSavedCard(index);
             
-            console.log("her slettes det", pokemonImageNameTypeOnly);
+            console.log("her slettes det", mySavedCards);
           });
 
           //edit
-          const changeNameInput = document.createElement("input");
-          changeNameInput.type = "text";
-          changeNameInput.placeholder = "Navn";
-          changeNameInput.id = `changeNameInput-${index}`;
+          const changeSavedNameInput = document.createElement("input");
+          changeSavedNameInput.type = "text";
+          changeSavedNameInput.placeholder = "Navn";
+          changeSavedNameInput.id = `changeSavedNameInput-${index}`;
 
-          const changeTypeInput = document.createElement("input");
-          changeTypeInput.type = "text";
-          changeTypeInput.placeholder = "Type";
-          changeTypeInput.id = `changeTypeInput-${index}`;
+          const changeSavedTypeInput = document.createElement("input");
+          changeSavedTypeInput.type = "text";
+          changeSavedTypeInput.placeholder = "Type";
+          changeSavedTypeInput.id = `changeSavedTypeInput-${index}`;
 
           const editTxtBtn = document.createElement("button");
           editTxtBtn.innerHTML = "Rediger";
           editTxtBtn.addEventListener("click", function () {
-            editTxtCard(index);
+            editSavedTxtCard(index);
           });
           const pokemonCard = document.createElement("div");
           pokemonContainer.style.display = "flex";
@@ -317,8 +318,8 @@
           pokemonCard.append(
             deleteBtn,
             
-            changeNameInput,
-            changeTypeInput,
+            changeSavedNameInput,
+            changeSavedTypeInput,
             editTxtBtn
           );
           pokemonContainer.appendChild(pokemonCard);
@@ -330,7 +331,7 @@
         showMySavedCards(mySavedCards);
 
       }
-      function deletePokemonCard(index) {
+      function deletePokemonCard(index, pokemon) {
         pokemonImageNameTypeOnly = pokemonImageNameTypeOnly.filter(
           (p) => p.name !== pokemon.name
         );
@@ -360,6 +361,26 @@
         }
       }
 
+      function editSavedTxtCard(index) {
+        const changeType = document
+          .querySelector(`#changeSavedTypeInput-${index}`)
+          .value.toLowerCase();
+        const changeName = document.querySelector(
+          `#changeSavedNameInput-${index}`
+        ).value;
+
+          if (!correctType.includes(changeType)) {
+            alert("Skrivefeil? Du må skrive en type som finnes");
+            `changeSavedTypeInput-${index}`.value = "";
+            return;
+          }
+          mySavedCards[index].name = changeName;
+        mySavedCards[index].type = changeType;
+        localStorage.setItem("mySavedCards", JSON.stringify(mySavedCards));
+        showAllSavedCards(mySavedCards);
+        console.log(mySavedCards);
+      }
+
       function editTxtCard(index) {
         const changeType = document
           .querySelector(`#changeTypeInput-${index}`)
@@ -377,16 +398,14 @@
         pokemonImageNameTypeOnly[index].name = changeName;
         pokemonImageNameTypeOnly[index].type = changeType;
         
-        mySavedCards[index].name = changeName;
-        mySavedCards[index].type = changeType;
-
+      
         localStorage.setItem("addPokemonCardSaved",JSON.stringify(addPokemonCardSaved) );
-        localStorage.setItem("mySavedCards", JSON.stringify(mySavedCards));
+        
         
         showAllPokemon(pokemonImageNameTypeOnly)
        // showAllPokemon(mySavedCards);
         console.log(addPokemonCardSaved);
-        console.log(mySavedCards);
+       
       }
 
       function addPokemonCard() {
