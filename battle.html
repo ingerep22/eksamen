@@ -300,12 +300,12 @@
         return { amountOfDamageGoodRound, amountOfDamageBadRound };
       }
       function updateInnerHtml(pokemon) {
-        if (pokemon.name === "squirtle") {
+        
           nameOfPokemon.innerHTML = `${pokemon.name}`;
           squirtleHpTxt.innerHTML = `${pokemon.hp} / ${pokemon.originalHp} HP`;
           squirtleLevelTxt.innerHTML = `${pokemon.level} / 36 Level`;
           squirtleMoneyTxt.innerHTML = `${pokemon.money} / 0 Penger`;
-        } else if (pokemon.name === "vulpix") {
+         if (pokemon.name === "vulpix") {
           vulpixHpTxt.innerHTML = `${pokemon.hp} / 38 HP`;
           vulpixLevelTxt.innerHTML = `${pokemon.level} / 20 Level`;
           vulpixMoneyTxt.innerHTML = `${pokemon.money} / 0 Penger`;
