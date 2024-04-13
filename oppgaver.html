@@ -389,14 +389,14 @@
           `#changeNameInput-${index}`
         ).value;
 
-          if (!correctType.includes(changeType)) {
+          if (!changeName && !correctType.includes(changeType)) {
             alert("Skrivefeil? Du må skrive en type som finnes");
             `changeTypeInput-${index}`.value = "";
             return;
           }
          
-        pokemonImageNameTypeOnly[index].name = changeName;
-        pokemonImageNameTypeOnly[index].type = changeType;
+        pokemonImageNameTypeOnly[index].name = changeName || pokemonImageNameTypeOnly[index].name;
+        pokemonImageNameTypeOnly[index].type = changeType || pokemonImageNameTypeOnly[index].type;
         
       
         localStorage.setItem("addPokemonCardSaved",JSON.stringify(addPokemonCardSaved) );
