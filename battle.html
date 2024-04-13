@@ -284,9 +284,20 @@
             pokemon,
             pokemonBad[0]
           ); // setning tatt fra chat
-          pokemonBad[0].hp -= amountOfDamageGoodRound;
+          let { amountOfSpecialDamageGoodRound } = calculateDamageFromAttack(
+            pokemon,
+            pokemonBad[0]
+          ); // gjentar setning, endrer på navn
+          const typeOfDamage = pokemon.speed / 120;
+
+          if (Math.random() < typeOfDamage) {
+             damage = amountOfSpecialDamageGoodRound;
+          } else {
+            damage = amountOfDamageGoodRound;
+          }
+          pokemonBad[0].hp -= damage;
           alert(
-            `${pokemon.name} har skadet ${pokemonBad[0].name} med ${amountOfDamageGoodRound} poeng`
+            `${pokemon.name} har skadet ${pokemonBad[0].name} med ${damage} poeng`
           );
           updateInnerHtml(pokemon, pokemonBad[0]);
          // updateInnerHtml(pokemonBad[0]);
