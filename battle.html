@@ -292,7 +292,7 @@
 
           pokemonBad[0].hp -= amountOfDamageGoodRound;
           alert(
-            `${pokemon.name} har skadet ${pokemonBad[0].name} med ${amountOfDamageGoodRound} poeng`
+            `${pokemon.name} har skadet ${pokemonBad[0].name} med ${amountOfDamageGoodRound} HP`
           );
           updateInnerHtml(pokemon, pokemonBad[0]);
          // updateInnerHtml(pokemonBad[0]);
@@ -340,7 +340,7 @@
           );
           pokemon.hp -= amountOfDamageBadRound;
           alert(
-            `${pokemonBad[0].name} har skadet ${pokemon.name} med ${amountOfDamageBadRound} poeng`
+            `${pokemonBad[0].name} har skadet ${pokemon.name} med ${amountOfDamageBadRound} HP`
           );
           console.log(pokemon);
           console.log(pokemonBad);
@@ -357,7 +357,7 @@
           ); // gjentar setning, endrer på navn
           pokemonBad[0].hp += amountOfDefenseBadRound;
           alert(
-            `${pokemonBad[0].name} har defended seg mot ${pokemon.name} og klarer å få ${amountOfDefenseBadRound} poeng`
+            `${pokemonBad[0].name} har defended seg mot ${pokemon.name} og klarer å få ${amountOfDefenseBadRound} HP`
           );
           console.log(pokemon);
           console.log(pokemonBad);
@@ -375,7 +375,7 @@
 
           pokemonGood.hp += amountOfDefenseGoodRound;
           alert(
-            `${pokemon.name} har defended seg mot ${pokemonBad[0].name} og klarer å få ${amountOfDefenseGoodRound} poeng`
+            `${pokemon.name} har defended seg mot ${pokemonBad[0].name} og klarer å få ${amountOfDefenseGoodRound} HP`
           );
           console.log(pokemon);
           console.log(pokemonBad);
