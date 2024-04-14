@@ -38,6 +38,7 @@
     <div class="pokemon-container"></div>
 
     <script>
+      //pokemon-filter-selection fra forelesning 8
       const pokemonContainer = document.querySelector(".pokemon-container");
       const cardNameTxt = document.querySelector("#card-name-txt");
       const cardTypeTxt = document.querySelector("#card-type-txt");
@@ -90,6 +91,7 @@
             idOfPokemon = await fetchPokemon(pokemon);
             pokemonsId.push(idOfPokemon);
           }
+          //image og type hvordan nå -> chatgpt
           pokemonAll = pokemonsId.map((pokemon) => ({
             name: pokemon.name,
             image: pokemon.sprites.other[`official-artwork`].front_default,
@@ -106,7 +108,7 @@
       }
 
       filterBtn.onclick = getFilterValue;
-
+      //forelesning 8 - logikk brukt med filterfunksjonalitet
       function getFilterValue() {
         selectedType = document.querySelector(
           "#pokemon-filter-selection"
@@ -138,7 +140,7 @@
         }
       }
       fetchAndShowPokemon();
-
+      //forelesning 5 logikk
       function showAllPokemon(pokemons) {
         pokemonContainer.innerHTML = "";
         pokemons.forEach((pokemon, index) => {
@@ -190,6 +192,7 @@
           pokemonCard.style.color = "white";
           pokemonCard.style.height = "370px";
           pokemonCard.style.padding = "10px";
+          // ? : logikk fra oppgaver-2, 4.html - packinglist
           pokemonCard.style.backgroundColor =
             pokemon.type == "water"
               ? "#1451E3"
@@ -328,6 +331,7 @@
           pokemonContainer.appendChild(pokemonCard);
         });
       }
+      //logikk fra forelesning 5
       function deleteSavedCard(index) {
         mySavedCards.splice(index, 1);
         localStorage.setItem("mySavedCards", JSON.stringify(mySavedCards));
@@ -335,6 +339,7 @@
       }
       function deletePokemonCard(index, pokemon) {
         if (pokemonAll) {
+          //linjge 343 -> chatgpt
           pokemonAll = pokemonAll.filter((p) => p.name !== pokemon.name);
           localStorage.setItem(
             "addPokemonCardSaved",
@@ -347,7 +352,7 @@
       }
 
       showSavedPokemonBtn.addEventListener("click", showMySavedCards);
-
+      //forelesning 6 logikk
       function savePokemonCard(pokemon) {
         mySavedCards.push(pokemon);
         localStorage.setItem("mySavedCards", JSON.stringify(mySavedCards));
@@ -363,7 +368,7 @@
           showAllPokemon(pokemonAll);
         }
       }
-
+      //forelsening 5 logikk
       function editSavedCardTxt(index) {
         const changeType = document
           .querySelector(`#changeSavedTypeInput-${index}`)
@@ -371,12 +376,13 @@
         const changeName = document.querySelector(
           `#changeSavedNameInput-${index}`
         ).value;
-
+        //setning under tatt fra chatgpt, brukt samme i neste funksjon
         if (!changeName && !correctType.includes(changeType)) {
           alert("Skrivefeil? Du må skrive en type som finnes");
           `changeSavedTypeInput-${index}`.value = "";
           return;
         }
+        // || mySavedCards[index].name; -> chatgpt, samme i neste funksjon
         mySavedCards[index].name = changeName || mySavedCards[index].name;
         mySavedCards[index].type = changeType || mySavedCards[index].type;
         localStorage.setItem("mySavedCards", JSON.stringify(mySavedCards));
@@ -412,7 +418,7 @@
       }
 
       cardAddBtn.addEventListener("click", addPokemonCard);
-
+      // || forslag av chatgpt, hadde &&
       function addPokemonCard() {
         if (cardNameTxt.value === "" || cardTypeTxt.value === "") {
           alert("Du må fylle ut begge feltene");
@@ -429,12 +435,13 @@
           cardTypeTxt.value = "";
           return;
         }
-
+        //diy array forslag fra chatgpt, la til default image her
         const diyPokemonCard = {
           name: cardNameTxt.value,
           type: cardTypeTxt.value.toLowerCase(),
           image: `./assets/pokemonBall.jpg`,
         };
+        // unsift -> chatgpt
         pokemonAll.unshift(diyPokemonCard);
         console.log("Ny pokemon", diyPokemonCard);
         console.log("hele array", pokemonAll);
