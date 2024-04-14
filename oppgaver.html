@@ -44,7 +44,7 @@
       const filterBtn = document.querySelector(".filter-btn");
       const showSavedBtn = document.querySelector(".show-saved-btn");
       let pokemonsId = [];
-      let pokemonImageNameTypeOnly = [];
+      let pokemonAll = [];
       let selectedType;
 
       let addPokemonCardSaved =
@@ -80,23 +80,23 @@
         return response;
       }
 
-      async function fetchAndShowPokemonId() {
+      async function fetchAndShowPokemon() {
         try {
           pokemonsId = [];
-          for (let i = 1; i < 100; i += 2) {
-            idOfPokemon = await fetchPokemon(i);
+          for (let pokemon = 1; pokemon < 100; pokemon += 2) {
+            idOfPokemon = await fetchPokemon(pokemon);
             pokemonsId.push(idOfPokemon);
           }
-          pokemonImageNameTypeOnly = pokemonsId.map((pokemon) => ({
+          pokemonAll = pokemonsId.map((pokemon) => ({
             name: pokemon.name,
             image: pokemon.sprites.other[`official-artwork`].front_default,
             type: pokemon.types[0].type.name,
           }));
-          console.log("hvor mange", pokemonImageNameTypeOnly);
-          showAllPokemon(pokemonImageNameTypeOnly);
+          console.log("hvor mange", pokemonAll);
+          showAllPokemon(pokemonAll);
         } catch (error) {
           console.error(
-            "Her klarte vi dessverre ikke å laste inn pokemons",
+            "Her klarte vi dessverre ikke å laste inn pokemon",
             error
           );
         }
@@ -112,7 +112,7 @@
       }
 
       function filterPokemon(selectedType) {
-        const filteredPokemon = pokemonImageNameTypeOnly;
+        const filteredPokemon = pokemonAll;
         let typeFilter;
 
         if (selectedType === "all") {
@@ -127,14 +127,14 @@
           if (typeFilter.length === 0) {
             console.log("hey");
             pokemonContainer.innerHTML =
-              "" + "<h2>Ingen pokemons hadde denne type, sry</h2>";
+              "" + "<h2>Ingen pokemon hadde denne typen, sry</h2>";
             return;
           } else {
             showAllPokemon(typeFilter);
           }
         }
       }
-      fetchAndShowPokemonId();
+      fetchAndShowPokemon();
 
       function showAllPokemon(pokemons) {
         pokemonContainer.innerHTML = "";
@@ -146,7 +146,7 @@
           deleteBtn.addEventListener("click", function () {
             deletePokemonCard(index, pokemon);
             
-            console.log("her slettes det", pokemonImageNameTypeOnly);
+            console.log("her slettes det", pokemonAll);
           });
           //save
           const saveBtn = document.createElement("button");
@@ -238,7 +238,7 @@
       }
 
       
-      function showAllSavedCards(pokemons) {
+      function showAllSavedPokemon(pokemons) {
         pokemonContainer.innerHTML = "";
         pokemons.forEach((pokemon, index) => {
           //delete
@@ -246,6 +246,7 @@
           deleteBtn.innerHTML = "Slett pokemon";
           deleteBtn.style.backgroundColor = "red";
           deleteBtn.addEventListener("click", function () {
+            alert("Du har slettet et kort");
             deleteSavedCard(index);
             
             console.log("her slettes det", mySavedCards);
@@ -332,13 +333,13 @@
 
       }
       function deletePokemonCard(index, pokemon) {
-        pokemonImageNameTypeOnly = pokemonImageNameTypeOnly.filter(
+        pokemonAll = pokemonAll.filter(
           (p) => p.name !== pokemon.name
         );
 
     
         localStorage.setItem("addPokemonCardSaved",JSON.stringify(addPokemonCardSaved) );
-        showAllPokemon(pokemonImageNameTypeOnly);
+        showAllPokemon(pokemonAll);
         console.log(addPokemonCardSaved);
       }
 
@@ -353,10 +354,10 @@
 
       function showMySavedCards() {
         if (mySavedCards.length > 0) {
-          showAllSavedCards(mySavedCards);
+          showAllSavedPokemon(mySavedCards);
         } else {
           alert("Her er det ingen lagrete kort enda");
-         showAllPokemon(pokemonImageNameTypeOnly);
+         showAllPokemon(pokemonAll);
           return;
         }
       }
@@ -377,7 +378,7 @@
           mySavedCards[index].name = changeName ||  mySavedCards[index].name;
         mySavedCards[index].type = changeType || mySavedCards[index].type;
         localStorage.setItem("mySavedCards", JSON.stringify(mySavedCards));
-        showAllSavedCards(mySavedCards);
+        showAllSavedPokemon(mySavedCards);
         console.log(mySavedCards);
       }
 
@@ -395,17 +396,17 @@
             return;
           }
          
-        pokemonImageNameTypeOnly[index].name = changeName || pokemonImageNameTypeOnly[index].name;
-        pokemonImageNameTypeOnly[index].type = changeType || pokemonImageNameTypeOnly[index].type;
+        pokemonAll[index].name = changeName || pokemonAll[index].name;
+        pokemonAll[index].type = changeType || pokemonAll[index].type;
         
       
         localStorage.setItem("addPokemonCardSaved",JSON.stringify(addPokemonCardSaved) );
         
         
-        showAllPokemon(pokemonImageNameTypeOnly)
+        showAllPokemon(pokemonAll)
        // showAllPokemon(mySavedCards);
         console.log(addPokemonCardSaved);
-        console.log(pokemonImageNameTypeOnly);
+        console.log(pokemonAll);
        
       }
 
@@ -431,10 +432,10 @@
           type: cardTypeTxt.value.toLowerCase(),
           image: `./assets/pokemonBall.jpg`,
         };
-        pokemonImageNameTypeOnly.unshift(diyPokemonCard);
+        pokemonAll.unshift(diyPokemonCard);
         console.log("Ny pokemon", diyPokemonCard);
-        console.log("hele array", pokemonImageNameTypeOnly);
-        showAllPokemon(pokemonImageNameTypeOnly);
+        console.log("hele array", pokemonAll);
+        showAllPokemon(pokemonAll);
 
         addPokemonCardSaved.push(diyPokemonCard);
         localStorage.setItem(
