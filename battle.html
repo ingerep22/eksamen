@@ -19,8 +19,8 @@
   </head>
   <body>
     <h1>Pokemon Battle</h1>
-    <h3>Velg din pokemon ved å trykke på en av pokemonballene, når du har bestemt deg trykk på "velg meg" knappen, angrip ved å bruke a på tastaturet</h3>
-    <h4>Din og motstanderens pokemon kan evolve, hvis du vinner er du ett hakk nærmere. Det er hemmelig hva som kreves, når du vinner kan du velge mellom penger og level </h>
+    <h3>Velg din pokemon ved å trykke på en av pokemonballene, når du har bestemt deg trykk på "velg meg" knappen</h3>
+    <h4>Din og motstanderens pokemon kan evolve, hvis du vinner er du ett hakk nærmere. Det er hemmelig hva som kreves, når du vinner kan du velge, penger eller level </h>
     <div class="info-container">
       <div class="txt-container">
         <p id="name-of-pokemon">Din pokemon sitt navn</p>
@@ -50,13 +50,15 @@
         width="120px"
         height=""
       />
-      <input type="button" value="Motstanderens pokemon" id="show-bad-pokemon-btn" />
+      <input type="button" value="Vis motstanderens pokemon før kamp" id="show-bad-pokemon-btn" />
     </div>
     <div class="pokemon-all-container">
       <div class="good-pokemon-container"></div>
       <div class="bad-pokemon-container"></div>
     </div>
     <script>
+      //legger ved kommentarer ved kilder
+      //info conatiner og txt containers - arbeidskrav 1
       let nameOfPokemon = document.querySelector("#name-of-pokemon");
       let nameOfBadPokemon = document.querySelector("#name-of-bad-pokemon");
       let pokemonHpTxt = document.querySelector("#pokemon-hp-txt");
@@ -103,6 +105,8 @@
           const savedPikachu = badPokemon.find(
             (pokemon) => pokemon.name === name
           );
+          // if(!savedPikachu) setning og .push -> chatgpt
+          // for å hente info til image og type -> chatgpt
           if (!savedPikachu) {
             let idOfPokemon = await fetchBattlePokemon(name);
             badPokemon.push({
@@ -127,7 +131,9 @@
           console.error("Her klarte vi ikke å lase inn pokemons", error);
         }
       }
-
+      //hente abilities -> chatgpt
+      //let pokemon og .push ->chatgpt
+      //ellers brukt logikk fra api forelesning
       async function fetchAndShowGoodPokemon(name) {
         try {
           let idOfPokemon = await fetchBattlePokemon(name);
@@ -154,6 +160,7 @@
         }
       }
 
+      //brukt logikk fra forelesning 5
       function showGoodPokemon(pokemons) {
         console.log("vis pokemon:", pokemons);
         goodPokemonContainer.innerHTML = "";
@@ -173,13 +180,13 @@
           goodPokemonContainer.style.display = "flex";
           goodPokemonContainer.style.flexWrap = "wrap";
           goodPokemonContainer.style.gap = "10px";
-
+          // ? : logikk fra oppgaver-2, 4.html - packinglist
           goodPokemonCard.style.background =
             pokemon.type == "water"
               ? "#1451E3"
               : pokemon.type == "fire"
-              ? "#AA1E21"
-              : 
+              ? "#AA1E21":
+              
               goodPokemonCard.style.width = "200px";
               goodPokemonCard.style.height = "460px";
               goodPokemonCard.style.padding = "10px";
@@ -193,7 +200,6 @@
         badPokemonContainer.innerHTML = "";
         console.log("vis pika", pokemons);
         pokemons.forEach((pokemon, index) => {
-          
           const badPokemonCard = document.createElement("div");
           badPokemonContainer.style.display = "flex";
           badPokemonContainer.style.flexWrap = "wrap";
@@ -211,6 +217,8 @@
         });
       }
 
+      //find forslag fra chatgpt 
+      //if(savedWartortle) ([savedwWrtortle]) fra chatgpt og videreførte logikken videre til de andre
       waterPokemon.addEventListener("click", () => {
         waterPokemon.src = "/assets/open.jpg";
         let savedWartortle = goodPokemon.find(
@@ -258,7 +266,7 @@
         const badPokemonBtn = document.querySelector("#show-bad-pokemon-btn");
         badPokemonBtn.addEventListener("click", function () {
           getBadPokemon("pikachu");
-          updateInnerHtml(null, badPokemon[0]);
+          updateInnerHtml(null, badPokemon[0]); //null -> chatgpt
           badPokemonBtn.remove();
         });
 
@@ -283,12 +291,12 @@
         let amountOfDefenseGood = (5 * pokemon.specialAttack) / (badPokemon[0].specialDefense + badPokemon[0].speed);
         let amountOfDefenseBad = (5 * badPokemon[0].specialAttack) / (pokemon.specialDefense + pokemon.speed);
 
-
+//math.round, hvordan brukes fant på stackoverflow
         let amountOfDamageGoodRound = Math.round(amoundOfDamageGood);
         let amountOfDamageBadRound = Math.round(amoundOfDamageBad);
         let amountOfDefenseGoodRound = Math.round(amountOfDefenseGood);
         let amountOfDefenseBadRound = Math.round(amountOfDefenseBad);
-
+//hvordan return flere -> chatgpt
         return { amountOfDamageGoodRound, amountOfDamageBadRound, amountOfDefenseGoodRound, amountOfDefenseBadRound };
       }
       function updateInnerHtml(pokemon, badPokemon) {
@@ -308,6 +316,7 @@
     
       function goodPokemonAttack(pokemon) {
         if (badPokemon[0].hp > 0) {
+          // linje 320, 321, 322 -> chatgpt, videreførte logikken i funksjonene under
           let { amountOfDamageGoodRound } = calculateDamageAndDefense(
             pokemon,
             badPokemon[0]
@@ -376,9 +385,7 @@
         let { amountOfDefenseGoodRound } = calculateDamageAndDefense(
             pokemon,
             badPokemon[0]
-          ); // gjentar setning, endrer på navn
-        
-
+          ); 
           pokemon.hp += amountOfDefenseGoodRound;
           alert(
             `${pokemon.name} har defended seg mot ${badPokemon[0].name} og klarer å få ${amountOfDefenseGoodRound} HP`
@@ -398,9 +405,11 @@
             "Motstanderens pokemon har funnet thunder stone, men er utenfor Alola, og evolve derfor til raichu"
           );
           getBadPokemon("raichu");
+          //findindex -> chatgpt - videreført lenger ned i koden
           const index = badPokemon.findIndex(
             (pokemon) => pokemon.name === "pikachu"
           );
+          //if (index !== -1)  -> chatgpt - videreført i lenger ned i koden
           if (index !== -1) {
             badPokemon.splice(index, 1);
             localStorage.setItem("badPokemon", JSON.stringify(badPokemon));
@@ -443,10 +452,12 @@
         if (pokemon.name === "vulpix" && pokemon.money === 300) {
           pokemon.money -= 300;
           updateInnerHtml(pokemon, badPokemon[0]);
+          //tester med find, funker
           const findVulpix = goodPokemon.find(
             (pokemon) => pokemon.name === "vulpix"
           );
           if (findVulpix) {
+            //[findVulpix] fra chatgpt
             goodPokemon.splice([findVulpix], 1);
             localStorage.setItem("goodPokemon", JSON.stringify(goodPokemon));
             alert("Du har funnet fire stone og har nå tilgan til ninetales");
@@ -494,13 +505,13 @@
         }
         evolvePokemon(pokemon);
       }
+//chatgpt kom med forslag å ha savetolocalstorage info i en egen funksjon
       function saveToLocalStorage(pokemon, badPokemon) {
         pokemon.hp = pokemon.originalHp;
+        //linje 512, 513
         if (badPokemon[0].name) {
           badPokemon[0].hp = badPokemon[0].originalHp;
-        } else {
-          badPokemon.hp = 3;
-        }
+        } 
         localStorage.setItem("goodPokemon", JSON.stringify(goodPokemon));
         localStorage.setItem("badPokemon", JSON.stringify(badPokemon));
         updateInnerHtml(pokemon, badPokemon[0]);;
