@@ -9,7 +9,7 @@
     <h1>Pokemon oppgaver</h1>
     <input type="text" placeholder="name" id="card-name-txt" />
     <input type="text" placeholder="type" id="card-type-txt" />
-   
+
     <input type="button" value="Lag pokemonkort" id="card-add-btn" />
     <select id="pokemon-filter-selection">
       <option value="all">Fjern filtrering/Vis alle</option>
@@ -33,7 +33,8 @@
       <option value="water">Water</option>
     </select>
     <button class="filter-btn">Filtrer etter type</button>
-    <button class="show-saved-btn">Se alle lagrete kort</button> <br /><br />
+    <button class="show-saved-pokemon-btn">Se alle lagrete kort</button>
+    <br /><br />
     <div class="pokemon-container"></div>
 
     <script>
@@ -42,7 +43,9 @@
       const cardTypeTxt = document.querySelector("#card-type-txt");
       const cardAddBtn = document.querySelector("#card-add-btn");
       const filterBtn = document.querySelector(".filter-btn");
-      const showSavedBtn = document.querySelector(".show-saved-btn");
+      const showSavedPokemonBtn = document.querySelector(
+        ".show-saved-pokemon-btn"
+      );
       let pokemonsId = [];
       let pokemonAll = [];
       let selectedType;
@@ -145,7 +148,7 @@
           deleteBtn.style.backgroundColor = "red";
           deleteBtn.addEventListener("click", function () {
             deletePokemonCard(index, pokemon);
-            
+
             console.log("her slettes det", pokemonAll);
           });
           //save
@@ -177,7 +180,7 @@
           const editTxtBtn = document.createElement("button");
           editTxtBtn.innerHTML = "Rediger";
           editTxtBtn.addEventListener("click", function () {
-            editTxtCard(index);
+            editPokemonCardTxt(index);
           });
           const pokemonCard = document.createElement("div");
           pokemonContainer.style.display = "flex";
@@ -237,7 +240,6 @@
         });
       }
 
-      
       function showAllSavedPokemon(pokemons) {
         pokemonContainer.innerHTML = "";
         pokemons.forEach((pokemon, index) => {
@@ -248,7 +250,7 @@
           deleteBtn.addEventListener("click", function () {
             alert("Du har slettet et kort");
             deleteSavedCard(index);
-            
+
             console.log("her slettes det", mySavedCards);
           });
 
@@ -266,7 +268,7 @@
           const editTxtBtn = document.createElement("button");
           editTxtBtn.innerHTML = "Rediger";
           editTxtBtn.addEventListener("click", function () {
-            editSavedTxtCard(index);
+            editSavedCardTxt(index);
           });
           const pokemonCard = document.createElement("div");
           pokemonContainer.style.display = "flex";
@@ -314,11 +316,11 @@
               : pokemon.type == "dark"
               ? "#040603"
               : "white";
-        
+
           pokemonCard.innerHTML = `<img src="${pokemon.image}" style ="width: 200px" /> <h3>Navn: ${pokemon.name} <br> Type: ${pokemon.type}</h3>`;
           pokemonCard.append(
             deleteBtn,
-            
+
             changeSavedNameInput,
             changeSavedTypeInput,
             editTxtBtn
@@ -328,22 +330,23 @@
       }
       function deleteSavedCard(index) {
         mySavedCards.splice(index, 1);
-        localStorage.setItem("mySavedCards",JSON.stringify(mySavedCards) );
+        localStorage.setItem("mySavedCards", JSON.stringify(mySavedCards));
         showMySavedCards(mySavedCards);
-
       }
       function deletePokemonCard(index, pokemon) {
-        pokemonAll = pokemonAll.filter(
-          (p) => p.name !== pokemon.name
-        );
-
-    
-        localStorage.setItem("addPokemonCardSaved",JSON.stringify(addPokemonCardSaved) );
-        showAllPokemon(pokemonAll);
-        console.log(addPokemonCardSaved);
+        if (pokemonAll) {
+          pokemonAll = pokemonAll.filter((p) => p.name !== pokemon.name);
+          localStorage.setItem(
+            "addPokemonCardSaved",
+            JSON.stringify(addPokemonCardSaved)
+          );
+          showAllPokemon(pokemonAll);
+          console.log(addPokemonCardSaved);
+        } else if (mySavedCards) {
+        }
       }
 
-      showSavedBtn.addEventListener("click", showMySavedCards);
+      showSavedPokemonBtn.addEventListener("click", showMySavedCards);
 
       function savePokemonCard(pokemon) {
         mySavedCards.push(pokemon);
@@ -356,13 +359,12 @@
         if (mySavedCards.length > 0) {
           showAllSavedPokemon(mySavedCards);
         } else {
-          alert("Her er det ingen lagrete kort enda");
-         showAllPokemon(pokemonAll);
-          return;
+          alert("Du har ingen lagrete kort");
+          showAllPokemon(pokemonAll);
         }
       }
 
-      function editSavedTxtCard(index) {
+      function editSavedCardTxt(index) {
         const changeType = document
           .querySelector(`#changeSavedTypeInput-${index}`)
           .value.toLowerCase();
@@ -370,19 +372,19 @@
           `#changeSavedNameInput-${index}`
         ).value;
 
-          if (!changeName && !correctType.includes(changeType) ) {
-            alert("Skrivefeil? Du må skrive en type som finnes");
-            `changeSavedTypeInput-${index}`.value = "";
-            return;
-          } 
-          mySavedCards[index].name = changeName ||  mySavedCards[index].name;
+        if (!changeName && !correctType.includes(changeType)) {
+          alert("Skrivefeil? Du må skrive en type som finnes");
+          `changeSavedTypeInput-${index}`.value = "";
+          return;
+        }
+        mySavedCards[index].name = changeName || mySavedCards[index].name;
         mySavedCards[index].type = changeType || mySavedCards[index].type;
         localStorage.setItem("mySavedCards", JSON.stringify(mySavedCards));
         showAllSavedPokemon(mySavedCards);
         console.log(mySavedCards);
       }
 
-      function editTxtCard(index) {
+      function editPokemonCardTxt(index) {
         const changeType = document
           .querySelector(`#changeTypeInput-${index}`)
           .value.toLowerCase();
@@ -390,25 +392,26 @@
           `#changeNameInput-${index}`
         ).value;
 
-          if (!changeName && !correctType.includes(changeType)) {
-            alert("Skrivefeil? Du må skrive en type som finnes");
-            `changeTypeInput-${index}`.value = "";
-            return;
-          }
-         
+        if (!changeName && !correctType.includes(changeType)) {
+          alert("Skrivefeil? Du må skrive en type som finnes");
+          `changeTypeInput-${index}`.value = "";
+          return;
+        }
+
         pokemonAll[index].name = changeName || pokemonAll[index].name;
         pokemonAll[index].type = changeType || pokemonAll[index].type;
-        
-      
-        localStorage.setItem("addPokemonCardSaved",JSON.stringify(addPokemonCardSaved) );
-        
-        
-        showAllPokemon(pokemonAll)
-       // showAllPokemon(mySavedCards);
+
+        localStorage.setItem(
+          "addPokemonCardSaved",
+          JSON.stringify(addPokemonCardSaved)
+        );
+
+        showAllPokemon(pokemonAll);
         console.log(addPokemonCardSaved);
         console.log(pokemonAll);
-       
       }
+
+      cardAddBtn.addEventListener("click", addPokemonCard);
 
       function addPokemonCard() {
         if (cardNameTxt.value === "" || cardTypeTxt.value === "") {
@@ -446,8 +449,6 @@
         cardNameTxt.value = "";
         cardTypeTxt.value = "";
       }
-
-      cardAddBtn.addEventListener("click", addPokemonCard);
     </script>
   </body>
 </html>
