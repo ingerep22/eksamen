@@ -286,7 +286,7 @@
 
         function calculateDamageAndDefense(pokemon) {
         let amoundOfDamageGood = (5 * pokemon.attack) / badPokemon[0].defense;
-        let amoundOfDamageBad = (20 * badPokemon[0].attack) / pokemon.defense;
+        let amoundOfDamageBad = (5 * badPokemon[0].attack) / pokemon.defense;
 
         let amountOfDefenseGood = (5 * pokemon.specialAttack) / (badPokemon[0].specialDefense + badPokemon[0].speed);
         let amountOfDefenseBad = (5 * badPokemon[0].specialAttack) / (pokemon.specialDefense + pokemon.speed);
